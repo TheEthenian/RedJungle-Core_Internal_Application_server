@@ -3,7 +3,7 @@ from pydantic import BaseModel
 class Room_Object(BaseModel):
     room_id: str
     room_no: int
-    room_pictures: list(str)
+    room_pictures: list
     hotel_id: str
     room_type_id: str
     status: str
@@ -35,7 +35,7 @@ class Service_Object(BaseModel):
     name: str
     description: str
     price: float
-    operation_schedule: list(str)
+    operation_schedule: list
 
 
 class Maintenance_Request_Object(BaseModel):

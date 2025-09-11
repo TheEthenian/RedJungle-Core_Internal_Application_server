@@ -10,7 +10,7 @@ class User_Object(BaseModel):
 
 class User_Profile_Object(BaseModel):
     user_id: str
-    profile_picture: str = null
+    profile_picture: str = None
     first_name: str
     last_name: str
     email: str

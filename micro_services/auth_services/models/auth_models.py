@@ -1,4 +1,4 @@
-from pydantic import 
+from pydantic import BaseModel
 
 
 class Log_Entry_Object(BaseModel):

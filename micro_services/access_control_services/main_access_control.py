@@ -1,68 +1,55 @@
 from  fastapi import FastAPI
-from pydantic import BaseModel
+from models import access_control_models as structure
 import sqlalchemy
 import psycopg2
-import requests
+import requests 
 import json
+
+#####################################################################
 
 app = FastAPI()
 
+#####################################################################
+
 data_list = [
-    {
-        'Authorization': True,
-        'acccess_level': 3,
-        'ttl_seconds': 35,
-        'auth_servers': [
-            {"server_1","xxyz4"},
-            {"server_2","xsdfs"},
-            {"server_3","sdfsde"}
-        ]
-    },
-    {
-        'access_token': 'sdfsodfnsdfsd',
-        'acccess_level': 5,
-        'ttl_seconds': 10,
-        'auth_servers': [
-            {"server_1","ddjndjd"},
-            {"server_2","zlfmfk"},
-            {"server_3","rujjk"}
-        ]
-    }
 ]
 
-class Data_structure(BaseModel):
-    access_token: str
-    Authorization: bool = False
-    acccess_level: int = 10
-    ttl_seconds: int = 30
-    auth_servers: list
+#####################################################################
 
 
 @app.get("/")
-def read_me():
+def main_get():
     return data_list
 
 
 @app.post("/")
-def read_me():
-    response = requests.post(target_url_ahs)
-    return response.json()
+def main_post(something: structure.Decision_Log_Object):
+    data_list.append(something)
+    return  {
+        "msg": 'data sent succesfully',
+        "data_pack": something
+    } 
 
 
 @app.put("/")
-def read_me():
-    return 'Nothing to put here'
+def main_put(new_instance):
+    for item in data_list:
+        if item['id'] == new_instance.id:
+            item['name'] = new_instance.name
+            return  {
+                "msg": 'data block changed',
+                "data_pack": item
+            }
+
 
 @app.delete("/")
-def remove_avenger(uuid: Data_structure):
-    item_id = uuid.access_token
+def main_delete(uuid):
+    item_id = uuid.id
     for item in data_list:
-        if item['access_token'] == item_id:
+        if item['id'] == item_id:
             data_list.remove(item)
             return {
                 "msg": "Item was succesfully deleted",
                 "Item deleted": item
             }
-
-
 
