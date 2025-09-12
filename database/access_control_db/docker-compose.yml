@@ -2,15 +2,18 @@ version: '3.8'
 services:
   redjungle_bank:
     image: postgres:17
+    container_name: access_control_bank
     restart: always
     env_file:
       - .env
     volumes:
-      - ./redjungle-postgresql-volume:/var/lib/posgresql/data
+      - pgdata_volume:/var/lib/posgresql/data
       - ./config:/etc/postgresql/
     ports:
-      - 5432:5432
-
+      - '9020:5432'
+volumes:
+  pgdata_volume:
+  
 
 
 

@@ -14,7 +14,7 @@ class User_Profile_Object(BaseModel):
     first_name: str
     last_name: str
     email: str
-    phone_number: str
+    phone_number: str = None
 
 class Role_Object(BaseModel):
     role_id: str

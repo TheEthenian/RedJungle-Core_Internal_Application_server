@@ -19,6 +19,7 @@ payment_gateway_services_url = 'http://redjungle-00.lab:7060'
 booking_services_url = 'http://redjungle-00.lab:7070'
 user_info_services_url = 'http://redjungle-00.lab:7080'
 analytics_services_url = 'http://redjungle-00.lab:7090'
+audic_logging_services_url = 'http://redjungle-00.lab:7090'
 
 ###################################################################
 
