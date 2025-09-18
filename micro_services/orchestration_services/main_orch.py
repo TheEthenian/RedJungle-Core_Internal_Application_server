@@ -10,6 +10,7 @@ import json
 ############### Micro-services addresses ##########################
 
 orchestrator_services_url = 'http://redjungle-00.lab:7001'
+review_services_url = 'http://redjungle-00.lab:7005'
 auth_services_url = 'http://redjungle-00.lab:7010'
 access_control_services_url = 'http://redjungle-00.lab:7020'
 super_admin_services_url = 'http://redjungle-00.lab:7030'
