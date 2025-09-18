@@ -3,47 +3,35 @@ from pydantic import BaseModel
 class Room_Object(BaseModel):
     room_id: str
     room_no: int
-    room_pictures: list
     hotel_id: str
-    room_type_id: str
     status: str
     price: float
+    amenity_id: str
+    pictures: list
     amenities: list
 
 
-class Room_Type_Object(BaseModel):
-    room_type_id: str
-    hotel_id: str
-    name: str
-    description: str
+class Room_Picture_Object(BaseModel):
+    picture_id: str
+    room_id: str
+    picture_url: str
+    date_created: str
+    rooms: list
+
+
+class Room_Amenity_Object(BaseModel):
+    amenity_id: str
+    amenity_name: str
+    amenity_description: str
     max_occupancy: int
-
-
-class Staff_User_Object(BaseModel):
-    staff_id: str
-    hotel_id: str
-    first_name: str
-    last_name: str
-    email: str
-    role: str
-    status: str
-
-
-class Service_Object(BaseModel):
-    service_id: str
-    hotel_id: str
-    name: str
-    description: str
-    price: float
-    operation_schedule: list
+    rooms: list
 
 
 class Maintenance_Request_Object(BaseModel):
     request_id: str
     hotel_id: str
     room_id: str
-    description: str
-    price: float
+    maintenance_description: str
     reported_by_staff_id: str
     status: str
 

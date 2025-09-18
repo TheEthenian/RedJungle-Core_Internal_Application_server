@@ -5,10 +5,26 @@ class Hotel_Object(BaseModel):
     hotel_id: str 
     hotel_name: str 
     tenant_id: str 
-    address: str 
-    city: str 
-    country: str 
-    contact_info: dict 
+    location: str
+    contact_number: dict 
+    configs: list
+
+
+class Hotel_Service_Object(BaseModel):
+    service_id: str
+    hotel_id: str
+    service_name: str
+    service_description: str
+    price: float
+    operation_schedule: str
+
+
+class Staff_User_Object(BaseModel):
+    staff_id: str
+    hotel_id: str
+    user_id: str
+    role_id: str
+    status: str
 
 
 class Admin_User_Object(BaseModel):
@@ -16,7 +32,7 @@ class Admin_User_Object(BaseModel):
     user_id: str
     hotel_id: str
     tenant_id: str
-    role: str
+    role_id: str
 
 
 class Hotel_Configuration_Object(BaseModel):
@@ -26,6 +42,7 @@ class Hotel_Configuration_Object(BaseModel):
     config_value: dict
     last_updated_admin_id: str
     last_updated_timestamp: str
+    hotels: list
 
 
 

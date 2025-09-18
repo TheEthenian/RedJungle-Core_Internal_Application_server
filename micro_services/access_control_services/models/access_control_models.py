@@ -5,13 +5,12 @@ class Policy_Object(BaseModel):
     policy_id: str
     policy_name: str
     description: str
-    rules: dict
 
 
 class Role_Object(BaseModel):
     role_id: str
     role_name: str
-    policy_ids: dict
+    policies: list
 
 
 class Decision_Log_Object(BaseModel):
@@ -21,7 +20,7 @@ class Decision_Log_Object(BaseModel):
     tenant_id: str
     resource_targeted: str
     action_crud: str
-    allowed: bool = False
+    allowed: bool 
     policy_based_reason: str
     timestamp: str
 

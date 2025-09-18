@@ -22,24 +22,24 @@ class Booking_Object(BaseModel):
     total_price: float
     payment_transaction_id: str
     created_at: str
+    guests: list
 
 
 class Guest_Object(BaseModel):
     guest_id: str
     user_id: str = None
-    booking_id: str
     first_name: str = None
     last_name: str = None
     email: str = None
     phone_number:str = None
     created_at: str = None
+    bookings: list
 
 
 class Invoice_Object(BaseModel):
     invoice_id: str
     booking_id: str
     invoice_number: int
-    amount_due: str
     status: str
     created_at:str
 

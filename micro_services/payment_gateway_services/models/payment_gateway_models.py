@@ -13,13 +13,11 @@ class Log_Entry_Object(BaseModel):
 
 class Transaction_Object(BaseModel):
     transaction_id: str
-    booking_id: str = 'null'
     user_id: str
     tenant_id: str
     amount: float
     status: str
-    payment_method: str
-    gateway_response: dict
+    payment_method_id: str
     created_at: str
 
 

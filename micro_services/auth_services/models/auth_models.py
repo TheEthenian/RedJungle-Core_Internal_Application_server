@@ -16,20 +16,27 @@ class Credential_Object(BaseModel):
     user_id: str
     email: str
     hashed_password: str
+    salt: str
     mfa_secret: str
     last_login_at: str
     failed_login_attempts: int
-    password_reset_token: str
+
+    reset_tokens: list
 
 
 class Session_Object(BaseModel):
-    token_id: str
-    user_id: str
-    token: str
-    status: str
-    issued_at: str
+    session_id: str
+    credential_id: str
+    token_hash: str
     expires_at: str
+    ip_address: str
 
+
+class Password_Reset_Token(BaseModel):
+    token: str
+    expires_at: str
+    is_used: bool
+    credentials: list
 
 
 

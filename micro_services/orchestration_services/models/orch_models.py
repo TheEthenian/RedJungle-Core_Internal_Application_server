@@ -10,37 +10,33 @@ class Log_Entry_Object(BaseModel):
     details: str
 
 
-class Workflow_Excecution_Object(BaseModel):
+class Workflow_Object(BaseModel):
     workflow_id: str
-    user_id: str
-    tenant_id: str
-    status: str
-    data_payload: str
-    step_history: list(str)
+    workflow_name:str
+    steps: list
 
 
-class Workflow_Definition_Object(BaseModel):
-    workflow_id: str
-    workflow_name: str
-    steps: list(str)
-
-
-class Workflow_Step_Object(BaseModel):
+class Step_Object(BaseModel):
     step_id: str
-    step_name: str
     service_id: str
+    workflow_id: str
+    step_execution_order: int
+    workflows: list
+    services: list
 
 
-class Workflow_Service_Object(BaseModel):
+class Service_Object(BaseModel):
     service_id: str
     service_name: str
-    api_base_url: str
-    http_method: str
-    data_payload: dict = null
-    authentication_details: dict
+    endpoint: str
+    steps: list
 
-
-
+class Progress_Object(BaseModel):
+    progress_id: str
+    workflow_id: str
+    current_service_id: str
+    progress_status: str
+    complete_status: str
 
 
 

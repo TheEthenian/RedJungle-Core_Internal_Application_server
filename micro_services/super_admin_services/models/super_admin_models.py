@@ -14,39 +14,25 @@ class Log_Entry_Object(BaseModel):
 class Tenant_Object(BaseModel):
     tenant_id: str
     tenant_name: str
-    status: str
     subscription_plan: str
-    billing_info_id: str
+    status: str
     created_at: str
 
 
 class Super_Admin_Object(BaseModel):
     super_admin_id: str
     user_id: str
-    tenant_id: str
-    role: str
-    status: str
+    created_at: str
     last_login_at: str
 
 
-class Global_Configuration_Object(BaseModel):
-    config_id: str
-    config_name: str
-    config_value: str
+class Billing_Info_Object(BaseModel):
+    billing_info_id: str
+    super_admin_id: str
     tenant_id: str
-    last_updated: str
-
-
-
-
-
-
-
-
-
-
-
-
-
+    next_payment_in_days: int
+    total_amount: float
+    payment_transaction_id: str
+    
 
 
