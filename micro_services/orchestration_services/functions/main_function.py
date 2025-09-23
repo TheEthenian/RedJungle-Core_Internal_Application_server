@@ -53,10 +53,10 @@ def assistant_workflow_enumeration(list_sub_workflow):
                 
                 sub_workflow_data.append(['Execution_order: ',execution_order,'assistance_workflow_name: ',workflow_name,'Sub_workflows: ',sub_workflow_enumeration,'Steps: ',steps_enumeration])
                 
-                return sub_workflow_data
+    return sub_workflow_data
 
 
-workflow_location_number = 29
+workflow_location_number = 40
 
 print('//////////// START ENUMERATION ///////////////////')
 print('Workflow_name: ',workflow_object[workflow_location_number]['workflow_name'])
