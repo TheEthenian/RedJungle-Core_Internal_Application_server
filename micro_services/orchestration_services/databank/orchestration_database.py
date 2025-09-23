@@ -7,7 +7,7 @@ from typing import List
 
 ###############################################################################
 
-config_data = load_yaml_config('../config.yaml')
+config_data = load_yaml_config('../config_database.yaml')
 
 db_username = config_data['orchestration_microservice']['database']['db_username']
 db_passcode = config_data['orchestration_microservice']['database']['db_passcode']

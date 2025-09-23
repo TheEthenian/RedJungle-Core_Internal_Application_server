@@ -11,15 +11,13 @@ app = FastAPI()
 
 #####################################################################
 
-data_list = [
-]
 
 #####################################################################
 
 
 @app.get("/")
 def main_get():
-    return data_list
+    return 'Hellow this is the hotels in the admin endpoint'
 
 
 @app.post("/")

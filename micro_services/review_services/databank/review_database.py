@@ -1,11 +1,24 @@
 from sqlalchemy import create_engine, Integer, Boolean, ForeignKey, Table, String, Float, Column
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped
 from sqlalchemy.orm import mapped_column, sessionmaker
+from functions.main_function import load_yaml_config
 from typing import List
+
 
 ###############################################################################
 
-DATABASE_URL = "postgresql+psycopg2://invinsible:$omniman#@localhost:9005/review_bank"
+config_data = load_yaml_config('../config_database.yaml')
+
+db_username = config_data['review_microservice']['database']['db_username']
+db_passcode = config_data['review_microservice']['database']['db_passcode']
+db_url = config_data['review_microservice']['database']['db_url']
+db_port = config_data['review_microservice']['database']['db_port']
+db_name = config_data['review_microservice']['database']['db_name']
+
+
+###############################################################################
+
+DATABASE_URL = f"postgresql+psycopg2://{db_username}:{db_passcode}@{db_url}:{db_port}/{db_name}"
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 session = Session()

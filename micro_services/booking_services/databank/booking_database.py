@@ -1,11 +1,24 @@
 from sqlalchemy import create_engine, Integer, String, Float, Boolean, ForeignKey, Table, Column
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped
 from sqlalchemy.orm import mapped_column, sessionmaker
+from functions.main_function import load_yaml_config
 from typing import List
+
 
 ###############################################################################
 
-DATABASE_URL = "postgresql+psycopg2://invinsible:$omniman#@localhost:9070/booking_bank"
+config_data = load_yaml_config('../config_database.yaml')
+
+db_username = config_data['booking_microservice']['database']['db_username']
+db_passcode = config_data['booking_microservice']['database']['db_passcode']
+db_url = config_data['booking_microservice']['database']['db_url']
+db_port = config_data['booking_microservice']['database']['db_port']
+db_name = config_data['booking_microservice']['database']['db_name']
+
+
+###############################################################################
+
+DATABASE_URL = f"postgresql+psycopg2://{db_username}:{db_passcode}@{db_url}:{db_port}/{db_name}"
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -165,13 +178,13 @@ guest_one.bookings.append(booking_one)
 #read_row(session, 12 , "policy_object", "policy_id")
 
 
-#contents = session.query(Guest_Object).all()
-##
-#for item in contents:
-#    print(item.email)
-#    print(item.phone_number)
-#    for entity in item.bookings:
-#        print(entity.booking_id, entity.room_id, entity.status , entity.total_price)
+contents = session.query(Guest_Object).all()
+#
+for item in contents:
+    print(item.email)
+    print(item.phone_number)
+    for entity in item.bookings:
+        print(entity.booking_id, entity.room_id, entity.status , entity.total_price)
 
 
 

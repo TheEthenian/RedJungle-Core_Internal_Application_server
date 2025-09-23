@@ -1,5 +1,5 @@
 from  fastapi import FastAPI
-from models import hotel_mgnt_models as structure
+from models import review_models as structure
 import sqlalchemy
 import psycopg2
 import requests 
@@ -23,7 +23,7 @@ def main_get():
 
 
 @app.post("/")
-def main_post(something: structure.Room_Object):
+def main_post(something):
     data_list.append(something)
     return  {
         "msg": 'data sent succesfully',
@@ -32,7 +32,7 @@ def main_post(something: structure.Room_Object):
 
 
 @app.put("/")
-def main_put(new_instance: structure.Room_Object):
+def main_put(new_instance):
     for item in data_list:
         if item['id'] == new_instance.id:
             item['name'] = new_instance.name
@@ -43,7 +43,7 @@ def main_put(new_instance: structure.Room_Object):
 
 
 @app.delete("/")
-def main_delete(uuid: structure.Room_Object):
+def main_delete(uuid):
     item_id = uuid.id
     for item in data_list:
         if item['id'] == item_id:

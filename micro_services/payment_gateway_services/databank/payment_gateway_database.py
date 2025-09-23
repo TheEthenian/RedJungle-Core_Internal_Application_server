@@ -1,11 +1,24 @@
-from sqlalchemy import create_engine, Integer, String, Float, Boolean, ForeignKey, Table
+from sqlalchemy import create_engine, Integer, String, Float, Boolean, ForeignKey, Table, Column
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped
 from sqlalchemy.orm import mapped_column, sessionmaker
+from functions.main_function import load_yaml_config
 from typing import List
+
 
 ###############################################################################
 
-DATABASE_URL = "postgresql+psycopg2://invinsible:$omniman#@localhost:9060/payment_gateway_bank"
+config_data = load_yaml_config('../config_database.yaml')
+
+db_username = config_data['payment_gateway_microservice']['database']['db_username']
+db_passcode = config_data['payment_gateway_microservice']['database']['db_passcode']
+db_url = config_data['payment_gateway_microservice']['database']['db_url']
+db_port = config_data['payment_gateway_microservice']['database']['db_port']
+db_name = config_data['payment_gateway_microservice']['database']['db_name']
+
+
+###############################################################################
+
+DATABASE_URL = f"postgresql+psycopg2://{db_username}:{db_passcode}@{db_url}:{db_port}/{db_name}"
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -19,6 +32,12 @@ class Base(DeclarativeBase):
 
 ########################  INTERMEDIATE TABLES  #################################
 
+Transaction_Payment_Object = Table (
+    'transaction_payment_object',
+    Base.metadata,
+    Column('transaction_id', ForeignKey('transaction_object.transaction_id'), primary_key=True),
+    Column('payment_method_id', ForeignKey('payment_method_object.payment_method_id'), primary_key=True)
+)
 
 
 ###############################################################################
@@ -36,10 +55,13 @@ class Transaction_Object(Base):
     status: Mapped[str]= mapped_column(String)
     created_at: Mapped[str]= mapped_column(String)
 
-    payment_method_id: Mapped[str]= mapped_column(ForeignKey('payment_method_object.payment_method_id'))
+    payment_methods: Mapped[List['Payment_Method_Object']] = relationship(
+        secondary= Transaction_Payment_Object,
+        back_populates= 'transactions'
+    )
 
 
-class Paymenet_Method_Object(Base):
+class Payment_Method_Object(Base):
     __tablename__ = 'payment_method_object'
 
     payment_method_id: Mapped[str] = mapped_column(String, primary_key=True)
@@ -50,6 +72,10 @@ class Paymenet_Method_Object(Base):
     is_default: Mapped[str] = mapped_column(String)
     created_at: Mapped[str] = mapped_column(String)
 
+    transactions: Mapped[List['Transaction_Object']] = relationship(
+        secondary= Transaction_Payment_Object,
+        back_populates= 'payment_methods'
+    )
 
 
 Base.metadata.create_all(engine)
@@ -84,7 +110,16 @@ def delete_row(db_session, list_rows):
 ########################## OBJECT INITIALIZATION ###########################
 
 
-payment_one = Paymenet_Method_Object(
+transaction_one = Transaction_Object (
+    transaction_id = 'qwqwqqww',
+    user_id= 'tytytytyty',
+    tenant_id = 'bnbnbnbn',
+    amount = 758.35,
+    status = 'onway',
+    created_at = '45thMonth'
+)
+
+payment_one = Payment_Method_Object(
     payment_method_id= 'hghghghg',
     gateway_token= 'nmnmnm',
     card_brand= 'visa',
@@ -94,33 +129,25 @@ payment_one = Paymenet_Method_Object(
     created_at= '7thMonthYear'
 )
 
-transaction_one = Transaction_Object (
-    transaction_id = 'qwqwqqww',
-    user_id= 'tytytytyty',
-    tenant_id = 'bnbnbnbn',
-    amount = 758.35,
-    status = 'onway',
-    payment_method_id = payment_one.payment_method_id,
-    created_at = '45thMonth'
-)
 
+payment_one.transactions.append(transaction_one)
 
 #############################################################################
 
 ############################ TESTING FUNCTIONS ##############################
 
 
-#create_rows(session, [payment_one,transaction_one])
+#create_rows(session, [transaction_one,payment_one])
 #read_row(session, 12 , "policy_object", "policy_id")
 
 
-#contents = session.query(Policy_Object).all()
+#contents = session.query(Transaction_Object).all()
 #
 #for item in contents:
-#    print(item.policy_id)
-#    print(item.policy_name)
-#    for entity in item.roles:
-#        print(entity.role_id, entity.role_name)
+#    print(item.transaction_id)
+#    print(item.amount)
+#    for entity in item.payment_methods:
+#        print(entity.card_brand, entity.last_four_digits)
 
 
 

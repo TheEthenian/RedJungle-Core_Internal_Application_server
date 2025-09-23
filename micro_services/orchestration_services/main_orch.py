@@ -1,36 +1,59 @@
 from fastapi.middleware.cors import CORSMiddleware
 from  fastapi import FastAPI
-from pydantic import BaseModel
+from models.orch_models import Data_Zero
+from functions.main_function import load_yaml_config
+from functions.main_function import task_name_lookup
 import sqlalchemy
 import psycopg2
-import requests 
+import httpx 
 import json
 
 
-############### Micro-services addresses ##########################
 
-orchestrator_services_url = 'http://redjungle-00.lab:7001'
-review_services_url = 'http://redjungle-00.lab:7005'
-auth_services_url = 'http://redjungle-00.lab:7010'
-access_control_services_url = 'http://redjungle-00.lab:7020'
-super_admin_services_url = 'http://redjungle-00.lab:7030'
-admin_services_url = 'http://redjungle-00.lab:7040'
-hotel_management_services_url = 'http://redjungle-00.lab:7050'
-payment_gateway_services_url = 'http://redjungle-00.lab:7060'
-booking_services_url = 'http://redjungle-00.lab:7070'
-user_info_services_url = 'http://redjungle-00.lab:7080'
-analytics_services_url = 'http://redjungle-00.lab:7090'
-audit_logging_services_url = 'http://redjungle-00.lab:7095'
+##################### CONFIG INFO ################################
 
-###################################################################
+config_general = load_yaml_config('../config_general.yaml')
+
+base_url = config_general['api_network_base_url']
+
+v1 = config_general['orchestration_service_port']
+v2 = config_general['review_service_port']
+v3 = config_general['auth_service_port']
+v4 = config_general['access_control_service_port']
+v5 = config_general['super_admin_service_port']
+v6 = config_general['admin_service_port']
+v7 = config_general['hotel_management_service_port']
+v8 = config_general['payment_gateway_service_port']
+v9 = config_general['booking_service_port']
+v10 = config_general['user_info_service_port']
+v11 = config_general['analytics_service_port']
+v12 = config_general['audit_logging_service_port']
+
+
+############### Micro-services full addresses #####################
+
+orchestrator_services_url = f'{base_url}:{v1}'
+review_services_url = f'{base_url}:{v2}'
+auth_services_url = f'{base_url}:{v3}'
+access_control_services_url = f'{base_url}:{v4}'
+super_admin_services_url = f'{base_url}:{v5}'
+admin_services_url = f'{base_url}:{v6}'
+hotel_management_services_url = f'{base_url}:{v7}'
+payment_gateway_services_url = f'{base_url}:{v8}'
+booking_services_url = f'{base_url}:{v9}'
+user_info_services_url = f'{base_url}:{v10}'
+analytics_services_url = f'{base_url}:{v11}'
+audit_logging_services_url = f'{base_url}:{v12}'
+
+#####################################################################
 
 
 app = FastAPI()
 
 origins = [
-    "http://redjungle-00.lab:5090",  
+    f"{base_url}:5090", 
     "http://localhost:5090",  
-    "http://127.0.0.1:5090",  
+    "http://127.0.0.1:5090"
 ]
 
 app.add_middleware(
@@ -43,68 +66,11 @@ app.add_middleware(
 
 ###################################################################
 
-@app.get("/")
-def read_me():
-    return  'black shirt manager' 
-
-
-@app.get("/v2")
-def read_me():
-    reqested_data = requests.get(access_control_services_url)
-    return reqested_data.json()
-
-
-@app.get("/v1")
-def read_me():
-    reqested_data = requests.get(auth_services_url)
-    return reqested_data.json()
-
-
-@app.get("/v7")
-def read_me():
-    reqested_data = requests.get(booking_services_url)
-    return reqested_data.json()
-
-
-@app.get("/v5")
-def read_me():
-    reqested_data = requests.get(hotel_management_services_url)
-    return reqested_data.json()
-
-
-@app.get("/v3")
-def read_me():
-    reqested_data = requests.get(super_admin_services_url)
-    return reqested_data.json()
-
-
-@app.get("/v4")
-def read_me():
-    reqested_data = requests.get(admin_services_url)
-    return reqested_data.json()
-
-
-@app.get("/v8")
-def read_me():
-    reqested_data = requests.get(user_info_services_url)
-    return reqested_data.json()
-
-
-@app.get("/v9")
-def read_me():
-    reqested_data = requests.get(analytics_services_url)
-    return reqested_data.json()
-
-
-###################################################################
-
 @app.post("/")
-def avengers_assemble(something):
-    data_list.append(something)
-    return  {
-        "msg": 'data sent succesfully',
-        "data_pack": something
-    } 
+def main_function(incoming_data: Data_Zero):
+    all_hotels = httpx.get(admin_services_url)
+
+    return all_hotels.json()
 
 
 ###################################################################
