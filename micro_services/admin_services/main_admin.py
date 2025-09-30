@@ -15,39 +15,80 @@ app = FastAPI()
 #####################################################################
 
 
-@app.get("/")
-def main_get():
-    return 'Hellow this is the hotels in the admin endpoint'
+@app.get("/{param_a}")
+def main_get(param_a):
+    
+    if param_a == 'hotel':
+        return 'get hotel'
+
+    if param_a == 'hotel-service':
+        return 'get hotel service'
+
+    if param_a == 'staff':
+        return 'get staff'
+
+    if param_a == 'admin':
+        return 'get admin'
 
 
-@app.post("/")
-def main_post(something: structure.Hotel_Object):
-    data_list.append(something)
-    return  {
-        "msg": 'data sent succesfully',
-        "data_pack": something
-    } 
+@app.post("/{param_a}")
+def main_post(param_a):
+    
+    if param_a == 'hotel':
+        return 'post hotel'
+
+    if param_a == 'hotel-service':
+        return 'post hotel service'
+
+    if param_a == 'staff':
+        return 'post staff'
+
+    if param_a == 'admin':
+        return 'post admin'
 
 
-@app.put("/")
-def main_put(new_instance):
-    for item in data_list:
-        if item['id'] == new_instance.id:
-            item['name'] = new_instance.name
-            return  {
-                "msg": 'data block changed',
-                "data_pack": item
-            }
+
+@app.put("/{param_a}")
+def main_put(param_a):
+    
+    if param_a == 'hotel':
+        return 'put hotel'
+
+    if param_a == 'hotel-service':
+        return 'put hotel service'
+
+    if param_a == 'staff':
+        return 'put staff'
+
+    if param_a == 'admin':
+        return 'put admin'
 
 
-@app.delete("/")
-def main_delete(uuid):
-    item_id = uuid.id
-    for item in data_list:
-        if item['id'] == item_id:
-            data_list.remove(item)
-            return {
-                "msg": "Item was succesfully deleted",
-                "Item deleted": item
-            }
+
+@app.delete("/{param_a}")
+def main_delete(param_a):
+    
+    if param_a == 'hotel':
+        return 'delete hotel'
+
+    if param_a == 'hotel-service':
+        return 'delete hotel service'
+
+    if param_a == 'staff':
+        return 'delete staff'
+
+    if param_a == 'admin':
+        return 'delete admin'
+
+
+
+
+
+
+
+
+
+
+
+
 

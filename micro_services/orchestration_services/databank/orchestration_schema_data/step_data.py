@@ -1,543 +1,928 @@
 step_object = [
     
-############### CREATE USER ################
-    # get user ...
+#################### ACCESSS CONTROL SERVER #####################
+
+######## CREATE ROLE
+# get role 
+# auth [super_admin]
     {
-        "step_id":"#a",
-        "service_id":"#10",
+        "step_id":"",
+        "service_id":"#4",
         "workflow_id":"$1",
-        "relative_url":"/create",
-        "execution_order": 2
+        "relative_url":"/role",
+        "request_type": 'post',
+        "execution_order": 3
     },
 
-############### CREATE GUEST ################
-    # get guest ...
+######## UPDATE ROLE
+# auth [super_admin]
     {
-        "step_id":"#c",
-        "service_id":"#9",
+        "step_id":"",
+        "service_id":"#4",
         "workflow_id":"$2",
-        "relative_url":"/guest/create",
+        "relative_url":"/role",
+        "request_type": 'put',
         "execution_order": 2
     },
 
-############### CREATE TENANT ################
-    # get tenant ...
+######## DELETE ROLE
+# auth [super_admin]
     {
-        "step_id":"#f",
-        "service_id":"#5",
+        "step_id":"",
+        "service_id":"#4",
         "workflow_id":"$3",
-        "relative_url":"/tenant/create",
+        "relative_url":"/role",
+        "request_type": 'delete',
         "execution_order": 2
     },
 
-############### CREATE SUPER ADMIN ################
-    #get super admin ...
+######## GET ROLE
     {
-        "step_id":"#h",
-        "service_id":"#5",
+        "step_id":"",
+        "service_id":"#4",
         "workflow_id":"$4",
-        "relative_url":"/super-admin/create",
-        "execution_order": 2
+        "relative_url":"/role",
+        "request_type": 'get',
+        "execution_order": 1
     },
 
-############### CREATE ADMIN ################
-    #get admin ...
+######## CREATE POLICY
+# get policy 
+# auth [super_admin]
     {
-        "step_id":"#k",
-        "service_id":"#6",
+        "step_id":"",
+        "service_id":"#4",
         "workflow_id":"$5",
-        "relative_url":"admin/create",
+        "relative_url":"/policy",
+        "request_type": 'post',
         "execution_order": 2
     },
 
-############### AUTHORISE USER ################
-
+######## UPDATE POLICY
+# auth [super_admin]
     {
-        "step_id":"#a",
+        "step_id":"",
         "service_id":"#4",
         "workflow_id":"$6",
-        "relative_url":"/check_authorization",
-        "execution_order": 1
+        "relative_url":"/policy",
+        "request_type": 'put',
+        "execution_order": 2
     },
 
-############### LOGIN USER ################
-
+######## DELETE POLICY
+# auth [super_admin]
     {
-        "step_id":"#a",
-        "service_id":"#3",
+        "step_id":"",
+        "service_id":"#4",
         "workflow_id":"$7",
-        "relative_url":"/get",
-        "execution_order": 1
+        "relative_url":"/policy",
+        "request_type": 'delete',
+        "execution_order": 2
     },
 
-############### UPDATE USER ################
-    ## Authorize
+######## GET POLICY
     {
-        "step_id":"#m",
-        "service_id":"#10",
+        "step_id":"",
+        "service_id":"#4",
         "workflow_id":"$8",
-        "relative_url":"/update",
-        "execution_order": 2
-    },
-
-############### UPDATE TENANT ################
-    ## Authorize
-    {
-        "step_id":"#p",
-        "service_id":"#5",
-        "workflow_id":"$9",
-        "relative_url":"/tenant/update",
-        "execution_order": 2
-    },
-
-############### UPDATE ADMIN ################
-    ## Authorize
-    {
-        "step_id":"#r",
-        "service_id":"#6",
-        "workflow_id":"$10",
-        "relative_url":"/admin/update",
-        "execution_order": 2
-    },
-
-############### DELETE USER ################
-    ## Authorize
-    {
-        "step_id":"#t",
-        "service_id":"#3",
-        "workflow_id":"$11",
-        "relative_url":"/authenticate",
-        "execution_order": 2
-    },
-
-############### DELETE TENANT ################
-    ## Authorize
-    {
-        "step_id":"#w",
-        "service_id":"#5",
-        "workflow_id":"$12",
-        "relative_url":"/tenant/delete",
-        "execution_order": 2
-    },
-
-############### DELETE SUPER ADMIN ################
-    ## Authorize
-    {
-        "step_id":"#w",
-        "service_id":"#5",
-        "workflow_id":"$13",
-        "relative_url":"/super-admin/delete",
-        "execution_order": 2
-    },
-
-############### DELETE ADMIN ################
-    ## Authorize
-    {
-        "step_id":"#w",
-        "service_id":"#6",
-        "workflow_id":"$14",
-        "relative_url":"/admin/delete",
-        "execution_order": 2
-    },
-
-############### GET GUESTS ################
-    ## Authorize
-    {
-        "step_id":"#w",
-        "service_id":"#9",
-        "workflow_id":"$15",
-        "relative_url":"/guest/get",
-        "execution_order": 2
-    },
-
-############### GET USER ################
-    ## Authorize
-    {
-        "step_id":"#w",
-        "service_id":"#10",
-        "workflow_id":"$16",
-        "relative_url":"/get",
-        "execution_order": 2
-    },
-
-############### GET ADMIN ################
-    ## Authorize
-    {
-        "step_id":"#w",
-        "service_id":"#6",
-        "workflow_id":"$17",
-        "relative_url":"/admin/get",
-        "execution_order": 2
-    },
-
-############### GET HOTEL ################
-    ## Authorize
-    {
-        "step_id":"#w",
-        "service_id":"#6",
-        "workflow_id":"$18",
-        "relative_url":"/hotel/get",
-        "execution_order": 2
-    },
-
-############### GET SUPER ADMINS ################
-    ## Authorize
-    {
-        "step_id":"#w",
-        "service_id":"#5",
-        "workflow_id":"$19",
-        "relative_url":"/super-admin/get",
-        "execution_order": 2
-    },
-
-############### GET AVAILABLE ROOM ################
-    {
-        "step_id":"#w",
-        "service_id":"#7",
-        "workflow_id":"$20",
-        "relative_url":"/room/available",
+        "relative_url":"/policy",
+        "request_type": 'get',
         "execution_order": 1
     },
 
-############### GET BOOKED ROOMS ################
-    ## Authorize
+
+#################### ADMIN SERVER #####################
+
+######## CREATE HOTEL
+# get_hotel
+# auth [admin]
     {
-        "step_id":"#w",
-        "service_id":"#7",
+        "step_id":"",
+        "service_id":"#6",
         "workflow_id":"$21",
-        "relative_url":"/room/booked",
-        "execution_order": 2
+        "relative_url":"/hotel",
+        "request_type": 'post',
+        "execution_order": 3
     },
 
-############### GET OFFLINE ROOMS ################
-    ## Authorize
+######## UPDATE HOTEL
+# auth [admin]
     {
-        "step_id":"#w",
-        "service_id":"#7",
+        "step_id":"",
+        "service_id":"#6",
         "workflow_id":"$22",
-        "relative_url":"/room/offline",
+        "relative_url":"/hotel",
+        "request_type": 'put',
         "execution_order": 2
     },
 
-############### GET INDIVIDUAL ROOM ################
+######## DELETE HOTEL
+# auth [admin]
     {
-        "step_id":"#w",
-        "service_id":"#7",
+        "step_id":"",
+        "service_id":"#6",
         "workflow_id":"$23",
-        "relative_url":"/room/available",
-        "execution_order": 1
+        "relative_url":"/hotel",
+        "request_type": 'delete',
+        "execution_order": 2
     },
 
-############### GET HOTEL SERVICES ################
+######## GET HOTEL
     {
-        "step_id":"#w",
+        "step_id":"",
         "service_id":"#6",
         "workflow_id":"$24",
-        "relative_url":"/hotel-service/get",
+        "relative_url":"/hotel",
+        "request_type": 'get',
         "execution_order": 1
     },
 
-############### CREATE HOTEL SERVICES ################
-    # get services ...
-    ## Authorize
+######## CREATE HOTEL SERVICE
+# get hotel service
+# auth [admin]
     {
-        "step_id":"#w",
+        "step_id":"",
         "service_id":"#6",
         "workflow_id":"$25",
-        "relative_url":"/hotel-service/create",
+        "relative_url":"/hotel-service",
+        "request_type": 'post',
         "execution_order": 3
     },
 
-############### UPDATE HOTEL SERVICES ################
-    ## Authorize
+######## UPDATE HOTEL SERVICE
+# auth [admin]
     {
-        "step_id":"#w",
+        "step_id":"",
         "service_id":"#6",
         "workflow_id":"$26",
-        "relative_url":"/hotel-service/update",
+        "relative_url":"/hotel-service",
+        "request_type": 'put',
         "execution_order": 2
     },
 
-############### DELETE HOTEL SERVICES ################
-    ## Authorize
+######## DELETE HOTEL SERVICE
+# auth [admin]
     {
-        "step_id":"#w",
+        "step_id":"",
         "service_id":"#6",
         "workflow_id":"$27",
-        "relative_url":"/hotel-service/delete",
+        "relative_url":"/hotel-service",
+        "request_type": 'delete',
         "execution_order": 2
     },
 
-############### GET BOOKING ################
-    ## Authorize
+######## GET HOTEL SERVICE
     {
-        "step_id":"#w",
-        "service_id":"#9",
+        "step_id":"",
+        "service_id":"#6",
         "workflow_id":"$28",
-        "relative_url":"/booking/get",
-        "execution_order": 2
+        "relative_url":"/hotel-service",
+        "request_type": 'get',
+        "execution_order": 1
     },
 
-############### CREATE BOOKING ################
-    ## create guest ...
-    # get booking ...
-    ## Authorize
+######## CREATE STAFF
+# get staff
+# auth [admin]
     {
-        "step_id":"#w",
-        "service_id":"#9",
+        "step_id":"",
+        "service_id":"#6",
         "workflow_id":"$29",
-        "relative_url":"/booking/create",
-        "execution_order": 4
+        "relative_url":"/staff",
+        "request_type": 'post',
+        "execution_order": 3
     },
 
-############### DELETE BOOKING ################
-    ## authorize
+######## UPDATE STAFF
+# auth [admin]
     {
-        "step_id":"#w",
-        "service_id":"#9",
+        "step_id":"",
+        "service_id":"#6",
         "workflow_id":"$30",
-        "relative_url":"/booking/delete",
+        "relative_url":"/staff",
+        "request_type": 'put',
         "execution_order": 2
     },
 
-############### QUICK BOOKING ################
-    ## authorize
+######## DELETE STAFF
+# auth [admin]
     {
-        "step_id":"#w",
-        "service_id":"#9",
+        "step_id":"",
+        "service_id":"#6",
         "workflow_id":"$31",
-        "relative_url":"/booking/quick",
+        "relative_url":"/staff",
+        "request_type": 'delete',
         "execution_order": 2
     },
 
-############### CREATE HOTEL ################
-    # get hotel ...
-    ## authorize
+######## GET STAFF
+# auth [admin]
     {
-        "step_id":"#w",
+        "step_id":"",
         "service_id":"#6",
         "workflow_id":"$32",
-        "relative_url":"/hotel/create",
-        "execution_order": 3
+        "relative_url":"/staff",
+        "request_type": 'get',
+        "execution_order": 2
     },
 
-############### CREATE ROOM ################
-    # get room ...
-    ## authorize
+######## CREATE ADMIN
+# get admin
+# auth [super_admin]
     {
-        "step_id":"#w",
-        "service_id":"#7",
+        "step_id":"",
+        "service_id":"#6",
         "workflow_id":"$33",
-        "relative_url":"/room/create",
+        "relative_url":"/admin",
+        "request_type": 'post',
         "execution_order": 3
     },
 
-############### UPDATE HOTEL ################
-    ## authorize
+######## UPDATE ADMIN
+# auth [super_admin]
     {
-        "step_id":"#w",
+        "step_id":"",
         "service_id":"#6",
         "workflow_id":"$34",
-        "relative_url":"/hotel/update",
+        "relative_url":"/admin",
+        "request_type": 'put',
         "execution_order": 2
     },
 
-############### UPDATE ROOM ################
-    ## authorize
+######## DELETE ADMIN
+# auth [super_admin]
     {
-        "step_id":"#w",
-        "service_id":"#7",
+        "step_id":"",
+        "service_id":"#6",
         "workflow_id":"$35",
-        "relative_url":"/room/update",
+        "relative_url":"/admin",
+        "request_type": 'delete',
         "execution_order": 2
     },
 
-############### DELETE HOTEL ################
-    ## authorize
+######## GET ADMIN
+# auth [super_admin & admin]
     {
-        "step_id":"#w",
+        "step_id":"",
         "service_id":"#6",
         "workflow_id":"$36",
-        "relative_url":"/hotel/delete",
+        "relative_url":"/admin",
+        "request_type": 'get',
         "execution_order": 2
     },
 
-############### DELETE ROOM ################
-    ## authorize
-    {
-        "step_id":"#w",
-        "service_id":"#7",
-        "workflow_id":"$37",
-        "relative_url":"/room/delete",
-        "execution_order": 2
-    },
 
-############# CREATE PAYMENT-METHOD #############
-    # get payment_method ...
-    #authorize
-    {
-        "step_id":"#w",
-        "service_id":"#8",
-        "workflow_id":"$38",
-        "relative_url":"/payment-method/create",
-        "execution_order": 3
-    },
+#################### ANALYTICS SERVER #####################
 
-############# UPDATE PAYMENT-METHOD #############
-    #authorize
+######## CREATE ANALYTIC
     {
-        "step_id":"#w",
-        "service_id":"#8",
-        "workflow_id":"$39",
-        "relative_url":"/payment-method/update",
-        "execution_order": 2
-    },
-
-############# DELETE PAYMENT-METHOD #############
-    #authorize
-    {
-        "step_id":"#w",
-        "service_id":"#8",
-        "workflow_id":"$40",
-        "relative_url":"/payment-method/delete",
-        "execution_order": 2
-    },
-
-############# CREATE TRANSACTION #############
-    # get transaction ...
-    #create_payment_method ...
-    # authorize
-    {
-        "step_id":"#w",
-        "service_id":"#8",
+        "step_id":"",
+        "service_id":"#11",
         "workflow_id":"$41",
-        "relative_url":"/transaction/create",
-        "execution_order": 4
+        "relative_url":"/analytic",
+        "request_type": 'post',
+        "execution_order": 1
     },
 
-
-############# DELETE TRANSACTION #############
-    #authorize
+######## DELETE ANALYTIC
+# auth [super_admin]
     {
-        "step_id":"#w",
-        "service_id":"#8",
+        "step_id":"",
+        "service_id":"#11",
         "workflow_id":"$42",
-        "relative_url":"/transaction/delete",
+        "relative_url":"/analytic",
+        "request_type": 'delete',
         "execution_order": 2
     },
 
-############# CREATE USER REVIEW  #############
-    # get user review ...
-    #authorize
+######## GET ANALYTIC
+# auth [super_admin & admin]
     {
-        "step_id":"#w",
-        "service_id":"#2",
+        "step_id":"",
+        "service_id":"#11",
         "workflow_id":"$43",
-        "relative_url":"/create",
+        "relative_url":"/analytic",
+        "request_type": 'get',
+        "execution_order": 2
+    },
+
+
+
+#################### AUDIT LOGGING SERVER #####################
+
+######## CREATE AUDIT
+    {
+        "step_id":"",
+        "service_id":"#12",
+        "workflow_id":"$61",
+        "relative_url":"/audit",
+        "request_type": 'post',
+        "execution_order": 1
+    },
+
+######## DELETE AUDIT
+# auth [super_admin]
+    {
+        "step_id":"",
+        "service_id":"#12",
+        "workflow_id":"$62",
+        "relative_url":"/audit",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## GET AUDIT
+# auth [super_admin & admin]
+    {
+        "step_id":"",
+        "service_id":"#12",
+        "workflow_id":"$63",
+        "relative_url":"/audit",
+        "request_type": 'get',
+        "execution_order": 2
+    },
+
+
+#################### AUTH SERVER #####################
+
+######## CREATE AUTH
+    {
+        "step_id":"",
+        "service_id":"#3",
+        "workflow_id":"$81",
+        "relative_url":"/auth",
+        "request_type": 'post',
+        "execution_order": 1
+    },
+
+######## UPDATE AUTH
+# auth [user]
+    {
+        "step_id":"",
+        "service_id":"#3",
+        "workflow_id":"$82",
+        "relative_url":"/auth",
+        "request_type": 'put',
+        "execution_order": 2
+    },
+
+######## DELETE AUTH
+# auth [user & super admin]
+    {
+        "step_id":"",
+        "service_id":"#3",
+        "workflow_id":"$83",
+        "relative_url":"/auth",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## GET AUTH
+# auth [user & super admin]
+    {
+        "step_id":"",
+        "service_id":"#3",
+        "workflow_id":"$84",
+        "relative_url":"/auth",
+        "request_type": 'get',
+        "execution_order": 2
+    },
+
+
+#################### BOOKING SERVER #####################
+
+######## CREATE GUEST
+# get guest
+    {
+        "step_id":"",
+        "service_id":"#9",
+        "workflow_id":"$101",
+        "relative_url":"/guest",
+        "request_type": 'post',
+        "execution_order": 2
+    },
+
+######## GET GUEST
+    {
+        "step_id":"",
+        "service_id":"#9",
+        "workflow_id":"$102",
+        "relative_url":"/guest",
+        "request_type": 'get',
+        "execution_order": 1
+    },
+
+######## DELETE GUEST
+# auth [user & admin]
+    {
+        "step_id":"",
+        "service_id":"#9",
+        "workflow_id":"$103",
+        "relative_url":"/guest",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## CREATE BOOKING
+# get booking
+    {
+        "step_id":"",
+        "service_id":"#9",
+        "workflow_id":"$104",
+        "relative_url":"/booking",
+        "request_type": 'post',
+        "execution_order": 2
+    },
+
+######## GET BOOKING
+    {
+        "step_id":"",
+        "service_id":"#9",
+        "workflow_id":"$105",
+        "relative_url":"/booking",
+        "request_type": 'get',
+        "execution_order": 1
+    },
+
+######## DELETE BOOKING
+# auth [guest]
+    {
+        "step_id":"",
+        "service_id":"#9",
+        "workflow_id":"$106",
+        "relative_url":"/booking",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## QUICK BOOKING
+    {
+        "step_id":"",
+        "service_id":"#9",
+        "workflow_id":"$107",
+        "relative_url":"/quick-booking",
+        "request_type": 'get',
+        "execution_order": 1
+    },
+
+######## CREATE INVOICE
+# get invoice
+    {
+        "step_id":"",
+        "service_id":"#9",
+        "workflow_id":"$108",
+        "relative_url":"/invoice",
+        "request_type": 'post',
+        "execution_order": 2
+    },
+
+######## GET INVOICE
+# auth [user & guest]
+    {
+        "step_id":"",
+        "service_id":"#9",
+        "workflow_id":"$109",
+        "relative_url":"/invoice",
+        "request_type": 'get',
+        "execution_order": 2
+    },
+
+######## DELETE INVOICE
+# auth [super admin]
+    {
+        "step_id":"",
+        "service_id":"#9",
+        "workflow_id":"$110",
+        "relative_url":"/invoice",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+
+
+#################### HOTEL MANAGEMENT SERVER #####################
+
+######## CREATE ROOM
+# get room
+# auth [admin]
+    {
+        "step_id":"",
+        "service_id":"#7",
+        "workflow_id":"$121",
+        "relative_url":"/room",
+        "request_type": 'post',
         "execution_order": 3
     },
 
-############# UPDATE USER REVIEW  #############
-    #authorize
+######## UPDATE ROOM
+# auth [admin]
     {
-        "step_id":"#w",
-        "service_id":"#2",
-        "workflow_id":"$44",
-        "relative_url":"/update",
-        "execution_order": 2
-    },
-
-############# DELETE USER REVIEW  #############
-    #authorize
-    {
-        "step_id":"#w",
-        "service_id":"#2",
-        "workflow_id":"$45",
-        "relative_url":"/delete",
-        "execution_order": 2
-    },
-
-############# GET USER REVIEW  #############
-    #authorize
-    {
-        "step_id":"#w",
-        "service_id":"#2",
-        "workflow_id":"$46",
-        "relative_url":"/get",
-        "execution_order": 2
-    },
-
-############# GET PUBLIC REVIEWS  #############
-    {
-        "step_id":"#w",
-        "service_id":"#2",
-        "workflow_id":"$47",
-        "relative_url":"/get",
-        "execution_order": 1
-    },
-
-############### GET TENANT ################
-    {
-        "step_id":"#f",
-        "service_id":"#5",
-        "workflow_id":"$48",
-        "relative_url":"/tenant/get",
-        "execution_order": 1
-    },
-
-############### GET ROOM ################
-    ## authorize ...
-    {
-        "step_id":"#w",
+        "step_id":"",
         "service_id":"#7",
-        "workflow_id":"$49",
-        "relative_url":"/room/get",
+        "workflow_id":"$122",
+        "relative_url":"/room",
+        "request_type": 'put',
         "execution_order": 2
     },
 
-############# GET PAYMENT-METHOD #############
-    #authorize
+######## DELETE ROOM
+# auth [admin]
     {
-        "step_id":"#w",
-        "service_id":"#8",
-        "workflow_id":"$50",
-        "relative_url":"/payment-method/get",
+        "step_id":"",
+        "service_id":"#7",
+        "workflow_id":"$123",
+        "relative_url":"/room",
+        "request_type": 'delete',
         "execution_order": 2
     },
 
-############# GET TRANSACTION #############
-    #authorize
+######## GET ROOM
     {
-        "step_id":"#w",
+        "step_id":"",
+        "service_id":"#7",
+        "workflow_id":"$124",
+        "relative_url":"/room",
+        "request_type": 'get',
+        "execution_order": 1
+    },
+
+
+#################### PAYMENT GATEWAY SERVER #####################
+
+######## CREATE TRANSACTION
+# get transaction
+# auth [guest & super-admin]
+    {
+        "step_id":"",
         "service_id":"#8",
-        "workflow_id":"$51",
-        "relative_url":"/transaction/get",
+        "workflow_id":"$141",
+        "relative_url":"/transaction",
+        "request_type": 'post',
+        "execution_order": 3
+    },
+
+######## DELETE TRANSACTION
+# auth [super-admin]
+    {
+        "step_id":"",
+        "service_id":"#8",
+        "workflow_id":"$142",
+        "relative_url":"/transaction",
+        "request_type": 'delete',
+        "execution_order": 3
+    },
+
+######## GET TRANSACTION
+# auth [super-admin]
+    {
+        "step_id":"",
+        "service_id":"#8",
+        "workflow_id":"$143",
+        "relative_url":"/transaction",
+        "request_type": 'get',
+        "execution_order": 2
+    },
+
+######## CREATE PAYMENT METHOD
+# get payment-method
+# auth [user & guest & super-admin]
+    {
+        "step_id":"",
+        "service_id":"#8",
+        "workflow_id":"$144",
+        "relative_url":"/payment-method",
+        "request_type": 'post',
+        "execution_order": 3
+    },
+
+######## UPDATE PAYMENT METHOD
+# auth [user & guest & super-admin]
+    {
+        "step_id":"",
+        "service_id":"#8",
+        "workflow_id":"$145",
+        "relative_url":"/payment-method",
+        "request_type": 'put',
+        "execution_order": 2
+    },
+
+######## DELETE PAYMENT METHOD
+# auth [user & guest & super-admin]
+    {
+        "step_id":"",
+        "service_id":"#8",
+        "workflow_id":"$146",
+        "relative_url":"/payment-method",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## GET PAYMENT METHOD
+# auth[user & super_admin]
+    {
+        "step_id":"",
+        "service_id":"#8",
+        "workflow_id":"$147",
+        "relative_url":"/payment-method",
+        "request_type": 'get',
+        "execution_order": 1
+    },
+
+
+#################### REVIEW SERVER #####################
+
+######## CREATE USER REVIEW
+# get user review
+# auth [user]
+    {
+        "step_id":"",
+        "service_id":"#2",
+        "workflow_id":"$161",
+        "relative_url":"/review/user",
+        "request_type": 'post',
+        "execution_order": 3
+    },
+
+######## UPDATE USER REVIEW
+# auth [user]
+    {
+        "step_id":"",
+        "service_id":"#2",
+        "workflow_id":"$162",
+        "relative_url":"/review/user",
+        "request_type": 'put',
+        "execution_order": 2
+    },
+
+######## DELETE USER REVIEW
+# auth [user]
+    {
+        "step_id":"",
+        "service_id":"#2",
+        "workflow_id":"$163",
+        "relative_url":"/review/user",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## GET USER REVIEW
+# auth [user]
+    {
+        "step_id":"",
+        "service_id":"#2",
+        "workflow_id":"$164",
+        "relative_url":"/review/user",
+        "request_type": 'get',
+        "execution_order": 1
+    },
+
+######## GET PUBLIC REVIEW
+    {
+        "step_id":"",
+        "service_id":"#2",
+        "workflow_id":"$165",
+        "relative_url":"/review/public",
+        "request_type": 'get',
+        "execution_order": 1
+    },
+
+######## DELETE PUBLIC REVIEW
+# auth [super_admin & admin]
+    {
+        "step_id":"",
+        "service_id":"#2",
+        "workflow_id":"$166",
+        "relative_url":"/review/public",
+        "request_type": 'delete',
         "execution_order": 2
     },
 
 
+#################### SUPER ADMIN SERVER #####################
 
+######## CREATE TENANT
+# get tenant
+    {
+        "step_id":"",
+        "service_id":"#5",
+        "workflow_id":"$181",
+        "relative_url":"/tenant",
+        "request_type": 'post',
+        "execution_order": 2
+    },
+
+######## UPDATE TENANT
+# auth [super-admin]
+    {
+        "step_id":"",
+        "service_id":"#5",
+        "workflow_id":"$182",
+        "relative_url":"/tenant",
+        "request_type": 'put',
+        "execution_order": 2
+    },
+
+######## DELETE TENANT
+# auth [super-admin]
+    {
+        "step_id":"",
+        "service_id":"#5",
+        "workflow_id":"$183",
+        "relative_url":"/tenant",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## GET TENANT
+    {
+        "step_id":"",
+        "service_id":"#5",
+        "workflow_id":"$184",
+        "relative_url":"/tenant",
+        "request_type": 'get',
+        "execution_order": 1
+    },
+
+######## CREATE BILLING
+# get billing
+# auth [guest & super-admin]
+    {
+        "step_id":"",
+        "service_id":"#5",
+        "workflow_id":"$185",
+        "relative_url":"/billing",
+        "request_type": 'post',
+        "execution_order": 3
+    },
+
+######## UPDATE BILLING
+# auth [super-admin]
+    {
+        "step_id":"",
+        "service_id":"#5",
+        "workflow_id":"$186",
+        "relative_url":"/billing",
+        "request_type": 'put',
+        "execution_order": 2
+    },
+
+######## DELETE BILLING
+# auth [super-admin]
+    {
+        "step_id":"",
+        "service_id":"#5",
+        "workflow_id":"$187",
+        "relative_url":"/billing",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## GET BILLING
+# auth [user & admin & super-admin]
+    {
+        "step_id":"",
+        "service_id":"#5",
+        "workflow_id":"$188",
+        "relative_url":"/billing",
+        "request_type": 'get',
+        "execution_order": 2
+    },
+
+######## CREATE SUPER ADMIN
+# get super admin
+    {
+        "step_id":"",
+        "service_id":"#5",
+        "workflow_id":"$189",
+        "relative_url":"/super-admin",
+        "request_type": 'post',
+        "execution_order": 2
+    },
+
+######## UPDATE SUPER ADMIN
+# auth [super-admin]
+    {
+        "step_id":"",
+        "service_id":"#5",
+        "workflow_id":"$190",
+        "relative_url":"/super-admin",
+        "request_type": 'put',
+        "execution_order": 2
+    },
+
+######## DELETE SUPER ADMIN
+# auth [super-admin]
+    {
+        "step_id":"",
+        "service_id":"#5",
+        "workflow_id":"$191",
+        "relative_url":"/super-admin",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## GET SUPER ADMIN
+    {
+        "step_id":"",
+        "service_id":"#5",
+        "workflow_id":"$192",
+        "relative_url":"/super-admin",
+        "request_type": 'get',
+        "execution_order": 1
+    },
+
+
+#################### USER INFO SERVER #####################
+
+######## CREATE USER
+# get user
+    {
+        "step_id":"",
+        "service_id":"#10",
+        "workflow_id":"$201",
+        "relative_url":"/user/info",
+        "request_type": 'post',
+        "execution_order": 2
+    },
+
+######## UPDATE USER
+# auth [user]
+    {
+        "step_id":"",
+        "service_id":"#10",
+        "workflow_id":"$202",
+        "relative_url":"/user/info",
+        "request_type": 'put',
+        "execution_order": 2
+    },
+
+######## DELETE USER
+# auth [user & admin & super-admin]
+    {
+        "step_id":"",
+        "service_id":"#10",
+        "workflow_id":"$203",
+        "relative_url":"/user/info",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## GET USER
+# auth [everyone & user & admin & super-admin]
+    {
+        "step_id":"",
+        "service_id":"#10",
+        "workflow_id":"$204",
+        "relative_url":"/user/info",
+        "request_type": 'get',
+        "execution_order": 2
+    },
+
+######## CREATE USER PROFILE
+# auth [user]
+    {
+        "step_id":"",
+        "service_id":"#10",
+        "workflow_id":"$205",
+        "relative_url":"/user/profile",
+        "request_type": 'post',
+        "execution_order": 2
+    },
+
+######## UPDATE USER PROFILE
+# auth [user]
+    {
+        "step_id":"",
+        "service_id":"#10",
+        "workflow_id":"$206",
+        "relative_url":"/user/profile",
+        "request_type": 'put',
+        "execution_order": 2
+    },
+
+######## DELETE USER PROFILE
+# auth [user & super-admin]
+    {
+        "step_id":"",
+        "service_id":"#10",
+        "workflow_id":"$207",
+        "relative_url":"/user/profile",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## GET USER PROFILE
+# auth [user]
+    {
+        "step_id":"",
+        "service_id":"#10",
+        "workflow_id":"$208",
+        "relative_url":"/user/profile",
+        "request_type": 'get',
+        "execution_order": 2
+    },
 
 
 
 
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -5,31 +5,33 @@ post, delete , update then routed to the destination
 
 ###### review_services_url ###### 
 
-/create {one} = user
-/delete {one/many} = super_admin & admin & user
-/update {one} = user
-/get {many/one} = everyone
+review/user/create {one} = user
+review/user/delete {one/many} = super_admin & admin & user
+review/user/update {one} = user
+review/user/get {many/one} = everyone
+
+review/public/delete {one/many} = super_admin & admin & user
+review/public/get {many/one} = everyone
 
 ###### auth_services_url ###### 
 
-/get {one/many} = user & super_admin
-/create {one} = user
-/update {one} = user
-/delete {one/many} = user & super_admin
+auth/get {one/many} = user & super_admin
+auth/create {one} = user
+auth/update {one} = user
+auth/delete {one/many} = user & super_admin
 
-###### access_control_services_url ###### 
+###### access_control_services_url ###### *
 
-/role/create {one/many} = super_admin
+/role/post {one/many} = super_admin
 /role/update {one/many} = super_admin
 /role/delete {one/many} = super_admin
 /role/get {one/many} =  super_admin [ or just acs stuff ]
 
-/policy/create {one/many} = super_admin
+/policy/post {one/many} = super_admin
 /policy/update {one/many} = super_admin
 /policy/delete {one/many} = super_admin
 /policy/get {one/many} =  super_admin [ or just acs stuff ]
 
-/check_authorization {one} = user
 
 - Each path has its own data structure ideosyncrasies
 - Each workflow has a jwt payload that shows roles and confirms
@@ -42,8 +44,11 @@ identity or the entity
 /tenant/delete {one/many}= platform
 /tenant/create {one}
 /tenant/get {one}
-/tenant/billing/get {one/many} = super_admin 
-/tenant/billing/delete {one/many} = super_admin 
+
+/billing/create {one/many} = super_admin 
+/billing/get {one/many} = super_admin 
+/billing/update {one/many} = super_admin 
+/billing/delete {one/many} = super_admin 
 
 /super-admin/update = super_admin
 /super-admin/get = super_admin
@@ -78,10 +83,6 @@ identity or the entity
 /room/update {one/many} => admin
 /room/get {one/many} => admin
 
-/room/available {one/many} => everyone
-/room/booked {one/many} => everyone
-/room/offline {one/many} => admin & super_admin
-
 ###### payment_gateway_services_url ###### 
 
 /transaction/create {one} = user
@@ -104,7 +105,8 @@ identity or the entity
 /booking/create {one} = everyone
 /booking/delete {one} = super_admin & admin
 /booking/get {one/many} = guest & user & admin
-/booking/quick {one} = user
+
+/quick-booking/get {one} = user
 
 /invoice/create {one} = [ done after booking is made ]
 /invoice/get {one/many} = guest & user & admin
@@ -112,22 +114,27 @@ identity or the entity
 
 ###### user_info_services_url ###### 
 
-/create {one} = everyone
-/delete {one/many} = user & super_admin
-/update {one} = user
-/get {one/many} = user & super_admin
+user/profile/create {one} = everyone
+user/profile/delete {one/many} = user & super_admin
+user/profile/update {one} = user
+user/profile/get {one/many} = user & super_admin
+
+user/info/create {one} = everyone
+user/info/delete {one/many} = user & super_admin
+user/info/update {one} = user
+user/info/get {one/many} = user & super_admin
 
 ###### analytics_services_url ###### 
 
-/create {one/many} = services
-/delete {one/many} = super_admin
-/get {one/many} = super_admin & admin
+analytic/create {one/many} = services
+analytic/delete {one/many} = super_admin
+analytic/get {one/many} = super_admin & admin
 
 ###### audit_logging_services_url ###### 
 
-/create {one/many} = services
-/delete {one/many} = super_admin
-/get {one/many} = super_admin & admin
+audit/create {one/many} = services
+audit/delete {one/many} = super_admin
+audit/get {one/many} = super_admin & admin
 
 
 

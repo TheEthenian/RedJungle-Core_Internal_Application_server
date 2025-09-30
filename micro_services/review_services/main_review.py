@@ -6,51 +6,41 @@ import requests
 import json
 
 #####################################################################
-
 app = FastAPI()
 
 #####################################################################
 
-data_list = [
-]
 
-#####################################################################
+@app.get("/review/{param_a}")
+def main_get(param_a):
+    if param_a ==  'user':
+        return 'get user review'
 
-
-@app.get("/")
-def main_get():
-    return data_list
-
-
-@app.post("/")
-def main_post(something):
-    data_list.append(something)
-    return  {
-        "msg": 'data sent succesfully',
-        "data_pack": something
-    } 
+    if param_a ==  'public':
+        return 'get public review'
 
 
-@app.put("/")
-def main_put(new_instance):
-    for item in data_list:
-        if item['id'] == new_instance.id:
-            item['name'] = new_instance.name
-            return  {
-                "msg": 'data block changed',
-                "data_pack": item
-            }
+@app.post("/review/user")
+def main_post():
+    return 'post user review'
 
 
-@app.delete("/")
-def main_delete(uuid):
-    item_id = uuid.id
-    for item in data_list:
-        if item['id'] == item_id:
-            data_list.remove(item)
-            return {
-                "msg": "Item was succesfully deleted",
-                "Item deleted": item
-            }
+@app.put("/review/user")
+def main_put():
+    return 'put user review'
+
+
+@app.delete("/review/{param_a}")
+def main_delete(param_a):
+    if param_a ==  'user':
+        return 'delete user review'
+
+    if param_a ==  'public':
+        return 'delete public review'
+
+
+
+
+
 
 

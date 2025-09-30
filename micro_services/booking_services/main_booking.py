@@ -6,50 +6,60 @@ import requests
 import json
 
 #####################################################################
-
 app = FastAPI()
 
 #####################################################################
 
-data_list = [
-]
 
-#####################################################################
+@app.get("/{param_a}")
+def main_get(param_a):
 
+    if param_a == 'guest':
+        return 'get guest here'
 
-@app.get("/")
-def main_get():
-    return data_list
+    if param_a == 'booking':
+        return 'get booking here'
 
+    if param_a == 'invoice':
+        return 'get invoice here'
 
-@app.post("/")
-def main_post(something: structure.Booking_Object):
-    data_list.append(something)
-    return  {
-        "msg": 'data sent succesfully',
-        "data_pack": something
-    } 
+    if param_b == 'quick-booking':
+        return 'get quick booking here'
 
 
-@app.put("/")
-def main_put(new_instance):
-    for item in data_list:
-        if item['id'] == new_instance.id:
-            item['name'] = new_instance.name
-            return  {
-                "msg": 'data block changed',
-                "data_pack": item
-            }
+@app.post("/{param_a}")
+def main_post(param_a):
+
+    if param_a == 'guest':
+        return 'post guest here'
+
+    if param_a == 'booking':
+        return 'post booking here'
+
+    if param_a == 'invoice':
+        return 'post invoice here'
 
 
-@app.delete("/")
-def main_delete(uuid):
-    item_id = uuid.id
-    for item in data_list:
-        if item['id'] == item_id:
-            data_list.remove(item)
-            return {
-                "msg": "Item was succesfully deleted",
-                "Item deleted": item
-            }
+@app.delete("/{param_a}")
+def main_delete(param_a):
+
+    if param_a == 'guest':
+        return 'delete guest here'
+
+    if param_a == 'booking':
+        return 'delete booking here'
+
+    if param_a == 'invoice':
+        return 'delete invoice here'
+
+
+
+
+
+
+
+
+
+
+
 

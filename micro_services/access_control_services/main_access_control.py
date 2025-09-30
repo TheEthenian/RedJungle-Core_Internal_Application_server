@@ -6,50 +6,49 @@ import requests
 import json
 
 #####################################################################
-
 app = FastAPI()
 
 #####################################################################
 
-data_list = [
-]
 
-#####################################################################
+@app.get("/{param_a}")
+def main_get(param_a):
 
+    if param_a == 'role':
+        return 'get role'
 
-@app.get("/")
-def main_get():
-    return data_list
-
-
-@app.post("/")
-def main_post(something: structure.Decision_Log_Object):
-    data_list.append(something)
-    return  {
-        "msg": 'data sent succesfully',
-        "data_pack": something
-    } 
+    if param_a == 'policy':
+        return 'get policy'
 
 
-@app.put("/")
-def main_put(new_instance):
-    for item in data_list:
-        if item['id'] == new_instance.id:
-            item['name'] = new_instance.name
-            return  {
-                "msg": 'data block changed',
-                "data_pack": item
-            }
+@app.post("/{param_a}")
+def main_get(param_a):
+
+    if param_a == 'role':
+        return 'post role'
+
+    if param_a == 'policy':
+        return 'post policy'
 
 
-@app.delete("/")
-def main_delete(uuid):
-    item_id = uuid.id
-    for item in data_list:
-        if item['id'] == item_id:
-            data_list.remove(item)
-            return {
-                "msg": "Item was succesfully deleted",
-                "Item deleted": item
-            }
+@app.put("/{param_a}")
+def main_get(param_a):
+
+    if param_a == 'role':
+        return 'put role'
+
+    if param_a == 'policy':
+        return 'put policy'
+
+
+@app.delete("/{param_a}")
+def main_get(param_a):
+
+    if param_a == 'role':
+        return 'delete role'
+
+    if param_a == 'policy':
+        return 'delete policy'
+
+
 

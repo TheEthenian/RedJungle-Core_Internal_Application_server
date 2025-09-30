@@ -2,7 +2,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from  fastapi import FastAPI
 from models.orch_models import Data_Zero
 from functions.main_function import load_yaml_config
-from functions.main_function import task_name_lookup
+from functions.main_function import workflow_complete_enumeration_order
 import sqlalchemy
 import psycopg2
 import httpx 
@@ -68,36 +68,9 @@ app.add_middleware(
 
 @app.post("/")
 def main_function(incoming_data: Data_Zero):
-    all_hotels = httpx.get(admin_services_url)
 
-    return all_hotels.json()
+    pass
 
-
-###################################################################
-
-@app.put("/")
-def avengers_assemble(new_instance):
-    for item in data_list:
-        if item['id'] == new_instance.id:
-            item['name'] = new_instance.name
-            return  {
-                "msg": 'data block changed',
-                "data_pack": item
-            }
-
-
-###################################################################
-
-@app.delete("/")
-def remove_avenger(uuid):
-    item_id = uuid.id
-    for item in data_list:
-        if item['id'] == item_id:
-            data_list.remove(item)
-            return {
-                "msg": "Item was succesfully deleted",
-                "Item deleted": item
-            }
 
 
 #######################################################################

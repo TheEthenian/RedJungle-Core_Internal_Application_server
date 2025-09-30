@@ -6,51 +6,40 @@ import requests
 import json
 
 #####################################################################
-
 app = FastAPI()
 
 #####################################################################
 
-data_list = [
-]
 
-#####################################################################
-
-
-@app.get("/")
+@app.get("/room")
 def main_get():
-    return data_list
+    return 'get room info'
 
 
-@app.post("/")
-def main_post(something: structure.Room_Object):
-    data_list.append(something)
-    return  {
-        "msg": 'data sent succesfully',
-        "data_pack": something
-    } 
+@app.post("/room")
+def main_post():
+    return 'create room'
 
 
-@app.put("/")
-def main_put(new_instance: structure.Room_Object):
-    for item in data_list:
-        if item['id'] == new_instance.id:
-            item['name'] = new_instance.name
-            return  {
-                "msg": 'data block changed',
-                "data_pack": item
-            }
+@app.put("/room")
+def main_post():
+    return 'put room'
 
 
-@app.delete("/")
-def main_delete(uuid: structure.Room_Object):
-    item_id = uuid.id
-    for item in data_list:
-        if item['id'] == item_id:
-            data_list.remove(item)
-            return {
-                "msg": "Item was succesfully deleted",
-                "Item deleted": item
-            }
+@app.delete("/room")
+def main_post():
+    return 'delete room'
+
+
+
+
+
+
+
+
+
+
+
+
 
 

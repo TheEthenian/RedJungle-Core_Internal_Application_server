@@ -6,50 +6,72 @@ import requests
 import json
 
 #####################################################################
-
 app = FastAPI()
 
 #####################################################################
 
-data_list = [
-]
 
-#####################################################################
+@app.get("/{param_a}")
+def main_get(param_a):
 
+    if param_a == 'tenant':
+        return 'get tenant'
 
-@app.get("/")
-def main_get():
-    return data_list
+    if param_a == 'super-admin':
+        return 'get super-admin'
 
-
-@app.post("/")
-def main_post(something: structure.Super_Admin_Object):
-    data_list.append(something)
-    return  {
-        "msg": 'data sent succesfully',
-        "data_pack": something
-    } 
+    if param_a == 'billing':
+        return 'get billing'
 
 
-@app.put("/")
-def main_put(new_instance):
-    for item in data_list:
-        if item['id'] == new_instance.id:
-            item['name'] = new_instance.name
-            return  {
-                "msg": 'data block changed',
-                "data_pack": item
-            }
+
+@app.post("/{param_a}")
+def main_post(param_a):
+
+    if param_a == 'tenant':
+        return 'post tenant'
+
+    if param_a == 'super-admin':
+        return 'post super-admin'
+
+    if param_a == 'billing':
+        return 'post billing'
 
 
-@app.delete("/")
-def main_delete(uuid):
-    item_id = uuid.id
-    for item in data_list:
-        if item['id'] == item_id:
-            data_list.remove(item)
-            return {
-                "msg": "Item was succesfully deleted",
-                "Item deleted": item
-            }
+
+@app.put("/{param_a}")
+def main_put(param_a):
+
+    if param_a == 'tenant':
+        return 'put tenant'
+
+    if param_a == 'super-admin':
+        return 'put super-admin'
+
+    if param_a == 'billing':
+        return 'put billing'
+
+
+
+@app.delete("/{param_a}")
+def main_delete(param_a):
+
+    if param_a == 'tenant':
+        return 'delete tenant'
+
+    if param_a == 'super-admin':
+        return 'delete super-admin'
+
+    if param_a == 'billing':
+        return 'delete billing'
+
+
+
+
+
+
+
+
+
+
 

@@ -6,50 +6,66 @@ import requests
 import json
 
 #####################################################################
-
 app = FastAPI()
 
 #####################################################################
 
-data_list = [
-]
 
-#####################################################################
+@app.get("/user/{param_a}")
+def main_get(param_a):
 
+    if  param_a == 'info':
+        return 'get user info'
 
-@app.get("/")
-def main_get():
-    return data_list
-
-
-@app.post("/")
-def main_post(something: structure.User_Object):
-    data_list.append(something)
-    return  {
-        "msg": 'data sent succesfully',
-        "data_pack": something
-    } 
+    if  param_a == 'profile':
+        return 'get user profile'
 
 
-@app.put("/")
-def main_put(new_instance):
-    for item in data_list:
-        if item['id'] == new_instance.id:
-            item['name'] = new_instance.name
-            return  {
-                "msg": 'data block changed',
-                "data_pack": item
-            }
+@app.post("/user/{param_a}")
+def main_post(param_a):
+
+    if  param_a == 'info':
+        return 'post user info'
+
+    if  param_a == 'profile':
+        return 'post user profile'
 
 
-@app.delete("/")
-def main_delete(uuid):
-    item_id = uuid.id
-    for item in data_list:
-        if item['id'] == item_id:
-            data_list.remove(item)
-            return {
-                "msg": "Item was succesfully deleted",
-                "Item deleted": item
-            }
+@app.put("/user/{param_a}")
+def main_put(param_a):
+
+    if  param_a == 'info':
+        return 'put user info'
+
+    if  param_a == 'profile':
+        return 'put user profile'
+
+
+@app.delete("/user/{param_a}")
+def main_delete(param_a):
+
+    if  param_a == 'info':
+        return 'delete user info'
+
+    if  param_a == 'profile':
+        return 'delete user profile'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

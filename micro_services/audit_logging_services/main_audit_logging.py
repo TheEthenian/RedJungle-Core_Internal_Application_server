@@ -6,50 +6,31 @@ import requests
 import json
 
 #####################################################################
-
 app = FastAPI()
 
 #####################################################################
 
-data_list = [
-]
 
-#####################################################################
-
-
-@app.get("/")
-def main_get():
-    return data_list
+@app.get("/audit")
+def main_get(something):
+    return 'get audit logging'
 
 
-@app.post("/")
-def main_post(something: structure.Log_Entry_Object):
-    data_list.append(something)
-    return  {
-        "msg": 'data sent succesfully',
-        "data_pack": something
-    } 
+@app.post("/audit")
+def main_post(something):
+    return 'post audit logging'
 
 
-@app.put("/")
-def main_put(new_instance):
-    for item in data_list:
-        if item['id'] == new_instance.id:
-            item['name'] = new_instance.name
-            return  {
-                "msg": 'data block changed',
-                "data_pack": item
-            }
+@app.delete("/audit")
+def main_delete(something):
+    return 'delete audit logging'
 
 
-@app.delete("/")
-def main_delete(uuid):
-    item_id = uuid.id
-    for item in data_list:
-        if item['id'] == item_id:
-            data_list.remove(item)
-            return {
-                "msg": "Item was succesfully deleted",
-                "Item deleted": item
-            }
+
+
+
+
+
+
+
 
