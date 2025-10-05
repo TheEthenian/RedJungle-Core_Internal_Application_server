@@ -1,8 +1,7 @@
 from  fastapi import FastAPI
-from models import user_info_models as structure
+from models.user_info_models import Incoming_Data
 import sqlalchemy
 import psycopg2
-import requests 
 import json
 
 #####################################################################
@@ -12,7 +11,7 @@ app = FastAPI()
 
 
 @app.get("/user/{param_a}")
-def main_get(param_a):
+def main_get(param_a, data: Incoming_Data):
 
     if  param_a == 'info':
         return 'get user info'
@@ -22,7 +21,7 @@ def main_get(param_a):
 
 
 @app.post("/user/{param_a}")
-def main_post(param_a):
+def main_post(param_a, data: Incoming_Data):
 
     if  param_a == 'info':
         return 'post user info'
@@ -32,7 +31,7 @@ def main_post(param_a):
 
 
 @app.put("/user/{param_a}")
-def main_put(param_a):
+def main_put(param_a, data: Incoming_Data):
 
     if  param_a == 'info':
         return 'put user info'
@@ -42,7 +41,7 @@ def main_put(param_a):
 
 
 @app.delete("/user/{param_a}")
-def main_delete(param_a):
+def main_delete(param_a, data: Incoming_Data):
 
     if  param_a == 'info':
         return 'delete user info'

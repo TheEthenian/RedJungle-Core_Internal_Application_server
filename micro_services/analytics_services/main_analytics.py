@@ -1,8 +1,7 @@
 from  fastapi import FastAPI
-from models import analytics_models as structure
+from models.analytics_models import Incoming_Data
 import sqlalchemy
 import psycopg2
-import requests 
 import json
 
 #####################################################################
@@ -12,17 +11,17 @@ app = FastAPI()
 
 
 @app.get("/analytic")
-def main_get(something):
+def main_get(data: Incoming_Data):
     return 'get analytic'
 
 
 @app.post("/analytic")
-def main_post(something):
+def main_post(data: Incoming_Data):
     return 'post analytic'
 
 
 @app.delete("/analytic")
-def main_delete(something):
+def main_delete(data: Incoming_Data):
     return 'delete analytic'
 
 

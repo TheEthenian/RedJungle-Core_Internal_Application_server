@@ -1,8 +1,7 @@
 from  fastapi import FastAPI
-from models import access_control_models as structure
+from models.access_control_models import Incoming_Data
 import sqlalchemy
 import psycopg2
-import requests 
 import json
 
 #####################################################################
@@ -12,7 +11,7 @@ app = FastAPI()
 
 
 @app.get("/{param_a}")
-def main_get(param_a):
+def main_get(param_a, data: Incoming_Data):
 
     if param_a == 'role':
         return 'get role'
@@ -22,7 +21,7 @@ def main_get(param_a):
 
 
 @app.post("/{param_a}")
-def main_get(param_a):
+def main_get(param_a, data: Incoming_Data):
 
     if param_a == 'role':
         return 'post role'
@@ -32,7 +31,7 @@ def main_get(param_a):
 
 
 @app.put("/{param_a}")
-def main_get(param_a):
+def main_get(param_a, data: Incoming_Data):
 
     if param_a == 'role':
         return 'put role'
@@ -42,7 +41,7 @@ def main_get(param_a):
 
 
 @app.delete("/{param_a}")
-def main_get(param_a):
+def main_get(param_a, data: Incoming_Data):
 
     if param_a == 'role':
         return 'delete role'

@@ -130,79 +130,100 @@ def transform_into_ordered_step_list(main_steps,main_sub_workflows):
 config_general = load_yaml_config('../config_general.yaml')
 base_url = config_general['api_network_base_url']
 
-def cross_api_communication(structured_step_list):
+def full_transactional_api_communication(structured_step_list,initial_payload):
 
+    next_api_transaction_data = ''
     response_data_bank = []
     current_step_index = 0
 
     while current_step_index < len(structured_step_list):
 
-        current_target_url = structured_step_list[current_step_index][0]['full_url']
-        current_request_type = structured_step_list[current_step_index][0]['request_type']
+        current_target_uri = structured_step_list[current_step_index][0]['full_url']
+        http_request_type = structured_step_list[current_step_index][0]['request_type']
 
-        complete_url = f'{base_url}:{current_target_url}'
+        complete_url = f'{base_url}:{current_target_uri}'
 
+        if current_step_index == 0:
+            response_data_from_api = singular_api_data_communication(http_request_type,complete_url,current_target_uri,initial_payload)
+            next_api_transaction_data = response_data_from_api['data']
+            print('This in under iteration',current_step_index,next_api_transaction_data)
+            response_data_bank.append(response_data_from_api)
 
-        if current_request_type == 'get':
-            data = httpx.get(complete_url)
-
-            response_data = {
-                'sender': structured_step_list[current_step_index][0]['full_url'],
-                'data': data.json()
-            }
-
-            response_data_bank.append(response_data)
-
-        if current_request_type == 'post':
-            data = httpx.post(complete_url)
-
-            response_data = {
-                'sender': structured_step_list[current_step_index][0]['full_url'],
-                'data': data.json()
-            }
-
-            response_data_bank.append(response_data)
-
-        if current_request_type == 'put':
-            data = httpx.put(complete_url)
-
-            response_data = {
-                'sender': structured_step_list[current_step_index][0]['full_url'],
-                'data': data.json()
-            }
-
-            response_data_bank.append(response_data)
-
-        if current_request_type == 'delete':
-            data = httpx.delete(complete_url)
-
-            response_data = {
-                'sender': structured_step_list[current_step_index][0]['full_url'],
-                'data': data.json()
-            }
-
-            response_data_bank.append(response_data)
-
-
+        if current_step_index > 0:
+            response_data_from_api = singular_api_data_communication(http_request_type,complete_url,current_target_uri, next_api_transaction_data)
+            next_api_transaction_data = response_data_from_api['data']
+            print('This in under iteration',current_step_index,next_api_transaction_data)
+            response_data_bank.append(response_data_from_api)
 
         current_step_index += 1
 
     return response_data_bank
 
 
+#########################################################################
+
+def singular_api_data_communication(http_request_type,complete_url,api_uri,payload):
+
+    if http_request_type == 'get':
+        data = httpx.get(complete_url, params=payload)
+
+        response_data = {
+            'sender': api_uri,
+            'data': data.json()
+        }
+        return response_data
 
 
+    if http_request_type == 'post':
+        data = httpx.post(complete_url, data=payload)
+
+        response_data = {
+            'sender': api_uri,
+            'data': data.json()
+        }
+        return response_data
 
 
+    if http_request_type == 'put':
+        data = httpx.put(complete_url, data=payload)
 
-structured_steps_data_bank = workflow_name_to_ordered_steps_linkage('create_hotel_service')
+        response_data = {
+            'sender': api_uri,
+            'data': data.json()
+        }
+        return response_data
 
-responses = cross_api_communication(structured_steps_data_bank)
+
+    if http_request_type == 'delete':
+        data = httpx.delete(complete_url, data=payload)
+
+        response_data = {
+            'sender': api_uri,
+            'data': data.json()
+        }
+        return response_data
 
 
-for response in responses:
-    print(response)
+#########################################################################
 
+initial_data = {
+    "workflow_id": "workflow_one",
+    "step_number": 4,
+    "authorization_token": "soincotocken",
+    "payload": {
+        "param_one": "data_one",
+        "param_two": "data_two"
+    }
+}
+
+#structured_steps_data_bank = workflow_name_to_ordered_steps_linkage('create_room')
+#
+#responses = full_transactional_api_communication(structured_steps_data_bank,initial_data)
+#
+#
+#for response in responses:
+#    print(response)
+#
 
 
 

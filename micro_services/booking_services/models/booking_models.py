@@ -1,18 +1,7 @@
 from pydantic import BaseModel
 
-class Log_Entry_Object(BaseModel):
-    log_id: str
-    timestamp: str
-    source_service: str
-    event_type: str
-    user_id: str
-    tenant_id: str
-    details: str
-
-
 class Booking_Object(BaseModel):
     booking_id: str
-    guest_id: str
     tenant_id: str
     hotel_id: str
     room_id: str
@@ -27,12 +16,9 @@ class Booking_Object(BaseModel):
 
 class Guest_Object(BaseModel):
     guest_id: str
-    user_id: str = None
-    first_name: str = None
-    last_name: str = None
-    email: str = None
-    phone_number:str = None
-    created_at: str = None
+    user_id: str 
+    email: str 
+    created_at: str 
     bookings: list
 
 
@@ -42,6 +28,25 @@ class Invoice_Object(BaseModel):
     invoice_number: int
     status: str
     created_at:str
+
+
+class Send_Log_Data(BaseModel):
+    source_service: str
+    action: str
+    user_id: str
+    tenant_id: str
+    details: dict
+
+
+class Incoming_Data(BaseModel):
+    workflow_id: str
+    step_number: int
+    authorization_token: str
+    payload: dict
+
+
+
+
 
 
 

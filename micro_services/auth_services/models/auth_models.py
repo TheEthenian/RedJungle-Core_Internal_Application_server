@@ -1,16 +1,6 @@
 from pydantic import BaseModel
 
 
-class Log_Entry_Object(BaseModel):
-    log_id: str
-    timestamp: str
-    source_service: str
-    event_type: str
-    user_id: str
-    tenant_id: str
-    details: str
-
-
 class Credential_Object(BaseModel):
     credential_id: str
     user_id: str
@@ -32,13 +22,27 @@ class Session_Object(BaseModel):
     ip_address: str
 
 
-class Password_Reset_Token(BaseModel):
+class Password_Reset_Token_Object(BaseModel):
+    token_id: str
     token: str
     expires_at: str
     is_used: bool
     credentials: list
 
 
+class Send_Log_Data(BaseModel):
+    source_service: str
+    action: str
+    user_id: str
+    tenant_id: str
+    details: dict
+
+
+class Incoming_Data(BaseModel):
+    workflow_id: str
+    step_number: int
+    authorization_token: str
+    payload: dict
 
 
 

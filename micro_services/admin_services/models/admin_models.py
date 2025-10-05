@@ -5,44 +5,52 @@ class Hotel_Object(BaseModel):
     hotel_id: str 
     hotel_name: str 
     tenant_id: str 
+    admin_user_id: str
     location: str
-    contact_number: dict 
+    contact_number: int 
     configs: list
+    services:list
 
 
 class Hotel_Service_Object(BaseModel):
     service_id: str
-    hotel_id: str
     service_name: str
     service_description: str
     price: float
     operation_schedule: str
-
-
-class Staff_User_Object(BaseModel):
-    staff_id: str
-    hotel_id: str
-    user_id: str
-    role_id: str
-    status: str
-
-
-class Admin_User_Object(BaseModel):
-    admin_user_id: str
-    user_id: str
-    hotel_id: str
-    tenant_id: str
-    role_id: str
+    hotels: list
 
 
 class Hotel_Configuration_Object(BaseModel):
     config_id: str
-    hotel_id: str
     config_name: str
-    config_value: dict
+    config_value: str
     last_updated_admin_id: str
     last_updated_timestamp: str
     hotels: list
+
+
+class Send_Log_Data(BaseModel):
+    source_service: str
+    action: str
+    user_id: str
+    tenant_id: str
+    details: dict
+
+
+class Incoming_Data(BaseModel):
+    workflow_id: str
+    step_number: int
+    authorization_token: str
+    payload: dict
+
+
+
+
+
+
+
+
 
 
 

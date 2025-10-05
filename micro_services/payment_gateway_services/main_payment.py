@@ -1,8 +1,7 @@
 from  fastapi import FastAPI
-from models import payment_gateway_models as structure
+from models.payment_gateway_models import Incoming_Data
 import sqlalchemy
 import psycopg2
-import requests 
 import json
 
 #####################################################################
@@ -12,7 +11,7 @@ app = FastAPI()
 
 
 @app.get("/{param_a}")
-def main_get(param_a):
+def main_get(param_a, data: Incoming_Data):
 
     if param_a == 'transaction':
         return 'get transaction'
@@ -23,7 +22,7 @@ def main_get(param_a):
 
 
 @app.post("/{param_a}")
-def main_post(param_a):
+def main_post(param_a, data: Incoming_Data):
 
     if param_a == 'transaction':
         return 'post transaction'
@@ -34,13 +33,13 @@ def main_post(param_a):
 
 
 @app.put("/payment-method}")
-def main_put():
+def main_put(data: Incoming_Data):
     return 'put payment-method'
 
 
 
 @app.delete("/{param_a}")
-def main_delete(param_a):
+def main_delete(param_a, data: Incoming_Data):
 
     if param_a == 'transaction':
         return 'delete transaction'

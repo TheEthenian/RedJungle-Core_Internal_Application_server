@@ -1,35 +1,41 @@
 from pydantic import BaseModel
 
-
-class Log_Entry_Object(BaseModel):
-    log_id: str
-    timestamp: str
-    source_service: str
-    event_type: str
-    user_id: str
-    tenant_id: str
-    details: str
-
-
 class Transaction_Object(BaseModel):
     transaction_id: str
     user_id: str
     tenant_id: str
     amount: float
     status: str
-    payment_method_id: str
+    bank_id: str
+    card_brand: str 
+    card_last_four_digits: int
     created_at: str
 
 
-class Paymenet_Method_Object(BaseModel):
-    method_id: str
+class Bank_Object(BaseModel):
+    bank_id: str
     user_id: str
-    gateway_token: str
     card_brand: str
-    last_four_digits: int
+    card_number: str
     card_expiration_date: str
-    is_default: str
-    created_at: str
+    account_balance: float
+    updated_at: str
+
+
+class Send_Log_Data(BaseModel):
+    source_service: str
+    service_uri: str
+    action_crud: str
+    user_id: str
+    tenant_id: str
+    details: dict
+
+
+class Incoming_Data(BaseModel):
+    workflow_id: str
+    step_number: int
+    authorization_token: str
+    payload: dict
 
 
 

@@ -15,23 +15,19 @@ db_url = config_data['review_microservice']['database']['db_url']
 db_port = config_data['review_microservice']['database']['db_port']
 db_name = config_data['review_microservice']['database']['db_name']
 
-
 ###############################################################################
 
 DATABASE_URL = f"postgresql+psycopg2://{db_username}:{db_passcode}@{db_url}:{db_port}/{db_name}"
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
-session = Session()
 
+def get_session():
+    session = Session()
+    return session
 
 ###############################################################################
-
-
 class Base(DeclarativeBase):
     pass
-
-
-###############################################################################
 
 ########################  INTERMEDIATE TABLES  #################################
 
@@ -46,11 +42,8 @@ Review_Message_Association = Table (
     'review_message_association',
     Base.metadata,
     Column('review_id', ForeignKey('review_object.review_id'), primary_key=True),
-    Column('message_id', ForeignKey('message_object.message_id'), primary_key=True),
+    Column('message_id', ForeignKey('message_object.message_id'), primary_key=True)
 )
-
-
-###############################################################################
 
 ########################## TABLE INITIALIZATION ###########################
 
@@ -74,7 +67,6 @@ class Review_Object(Base):
     )
 
 
-
 class Picture_Object(Base):
     __tablename__ = 'picture_object'
 
@@ -86,7 +78,6 @@ class Picture_Object(Base):
         secondary= Review_Picture_Association,
         back_populates= 'pictures'
     )
-
 
 
 class Message_Object(Base):
@@ -107,84 +98,6 @@ class Message_Object(Base):
 Base.metadata.create_all(engine)
 
 #############################################################################
-
-###############################  FUNCTIONS  #################################
-
-def create_rows(db_session, list_rows):
-    db_session.add_all(list_rows)
-    db_session.commit()
-    db_session.close()
-
-
-
-def read_row(db_session, item_content, target_table, target_attribute):
-    entity = db_session.query(target_table).filter(target_attribute == item_content).first()
-    print(entity)
-
-
-
-def update_row(db_session, item_id, target_view):
-    pass 
-
-
-
-
-def delete_row(db_session, list_rows):
-    pass 
-
-
-
-
-#############################################################################
-
-########################## OBJECT INITIALIZATION ###########################
-
-
-review_one = Review_Object(
-    review_id= 'review1',
-    user_id= 'qqq',
-    tenant_id= '#534',
-    date_created= '12thDec',
-    date_updated= '25thJan'
-)
-
-picture_one = Picture_Object(
-    picture_id= 'ghl', 
-    picture_url= 'url/some/me',
-    date_created= '14thDec'
-)
-
-message_one = Message_Object(
-    message_id= 'rrrr',
-    message_text= 'This is the review message',
-    date_created= 'yyyyy',
-    date_updated= '1stMonthYear'
-)
-
-
-review_one.pictures.append(picture_one)
-review_one.messages.append(message_one)
-
-#############################################################################
-
-############################ TESTING FUNCTIONS ##############################
-
-
-#create_rows(session, [picture_one, message_one, review_one])
-#read_row(session, 12 , "policy_object", "policy_id")
-
-
-contents = session.query(Review_Object).all()
-#
-for item in contents:
-    print(item.user_id)
-    print(item.tenant_id)
-    for entity in item.messages:
-        print('Messages')
-        print(entity.message_id, entity.message_text)
-    for entity in item.pictures:
-        print('Pictures')
-        print(entity.picture_id, entity.picture_url)
 
 
 

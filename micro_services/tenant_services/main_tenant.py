@@ -1,8 +1,7 @@
 from  fastapi import FastAPI
-from models import super_admin_models as structure
+from models.super_admin_models import Incoming_Data
 import sqlalchemy
 import psycopg2
-import requests 
 import json
 
 #####################################################################
@@ -12,7 +11,7 @@ app = FastAPI()
 
 
 @app.get("/{param_a}")
-def main_get(param_a):
+def main_get(param_a, data: Incoming_Data):
 
     if param_a == 'tenant':
         return 'get tenant'
@@ -26,7 +25,7 @@ def main_get(param_a):
 
 
 @app.post("/{param_a}")
-def main_post(param_a):
+def main_post(param_a, data: Incoming_Data):
 
     if param_a == 'tenant':
         return 'post tenant'
@@ -40,7 +39,7 @@ def main_post(param_a):
 
 
 @app.put("/{param_a}")
-def main_put(param_a):
+def main_put(param_a, data: Incoming_Data):
 
     if param_a == 'tenant':
         return 'put tenant'
@@ -54,7 +53,7 @@ def main_put(param_a):
 
 
 @app.delete("/{param_a}")
-def main_delete(param_a):
+def main_delete(param_a, data: Incoming_Data):
 
     if param_a == 'tenant':
         return 'delete tenant'
