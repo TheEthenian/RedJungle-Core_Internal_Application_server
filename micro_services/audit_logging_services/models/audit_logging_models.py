@@ -18,14 +18,6 @@ class Detail_Object(BaseModel):
     detail_description: str
 
 
-class Send_Log_Data(BaseModel):
-    source_service: str
-    action: str
-    user_id: str
-    tenant_id: str
-    details: dict
-
-
 class Incoming_Data(BaseModel):
     source_service: str
     action: str

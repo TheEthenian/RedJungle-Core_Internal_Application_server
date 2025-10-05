@@ -21,7 +21,8 @@ class Metric_Object(BaseModel):
 
 class Send_Log_Data(BaseModel):
     source_service: str
-    action: str
+    service_uri: str
+    action_crud: str
     user_id: str
     tenant_id: str
     details: dict
