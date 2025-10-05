@@ -2,7 +2,7 @@ version: '3.8'
 services:
   redjungle_bank:
     image: postgres:17
-    container_name: super_admin_bank
+    container_name: tenant_bank
     restart: always
     env_file:
       - .env
