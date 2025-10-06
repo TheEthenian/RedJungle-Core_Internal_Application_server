@@ -19,12 +19,8 @@ class Detail_Object(BaseModel):
 
 
 class Incoming_Data(BaseModel):
-    source_service: str
-    action: str
-    user_id: str
-    tenant_id: str
-    details: dict
-
+    server_authorization_token: str
+    payload: dict
 
 
 

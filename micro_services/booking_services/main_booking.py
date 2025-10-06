@@ -14,42 +14,82 @@ app = FastAPI()
 def main_get(param_a, data: Incoming_Data):
 
     if param_a == 'guest':
-        return 'get guest here'
+        respond = {
+            "endpoint": 'get guest',
+            "echo_data": data
+        }
+        return  respond
 
     if param_a == 'booking':
-        return 'get booking here'
+        respond = {
+            "endpoint": 'get booking',
+            "echo_data": data
+        }
+        return  respond
 
     if param_a == 'invoice':
-        return 'get invoice here'
+        respond = {
+            "endpoint": 'get invoice',
+            "echo_data": data
+        }
+        return  respond
 
     if param_b == 'quick-booking':
-        return 'get quick booking here'
+        respond = {
+            "endpoint": 'get quick-booking',
+            "echo_data": data
+        }
+        return  respond
 
 
 @app.post("/{param_a}")
 def main_post(param_a, data: Incoming_Data):
 
     if param_a == 'guest':
-        return 'post guest here'
+        respond = {
+            "endpoint": 'post guest',
+            "echo_data": data
+        }
+        return  respond
 
     if param_a == 'booking':
-        return 'post booking here'
+        respond = {
+            "endpoint": 'post booking',
+            "echo_data": data
+        }
+        return  respond
 
     if param_a == 'invoice':
-        return 'post invoice here'
+        respond = {
+            "endpoint": 'post invoice',
+            "echo_data": data
+        }
+        return  respond
 
 
 @app.delete("/{param_a}")
 def main_delete(param_a, data: Incoming_Data):
 
     if param_a == 'guest':
-        return 'delete guest here'
+        respond = {
+            "endpoint": 'delete_guest',
+            "echo_data": data
+        }
+        return  respond
 
     if param_a == 'booking':
-        return 'delete booking here'
+        respond = {
+            "endpoint": 'delete_booking',
+            "echo_data": data
+        }
+        return  respond
 
     if param_a == 'invoice':
-        return 'delete invoice here'
+        respond = {
+            "endpoint": 'delete_invoice',
+            "echo_data": data
+        }
+        return  respond
 
 
 

@@ -10,33 +10,40 @@ app = FastAPI()
 #####################################################################
 
 
-@app.get("/review/{param_a}")
-def main_get(param_a, data: Incoming_Data):
-    if param_a ==  'user':
-        return 'get user review'
+@app.get("/review")
+def main_get(data: Incoming_Data):
+    respond = {
+        "endpoint": 'get review',
+        "echo_data": data
+    }
+    return  respond
 
-    if param_a ==  'public':
-        return 'get public review'
 
-
-@app.post("/review/user")
+@app.post("/review")
 def main_post(data: Incoming_Data):
-    return 'post user review'
+    respond = {
+        "endpoint": 'post review',
+        "echo_data": data
+    }
+    return  respond
 
 
-@app.put("/review/user")
+@app.put("/review/message")
 def main_put(data: Incoming_Data):
-    return 'put user review'
+    respond = {
+        "endpoint": 'put message',
+        "echo_data": data
+    }
+    return  respond
 
 
-@app.delete("/review/{param_a}")
-def main_delete(param_a, data: Incoming_Data):
-    if param_a ==  'user':
-        return 'delete user review'
-
-    if param_a ==  'public':
-        return 'delete public review'
-
+@app.delete("/review")
+def main_delete(data: Incoming_Data):
+    respond = {
+        "endpoint": 'delete review',
+        "echo_data": data
+    }
+    return  respond
 
 
 

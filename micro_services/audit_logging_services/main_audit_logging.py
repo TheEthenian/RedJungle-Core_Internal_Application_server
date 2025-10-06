@@ -12,17 +12,29 @@ app = FastAPI()
 
 @app.get("/audit")
 def main_get(data: Incoming_Data):
-    return 'get audit logging'
+    respond = {
+        "endpoint": 'get audit logging',
+        "echo_data": data
+    }
+    return  respond
 
 
 @app.post("/audit")
 def main_post(data: Incoming_Data):
-    return 'post audit logging'
+    respond = {
+        "endpoint": 'post audit logging',
+        "echo_data": data
+    }
+    return  respond
 
 
 @app.delete("/audit")
 def main_delete(data: Incoming_Data):
-    return 'delete audit logging'
+    respond = {
+        "endpoint": 'delete audit logging',
+        "echo_data": data
+    }
+    return  respond
 
 
 

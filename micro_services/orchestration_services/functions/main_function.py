@@ -169,7 +169,7 @@ def singular_api_data_communication(http_request_type,complete_url,api_uri,paylo
 
         response_data = {
             'sender': api_uri,
-            'data': data.json()
+            'data': data
         }
         return response_data
 
@@ -179,7 +179,7 @@ def singular_api_data_communication(http_request_type,complete_url,api_uri,paylo
 
         response_data = {
             'sender': api_uri,
-            'data': data.json()
+            'data': data
         }
         return response_data
 
@@ -189,7 +189,7 @@ def singular_api_data_communication(http_request_type,complete_url,api_uri,paylo
 
         response_data = {
             'sender': api_uri,
-            'data': data.json()
+            'data': data
         }
         return response_data
 
@@ -199,31 +199,21 @@ def singular_api_data_communication(http_request_type,complete_url,api_uri,paylo
 
         response_data = {
             'sender': api_uri,
-            'data': data.json()
+            'data': data
         }
         return response_data
 
 
 #########################################################################
 
-initial_data = {
-    "workflow_id": "workflow_one",
-    "step_number": 4,
-    "authorization_token": "soincotocken",
-    "payload": {
-        "param_one": "data_one",
-        "param_two": "data_two"
-    }
-}
 
-#structured_steps_data_bank = workflow_name_to_ordered_steps_linkage('create_room')
-#
-#responses = full_transactional_api_communication(structured_steps_data_bank,initial_data)
-#
-#
-#for response in responses:
-#    print(response)
-#
+
+
+
+
+
+
+
 
 
 

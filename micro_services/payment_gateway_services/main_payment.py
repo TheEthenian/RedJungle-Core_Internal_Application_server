@@ -14,47 +14,62 @@ app = FastAPI()
 def main_get(param_a, data: Incoming_Data):
 
     if param_a == 'transaction':
-        return 'get transaction'
+        respond = {
+            "endpoint": 'get transaction',
+            "echo_data": data
+        }
+        return  respond
 
-    if param_a == 'payment-method':
-        return 'get payment-method'
-
+    if param_a == 'bank':
+        respond = {
+            "endpoint": 'get bank',
+            "echo_data": data
+        }
+        return  respond
 
 
 @app.post("/{param_a}")
 def main_post(param_a, data: Incoming_Data):
 
     if param_a == 'transaction':
-        return 'post transaction'
+        respond = {
+            "endpoint": 'post transaction',
+            "echo_data": data
+        }
+        return  respond
 
-    if param_a == 'payment-method':
-        return 'post payment-method'
+    if param_a == 'bank':
+        respond = {
+            "endpoint": 'post bank',
+            "echo_data": data
+        }
+        return  respond
 
 
-
-@app.put("/payment-method}")
+@app.put("/bank")
 def main_put(data: Incoming_Data):
-    return 'put payment-method'
-
+    respond = {
+        "endpoint": 'put bank',
+        "echo_data": data
+    }
+    return  respond
 
 
 @app.delete("/{param_a}")
-def main_delete(param_a, data: Incoming_Data):
+def main_get(param_a, data: Incoming_Data):
 
     if param_a == 'transaction':
-        return 'delete transaction'
+        respond = {
+            "endpoint": 'delete transaction',
+            "echo_data": data
+        }
+        return  respond
 
-    if param_a == 'payment-method':
-        return 'delete payment-method'
-
-
-
-
-
-
-
-
-
-
+    if param_a == 'bank':
+        respond = {
+            "endpoint": 'delete bank',
+            "echo_data": data
+        }
+        return  respond
 
 

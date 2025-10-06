@@ -9,11 +9,11 @@ from typing import List
 
 config_data = load_yaml_config('../config_database.yaml')
 
-db_username = config_data['admin_microservice']['database']['db_username']
-db_passcode = config_data['admin_microservice']['database']['db_passcode']
-db_url = config_data['admin_microservice']['database']['db_url']
-db_port = config_data['admin_microservice']['database']['db_port']
-db_name = config_data['admin_microservice']['database']['db_name']
+db_username = config_data['hotel_microservice']['database']['db_username']
+db_passcode = config_data['hotel_microservice']['database']['db_passcode']
+db_url = config_data['hotel_microservice']['database']['db_url']
+db_port = config_data['hotel_microservice']['database']['db_port']
+db_name = config_data['hotel_microservice']['database']['db_name']
 
 ###############################################################################
 

@@ -21,7 +21,7 @@ service_object = [
     },
     {
         "service_id":"#5",
-        "service_name":"super_admin",
+        "service_name":"tenant",
         "endpoint":"7030"
     },
     {

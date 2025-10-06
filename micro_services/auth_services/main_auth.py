@@ -10,25 +10,90 @@ app = FastAPI()
 #####################################################################
 
 
-@app.get("/auth")
-def main_get(data: Incoming_Data):
-    return 'get auth'
+@app.get("/auth/{param_a}")
+def main_get(param_a, data: Incoming_Data):
+
+    if param_a == 'credential':
+        respond = {
+            "endpoint": 'get credential',
+            "echo_data": data
+        }
+        return  respond
+
+    if param_a == 'session':
+        respond = {
+            "endpoint": 'get session',
+            "echo_data": data
+        }
+        return  respond
+
+    if param_a == 'reset-token':
+        respond = {
+            "endpoint": 'get password reset token',
+            "echo_data": data
+        }
+        return  respond
 
 
-@app.post("/auth")
-def main_post(data: Incoming_Data):
-    return 'post auth'
+@app.post("/auth/{param_a}")
+def main_post(param_a, data: Incoming_Data):
+
+    if param_a == 'credential':
+        respond = {
+            "endpoint": 'post credential',
+            "echo_data": data
+        }
+        return  respond
+
+    if param_a == 'session':
+        respond = {
+            "endpoint": 'post session',
+            "echo_data": data
+        }
+        return  respond
+
+    if param_a == 'reset-token':
+        respond = {
+            "endpoint": 'post password reset token',
+            "echo_data": data
+        }
+        return  respond
 
 
-@app.put("/auth")
+
+@app.put("/auth/credential")
 def main_put(data: Incoming_Data):
-    return 'put auth'
+
+    respond = {
+        "endpoint": 'put credential',
+        "echo_data": data
+    }
+    return  respond
 
 
-@app.delete("/auth")
-def main_delete(data: Incoming_Data):
-    return 'delete auth'
+@app.delete("/auth/{param_a}")
+def main_delete(param_a, data: Incoming_Data):
 
+    if param_a == 'credential':
+        respond = {
+            "endpoint": 'delete credential',
+            "echo_data": data
+        }
+        return  respond
+
+    if param_a == 'session':
+        respond = {
+            "endpoint": 'delete session',
+            "echo_data": data
+        }
+        return  respond
+
+    if param_a == 'reset-token':
+        respond = {
+            "endpoint": 'delete password reset token',
+            "echo_data": data
+        }
+        return  respond
 
 
 

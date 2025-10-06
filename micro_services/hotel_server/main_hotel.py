@@ -1,61 +1,64 @@
 from  fastapi import FastAPI
-from models.access_control_models import Incoming_Data
+from models.hotel_models import Incoming_Data
 import sqlalchemy
 import psycopg2
 import json
 
 #####################################################################
+
 app = FastAPI()
+
+#####################################################################
+
 
 #####################################################################
 
 
 @app.get("/{param_a}")
 def main_get(param_a, data: Incoming_Data):
-
-    if param_a == 'role':
+    
+    if param_a == 'hotel':
         respond = {
-            "endpoint": 'get role',
+            "endpoint": 'get hotel',
             "echo_data": data
         }
         return  respond
 
-    if param_a == 'policy':
+    if param_a == 'hotel-service':
         respond = {
-            "endpoint": 'get policy',
+            "endpoint": 'get hotel service',
             "echo_data": data
         }
         return  respond
 
-    if param_a == 'decision-log':
+    if param_a == 'config':
         respond = {
-            "endpoint": 'get decision log',
+            "endpoint": 'get config',
             "echo_data": data
         }
         return  respond
-
 
 
 @app.post("/{param_a}")
 def main_post(param_a, data: Incoming_Data):
-
-    if param_a == 'role':
+    
+    if param_a == 'hotel':
         respond = {
-            "endpoint": 'post role',
+            "endpoint": 'post hotel',
             "echo_data": data
         }
         return  respond
 
-    if param_a == 'policy':
+    if param_a == 'hotel-service':
         respond = {
-            "endpoint": 'post policy',
+            "endpoint": 'post hotel-service',
             "echo_data": data
         }
         return  respond
 
-    if param_a == 'decision-log':
+    if param_a == 'config':
         respond = {
-            "endpoint": 'post decision log',
+            "endpoint": 'post config',
             "echo_data": data
         }
         return  respond
@@ -63,24 +66,24 @@ def main_post(param_a, data: Incoming_Data):
 
 @app.put("/{param_a}")
 def main_put(param_a, data: Incoming_Data):
-
-    if param_a == 'role':
+    
+    if param_a == 'hotel':
         respond = {
-            "endpoint": 'put role',
+            "endpoint": 'put hotel',
             "echo_data": data
         }
         return  respond
 
-    if param_a == 'policy':
+    if param_a == 'hotel-service':
         respond = {
-            "endpoint": 'put policy',
+            "endpoint": 'put hotel service',
             "echo_data": data
         }
         return  respond
 
-    if param_a == 'decision-log':
+    if param_a == 'config':
         respond = {
-            "endpoint": 'put decision log',
+            "endpoint": 'put config',
             "echo_data": data
         }
         return  respond
@@ -88,27 +91,38 @@ def main_put(param_a, data: Incoming_Data):
 
 @app.delete("/{param_a}")
 def main_delete(param_a, data: Incoming_Data):
-
-    if param_a == 'role':
+    
+    if param_a == 'hotel':
         respond = {
-            "endpoint": 'delete role',
+            "endpoint": 'delete hotel',
             "echo_data": data
         }
         return  respond
 
-    if param_a == 'policy':
+    if param_a == 'hotel-service':
         respond = {
-            "endpoint": 'delete policy',
+            "endpoint": 'delete hotel service',
             "echo_data": data
         }
         return  respond
 
-    if param_a == 'decision-log':
+    if param_a == 'config':
         respond = {
-            "endpoint": 'delete decision log',
+            "endpoint": 'delete config',
             "echo_data": data
         }
         return  respond
+
+
+
+
+
+
+
+
+
+
+
 
 
 

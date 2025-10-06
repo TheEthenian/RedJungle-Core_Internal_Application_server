@@ -1,5 +1,5 @@
 from  fastapi import FastAPI
-from models.super_admin_models import Incoming_Data
+from models.tenant_models import Incoming_Data
 import sqlalchemy
 import psycopg2
 import json
@@ -14,41 +14,47 @@ app = FastAPI()
 def main_get(param_a, data: Incoming_Data):
 
     if param_a == 'tenant':
-        return 'get tenant'
-
-    if param_a == 'super-admin':
-        return 'get super-admin'
+        respond = {
+            "endpoint": 'get tenant',
+            "echo_data": data
+        }
+        return  respond
 
     if param_a == 'billing':
-        return 'get billing'
-
+        respond = {
+            "endpoint": 'get billing',
+            "echo_data": data
+        }
+        return  respond
 
 
 @app.post("/{param_a}")
 def main_post(param_a, data: Incoming_Data):
 
     if param_a == 'tenant':
-        return 'post tenant'
-
-    if param_a == 'super-admin':
-        return 'post super-admin'
-
-    if param_a == 'billing':
-        return 'post billing'
-
-
-
-@app.put("/{param_a}")
-def main_put(param_a, data: Incoming_Data):
-
-    if param_a == 'tenant':
-        return 'put tenant'
-
-    if param_a == 'super-admin':
-        return 'put super-admin'
+        respond = {
+            "endpoint": 'post tenant',
+            "echo_data": data
+        }
+        return  respond
 
     if param_a == 'billing':
-        return 'put billing'
+        respond = {
+            "endpoint": 'post billing',
+            "echo_data": data
+        }
+        return  respond
+
+
+
+@app.put("/tenant")
+def main_put(data: Incoming_Data):
+    respond = {
+        "endpoint": 'put tenant',
+        "echo_data": data
+    }
+    return  respond
+
 
 
 
@@ -56,13 +62,18 @@ def main_put(param_a, data: Incoming_Data):
 def main_delete(param_a, data: Incoming_Data):
 
     if param_a == 'tenant':
-        return 'delete tenant'
-
-    if param_a == 'super-admin':
-        return 'delete super-admin'
+        respond = {
+            "endpoint": 'delete tenant',
+            "echo_data": data
+        }
+        return  respond
 
     if param_a == 'billing':
-        return 'delete billing'
+        respond = {
+            "endpoint": 'delete billing',
+            "echo_data": data
+        }
+        return  respond
 
 
 

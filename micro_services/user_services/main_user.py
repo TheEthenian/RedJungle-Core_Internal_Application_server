@@ -1,5 +1,5 @@
 from  fastapi import FastAPI
-from models.user_info_models import Incoming_Data
+from models.user_models import Incoming_Data
 import sqlalchemy
 import psycopg2
 import json
@@ -10,44 +10,73 @@ app = FastAPI()
 #####################################################################
 
 
-@app.get("/user/{param_a}")
-def main_get(param_a, data: Incoming_Data):
+@app.get("/user")
+def main_get(data: Incoming_Data):
+    respond = {
+        "endpoint": 'get user',
+        "echo_data": data
+    }
+    return  respond
 
-    if  param_a == 'info':
-        return 'get user info'
-
-    if  param_a == 'profile':
-        return 'get user profile'
-
-
-@app.post("/user/{param_a}")
-def main_post(param_a, data: Incoming_Data):
-
-    if  param_a == 'info':
-        return 'post user info'
-
-    if  param_a == 'profile':
-        return 'post user profile'
+@app.get("/user/profile")
+def main_get(data: Incoming_Data):
+    respond = {
+        "endpoint": 'get user profile',
+        "echo_data": data
+    }
+    return  respond
 
 
-@app.put("/user/{param_a}")
-def main_put(param_a, data: Incoming_Data):
+@app.post("/user")
+def main_post(data: Incoming_Data):
+    respond = {
+        "endpoint": 'post user',
+        "echo_data": data
+    }
+    return  respond
 
-    if  param_a == 'info':
-        return 'put user info'
+@app.post("/user/profile")
+def main_post(data: Incoming_Data):
+    respond = {
+        "endpoint": 'post user profile',
+        "echo_data": data
+    }
+    return  respond
 
-    if  param_a == 'profile':
-        return 'put user profile'
+
+@app.put("/user")
+def main_put(data: Incoming_Data):
+    respond = {
+        "endpoint": 'put user',
+        "echo_data": data
+    }
+    return  respond
+
+@app.put("/user/profile")
+def main_put(data: Incoming_Data):
+    respond = {
+        "endpoint": 'put user profile',
+        "echo_data": data
+    }
+    return  respond
 
 
-@app.delete("/user/{param_a}")
-def main_delete(param_a, data: Incoming_Data):
+@app.delete("/user")
+def main_delete(data: Incoming_Data):
+    respond = {
+        "endpoint": 'delete user',
+        "echo_data": data
+    }
+    return  respond
 
-    if  param_a == 'info':
-        return 'delete user info'
+@app.delete("/user/profile")
+def main_delete(data: Incoming_Data):
+    respond = {
+        "endpoint": 'delete user profile',
+        "echo_data": data
+    }
+    return  respond
 
-    if  param_a == 'profile':
-        return 'delete user profile'
 
 
 

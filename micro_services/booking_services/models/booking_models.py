@@ -40,18 +40,8 @@ class Send_Log_Data(BaseModel):
 
 
 class Incoming_Data(BaseModel):
-    workflow_id: str
-    step_number: int
-    authorization_token: str
+    server_authorization_token: str
     payload: dict
-
-
-
-
-
-
-
-
 
 
 

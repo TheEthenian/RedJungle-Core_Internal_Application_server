@@ -38,7 +38,7 @@ auth/delete {one/many} = user & super_admin
 identity or the entity 
 - Will continue this after everything is operational
 
-###### super_admin_services_url ###### 
+###### tenant_services_url ###### 
 
 /tenant/update {one} = super_admin
 /tenant/delete {one/many}= platform
@@ -50,12 +50,8 @@ identity or the entity
 /billing/update {one/many} = super_admin 
 /billing/delete {one/many} = super_admin 
 
-/super-admin/update = super_admin
-/super-admin/get = super_admin
-/super-admin/delete = super_admin
-/super-admin/create = user
 
-###### admin_services_url ###### 
+###### hotel_services_url ###### 
 
 /hotel/update {one/many} = admin & super_admin
 /hotel/delete {one/many} = admin & super_admin
@@ -67,16 +63,7 @@ identity or the entity
 /hotel-service/update {one/many} = admin & super_admin
 /hotel-service/delete {one/many} = admin & super_admin
 
-/staff/create {one/many} = admin & super_admin
-/staff/get {one/many}
-/staff/delete {one/many} = admin & super_admin
-
-/admin/create {one/many} = super_admin
-/admin/update {one/many} = admin
-/admin/get {one/many} = admin & super_admin
-/admin/delete {one/many} = super_admin
-
-###### hotel_management_services_url ###### 
+###### room_services_url ###### 
 
 /room/create {one/many} => admin
 /room/delete {one/many} => admin
@@ -112,7 +99,7 @@ identity or the entity
 /invoice/get {one/many} = guest & user & admin
 /invoice/delete {many} = admin
 
-###### user_info_services_url ###### 
+###### user_services_url ###### 
 
 user/profile/create {one} = everyone
 user/profile/delete {one/many} = user & super_admin

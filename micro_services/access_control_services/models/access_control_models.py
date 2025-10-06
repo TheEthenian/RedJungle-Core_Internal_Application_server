@@ -37,10 +37,11 @@ class Send_Log_Data(BaseModel):
 
 
 class Incoming_Data(BaseModel):
-    target_service_uri: str
-    target_object_identification: dict
+    service_id: str
+    service_uri: str
+    object_details: dict
     action: str
-    authorization_data: dict
+    payload: dict
 
 
 

@@ -1,4 +1,4 @@
-from  fastapi import FastAPI
+from  fastapi import FastAPI, Request
 import sqlalchemy
 import psycopg2
 from fastapi.middleware.cors import CORSMiddleware
@@ -35,8 +35,11 @@ app.add_middleware(
 
 @app.post("/")
 def main_function(data: Incoming_Data):
-
-    pass
+    respond = {
+        "endpoint": 'post orchestration',
+        "echo_data": data
+    }
+    return  respond
 
 
 

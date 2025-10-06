@@ -16,13 +16,13 @@ access_control_microservice:
     db_name: access_control_bank
 
 
-admin_microservice:
+hotel_microservice:
   database:
     db_username: invinsible
     db_passcode: $omniman#
     db_url: localhost
     db_port: 9040
-    db_name: admin_bank
+    db_name: hotel_bank
 
 
 analytics_microservice:
@@ -61,13 +61,13 @@ booking_microservice:
     db_name: booking_bank
 
   
-hotel_management_microservice:
+room_microservice:
   database:
     db_username: invinsible
     db_passcode: $omniman#
     db_url: localhost
     db_port: 9050
-    db_name: hotel_management_bank
+    db_name: room_bank
 
   
 payment_gateway_microservice:
@@ -88,22 +88,22 @@ review_microservice:
     db_name: review_bank
   
   
-super_admin_microservice:
+tenant_microservice:
   database:
     db_username: invinsible
     db_passcode: $omniman#
     db_url: localhost
     db_port: 9030
-    db_name: super_admin_bank
+    db_name: tenant_bank
 
   
-user_info_microservice:
+user_microservice:
   database:
     db_username: invinsible
     db_passcode: $omniman#
     db_url: localhost
     db_port: 9080
-    db_name: user_info_bank
+    db_name: user_bank
 
 
   

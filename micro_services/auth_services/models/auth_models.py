@@ -16,7 +16,6 @@ class Credential_Object(BaseModel):
 
 class Session_Object(BaseModel):
     session_id: str
-    credential_id: str
     token_hash: str
     expires_at: str
     ip_address: str
@@ -40,9 +39,7 @@ class Send_Log_Data(BaseModel):
 
 
 class Incoming_Data(BaseModel):
-    workflow_id: str
-    step_number: int
-    authorization_token: str
+    server_authorization_token: str
     payload: dict
 
 
