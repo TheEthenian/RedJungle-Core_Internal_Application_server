@@ -1,127 +1,161 @@
-###### orchestrator_services_url ###### 
+###### orchestrator_services_uri ###### 
 
-- depending on the http request it will be on eith main 
-post, delete , update then routed to the destination
+- /client [post] => external client side ip
+- /internal [post] => internal server ip
 
-###### review_services_url ###### 
+###### access_control_services_uri ###### *
+orchestration server ip only accepted
 
-review/user/create {one} = user
-review/user/delete {one/many} = super_admin & admin & user
-review/user/update {one} = user
-review/user/get {many/one} = everyone
+- /role [crud] 
+=>[post,put,delete] = super_admin
+=>[get] = anyone / super admin
 
-review/public/delete {one/many} = super_admin & admin & user
-review/public/get {many/one} = everyone
+- /policy [crud] = super_admin
+- /decision-log [get,delete] = super_admin / admin
 
-###### auth_services_url ###### 
+###### audit_logging_services_uri ###### 
+orchestration server ip only accepted
 
-auth/get {one/many} = user & super_admin
-auth/create {one} = user
-auth/update {one} = user
-auth/delete {one/many} = user & super_admin
+- /audit [get,post,delete] 
+=>[get,delete] = super_admin / admin
 
-###### access_control_services_url ###### *
+###### auth_services_uri ###### 
+orchestration server ip only accepted
 
-/role/post {one/many} = super_admin
-/role/update {one/many} = super_admin
-/role/delete {one/many} = super_admin
-/role/get {one/many} =  super_admin [ or just acs stuff ]
+- /auth/credential [crud] 
+=>[post] = anyone
+=>[get] = user / super_admin
+=>[put] = user
+=>[delete] = user / super_admin
 
-/policy/post {one/many} = super_admin
-/policy/update {one/many} = super_admin
-/policy/delete {one/many} = super_admin
-/policy/get {one/many} =  super_admin [ or just acs stuff ]
+- /auth/session [get,delete] 
+=>[get] = anyone / super_admin 
+=>[delete] = anyone-into-user / super_admin
+
+- /auth/reset-token [get,delete] 
+=>[get] = user / super_admin
+=>[delete] = user
+
+###### booking_services_uri ###### 
+orchestration server ip only accepted
+
+- /guest [get,post,delete] 
+=>[get] = admin / user / super_admin 
+=>[post] = user
+=>[delete] = guest / admin
+
+- /booking [get,post,delete] 
+=>[get] = guest / admin /super_admin
+=>[post] = guest
+=>[delete] = guest 
+
+- /invoice [get,post,delete] 
+=>[get] = guest / admin / super_admin
+=>[post] = guest
+=>[delete] = guest / admin / super_admin
+
+###### hotel_services_uri ###### 
+orchestration server ip only accepted
+
+- /hotel [crud] 
+=>[get] = anyone / super_admin 
+=>[post] = super_admin 
+=>[put] = admin 
+=>[delete] = super_admin 
+
+- /hotel-service [crud] 
+=> [get] = anyone / super_admin
+=> [post] = super_admin
+=> [put] = admin 
+=> [delete] = super_admin
+
+- /config [crud]  = super_admin
+
+###### payment_gateway_services_uri ###### 
+orchestration server ip only accepted
+
+- /transaction [get,post,delete] 
+=>[get] = user / super admin
+=>[post] = user
+=>[delete] => user 
+
+- /bank [crud] 
+=>[get] = user / super_admin
+=>[post] = super_admin
+=>[put] = user
+=>[delete] = user / super_admin
+
+###### review_services_uri ###### 
+orchestration server ip only accepted
+
+- /review [crud] 
+=>[get] = everyone 
+=>[post] = guest 
+=>[put] = user / guest
+=>[delete] = admin / super_admin
+
+###### room_services_uri ###### 
+orchestration server ip only accepted
+
+- /room [crud] 
+=>[get] = anyone / admin / super_admin
+=>[post] = admin 
+=>[put] = admin 
+=>[delete] = admin  / super_admin 
+
+- /amenity [crud] 
+=>[get] = anyone / admin / super_admin
+=>[post] = admin 
+=>[put] = admin 
+=>[delete] = admin  / super_admin 
+
+- /amenity/picture [get,post,delete] 
+=>[get] = anyone
+=>[post] = admin
+=>[delete] = admin / super_user
+
+###### tenant_services_uri ###### 
+orchestration server ip only accepted
+
+- /tenant [crud] 
+=>[get] = super_admin / platform
+=>[post] = super_admin 
+=>[put] = super_admin 
+=>[delete] = super_admin 
+
+- /billing [get,post,delete] 
+=>[get] = super_admin
+=>[post] = super_admin
+=>[delete] = super_admin
+
+###### user_services_uri ###### 
+orchestration server ip only accepted
+
+- /user [crud] 
+=>[get] = user / admin / super_admin / platform
+=>[post] = user
+=>[put] = user 
+=>[delete] = user 
 
 
-- Each path has its own data structure ideosyncrasies
-- Each workflow has a jwt payload that shows roles and confirms
-identity or the entity 
-- Will continue this after everything is operational
+- /user/profile [crud] 
+=>[get] = user / admin / super_admin / platform
+=>[post] = user
+=>[put] = user 
+=>[delete] = user 
 
-###### tenant_services_url ###### 
+###### analytics_services_uri ###### 
+orchestration server ip only accepted
 
-/tenant/update {one} = super_admin
-/tenant/delete {one/many}= platform
-/tenant/create {one}
-/tenant/get {one}
+- /analytic/event-log [get,post,delete] 
+=>[get] = admin / super_admin 
+=>[post] = anyone
+=>[delete] = admin / super_admin 
 
-/billing/create {one/many} = super_admin 
-/billing/get {one/many} = super_admin 
-/billing/update {one/many} = super_admin 
-/billing/delete {one/many} = super_admin 
-
-
-###### hotel_services_url ###### 
-
-/hotel/update {one/many} = admin & super_admin
-/hotel/delete {one/many} = admin & super_admin
-/hotel/get {one/many} = everyone & super_admin
-/hotel/create {one} = admin
-
-/hotel-service/get {one/many} = everyone 
-/hotel-service/create {one/many} = admin & super_admin
-/hotel-service/update {one/many} = admin & super_admin
-/hotel-service/delete {one/many} = admin & super_admin
-
-###### room_services_url ###### 
-
-/room/create {one/many} => admin
-/room/delete {one/many} => admin
-/room/update {one/many} => admin
-/room/get {one/many} => admin
-
-###### payment_gateway_services_url ###### 
-
-/transaction/create {one} = user
-/transaction/get {one/many} = user & admin
-/transaction/delete {many} = super_admin
-
-/payment-method/get {one/many} = user & admin
-/payment-method/create {one} = user
-/payment-method/update {one} = user
-/payment-method/delete {one/many} = user & super_admin
-
-- I'll probably simulate a in memory list[dict] that acts as the bank for payment realism
-
-###### booking_services_url ###### 
-
-/guest/create 
-/guest/get {one/many} = everyone & admin 
-/guest/delete {one/many} 
-
-/booking/create {one} = everyone
-/booking/delete {one} = super_admin & admin
-/booking/get {one/many} = guest & user & admin
-
-/quick-booking/get {one} = user
-
-/invoice/create {one} = [ done after booking is made ]
-/invoice/get {one/many} = guest & user & admin
-/invoice/delete {many} = admin
-
-###### user_services_url ###### 
-
-user/profile/create {one} = everyone
-user/profile/delete {one/many} = user & super_admin
-user/profile/update {one} = user
-user/profile/get {one/many} = user & super_admin
-
-user/info/create {one} = everyone
-user/info/delete {one/many} = user & super_admin
-user/info/update {one} = user
-user/info/get {one/many} = user & super_admin
-
-###### analytics_services_url ###### 
-
-analytic/create {one/many} = services
-analytic/delete {one/many} = super_admin
-analytic/get {one/many} = super_admin & admin
-
-###### audit_logging_services_url ###### 
-
-audit/create {one/many} = services
-audit/delete {one/many} = super_admin
-audit/get {one/many} = super_admin & admin
+- /analytic/metric [get,put,delete] 
+=>[get] = admin / super_admin 
+=>[put] = admin / super_admin
+=>[delete] = admin / super_admin 
 
 
 
