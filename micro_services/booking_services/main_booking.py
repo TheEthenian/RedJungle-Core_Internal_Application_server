@@ -34,13 +34,6 @@ def main_get(param_a, data: Incoming_Data):
         }
         return  respond
 
-    if param_b == 'quick-booking':
-        respond = {
-            "endpoint": 'get quick-booking',
-            "echo_data": data
-        }
-        return  respond
-
 
 @app.post("/{param_a}")
 def main_post(param_a, data: Incoming_Data):

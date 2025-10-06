@@ -10,20 +10,56 @@ app = FastAPI()
 #####################################################################
 
 
-@app.get("/analytic")
-def main_get(data: Incoming_Data):
-    return 'get analytic'
+@app.get("/analytic/{param_a}")
+def main_get(param_a,data: Incoming_Data):
+    if param_a == 'event-log':
+        respond = {
+            "endpoint_echo":"get event log",
+            "data": data
+        }
+        return respond
+
+    if param_a == 'metric':
+        respond = {
+            "endpoint_echo":"get metric",
+            "data": data
+        }
+        return respond
 
 
-@app.post("/analytic")
+@app.post("/analytic/event-log")
 def main_post(data: Incoming_Data):
-    return 'post analytic'
+    respond = {
+        "endpoint_echo":"post event log",
+        "data": data
+    }
+    return respond
 
 
-@app.delete("/analytic")
-def main_delete(data: Incoming_Data):
-    return 'delete analytic'
+@app.put("/analytic/metric")
+def main_put(data: Incoming_Data):
+    respond = {
+        "endpoint_echo":"put metric",
+        "data": data
+    }
+    return respond
 
+
+@app.delete("/analytic/{param_a}")
+def main_delete(param_a,data: Incoming_Data):
+    if param_a == 'event-log':
+        respond = {
+            "endpoint_echo":"delete event log",
+            "data": data
+        }
+        return respond
+
+    if param_a == 'metric':
+        respond = {
+            "endpoint_echo":"delete metric",
+            "data": data
+        }
+        return respond
 
 
 

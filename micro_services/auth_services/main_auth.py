@@ -35,30 +35,13 @@ def main_get(param_a, data: Incoming_Data):
         return  respond
 
 
-@app.post("/auth/{param_a}")
-def main_post(param_a, data: Incoming_Data):
-
-    if param_a == 'credential':
-        respond = {
-            "endpoint": 'post credential',
-            "echo_data": data
-        }
-        return  respond
-
-    if param_a == 'session':
-        respond = {
-            "endpoint": 'post session',
-            "echo_data": data
-        }
-        return  respond
-
-    if param_a == 'reset-token':
-        respond = {
-            "endpoint": 'post password reset token',
-            "echo_data": data
-        }
-        return  respond
-
+@app.post("/auth/credential")
+def main_post(data: Incoming_Data):
+    respond = {
+        "endpoint": 'post credential',
+        "echo_data": data
+    }
+    return  respond
 
 
 @app.put("/auth/credential")

@@ -53,13 +53,6 @@ def main_post(param_a, data: Incoming_Data):
         }
         return  respond
 
-    if param_a == 'decision-log':
-        respond = {
-            "endpoint": 'post decision log',
-            "echo_data": data
-        }
-        return  respond
-
 
 @app.put("/{param_a}")
 def main_put(param_a, data: Incoming_Data):
@@ -74,13 +67,6 @@ def main_put(param_a, data: Incoming_Data):
     if param_a == 'policy':
         respond = {
             "endpoint": 'put policy',
-            "echo_data": data
-        }
-        return  respond
-
-    if param_a == 'decision-log':
-        respond = {
-            "endpoint": 'put decision log',
             "echo_data": data
         }
         return  respond

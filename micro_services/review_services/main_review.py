@@ -28,10 +28,10 @@ def main_post(data: Incoming_Data):
     return  respond
 
 
-@app.put("/review/message")
+@app.put("/review")
 def main_put(data: Incoming_Data):
     respond = {
-        "endpoint": 'put message',
+        "endpoint": 'put review',
         "echo_data": data
     }
     return  respond

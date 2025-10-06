@@ -47,12 +47,16 @@ class Send_Log_Data(BaseModel):
     details: dict
 
 
-class Incoming_Data(BaseModel):
+class Incoming_Data_External(BaseModel):
     workflow_name: str
     authorization_data: dict
     payload: dict
 
 
+class Incoming_Data_Internal(BaseModel):
+    server_authorization_token: str
+    status: str
+    payload: dict
 
 
 

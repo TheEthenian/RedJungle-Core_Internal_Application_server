@@ -1,9 +1,13 @@
 from  fastapi import FastAPI, Request
 import sqlalchemy
 import psycopg2
+
 from fastapi.middleware.cors import CORSMiddleware
 from functions.main_function import load_yaml_config
-from models.orch_models import Incoming_Data
+
+from models.orch_models import Incoming_Data_External
+from models.orch_models import Incoming_Data_Internal
+
 import json
 
 
@@ -33,10 +37,18 @@ app.add_middleware(
 
 ###################################################################
 
-@app.post("/")
-def main_function(data: Incoming_Data):
+@app.post("/client")
+def main_function(data: Incoming_Data_External):
     respond = {
-        "endpoint": 'post orchestration',
+        "endpoint": 'post external orchestration',
+        "echo_data": data
+    }
+    return  respond
+
+@app.post("/internal")
+def main_function(data: Incoming_Data_Internal):
+    respond = {
+        "endpoint": 'post internal orchestration',
         "echo_data": data
     }
     return  respond
