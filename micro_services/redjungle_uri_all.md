@@ -18,6 +18,7 @@ orchestration server ip only accepted
 
 - /audit [get,post,delete] 
 =>[get,delete] = super_admin / admin
+=>[post] = anyone
 
 ###### auth_services_uri ###### 
 orchestration server ip only accepted
@@ -30,7 +31,7 @@ orchestration server ip only accepted
 
 - /auth/session [get,delete] 
 =>[get] = anyone / super_admin 
-=>[delete] = anyone-into-user / super_admin
+=>[delete] = user / super_admin
 
 - /auth/reset-token [get,delete] 
 =>[get] = user / super_admin
@@ -69,7 +70,8 @@ orchestration server ip only accepted
 => [put] = admin 
 => [delete] = super_admin
 
-- /config [crud]  = super_admin
+- /config [get]  = anyone
+- /config [post,put,delete]  = super_admin
 
 ###### payment_gateway_services_uri ###### 
 orchestration server ip only accepted
@@ -89,10 +91,10 @@ orchestration server ip only accepted
 orchestration server ip only accepted
 
 - /review [crud] 
-=>[get] = everyone 
+=>[get] = anyone 
 =>[post] = guest 
-=>[put] = user / guest
-=>[delete] = admin / super_admin
+=>[put] = guest
+=>[delete] = guest /admin / super_admin
 
 ###### room_services_uri ###### 
 orchestration server ip only accepted
@@ -121,25 +123,25 @@ orchestration server ip only accepted
 =>[get] = super_admin / platform
 =>[post] = super_admin 
 =>[put] = super_admin 
-=>[delete] = super_admin 
+=>[delete] = super_admin / platform
 
 - /billing [get,post,delete] 
-=>[get] = super_admin
+=>[get] = super_admin / platform
 =>[post] = super_admin
-=>[delete] = super_admin
+=>[delete] = super_admin / platform
 
 ###### user_services_uri ###### 
 orchestration server ip only accepted
 
 - /user [crud] 
-=>[get] = user / admin / super_admin / platform
+=>[get] = user / super_admin / platform
 =>[post] = user
 =>[put] = user 
 =>[delete] = user 
 
 
 - /user/profile [crud] 
-=>[get] = user / admin / super_admin / platform
+=>[get] = user / super_admin / platform
 =>[post] = user
 =>[put] = user 
 =>[delete] = user 

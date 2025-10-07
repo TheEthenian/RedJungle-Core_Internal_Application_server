@@ -1,18 +1,14 @@
 from  fastapi import FastAPI, Request
 import sqlalchemy
 import psycopg2
-
 from fastapi.middleware.cors import CORSMiddleware
 from functions.main_function import load_yaml_config
-
 from models.orch_models import Incoming_Data_External
 from models.orch_models import Incoming_Data_Internal
-
 import json
 
-
-
 ##################### CONFIG INFO ################################
+
 config_general = load_yaml_config('../config_general.yaml')
 base_url = config_general['api_network_base_url']
 

@@ -51,7 +51,7 @@ def steps_detail_info(list_step):
                 enumeration_list.append({
                     'execution_order': step_order,
                     'service': service_name,
-                    'full_url': f'{service_url}{step_relative}',
+                    'uri': f'{service_url}{step_relative}',
                     'request_type': step_request_type
                     })
 
@@ -138,19 +138,21 @@ def full_transactional_api_communication(structured_step_list,initial_payload):
 
     while current_step_index < len(structured_step_list):
 
-        current_target_uri = structured_step_list[current_step_index][0]['full_url']
+        current_target_uri = structured_step_list[current_step_index][0]['uri']
         http_request_type = structured_step_list[current_step_index][0]['request_type']
 
         complete_url = f'{base_url}:{current_target_uri}'
 
         if current_step_index == 0:
             response_data_from_api = singular_api_data_communication(http_request_type,complete_url,current_target_uri,initial_payload)
+            print(response_data)
             next_api_transaction_data = response_data_from_api['data']
             print('This in under iteration',current_step_index,next_api_transaction_data)
             response_data_bank.append(response_data_from_api)
 
         if current_step_index > 0:
             response_data_from_api = singular_api_data_communication(http_request_type,complete_url,current_target_uri, next_api_transaction_data)
+            print(response_data)
             next_api_transaction_data = response_data_from_api['data']
             print('This in under iteration',current_step_index,next_api_transaction_data)
             response_data_bank.append(response_data_from_api)
