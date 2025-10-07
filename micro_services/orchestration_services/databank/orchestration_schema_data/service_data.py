@@ -26,12 +26,12 @@ service_object = [
     },
     {
         "service_id":"#6",
-        "service_name":"admin",
+        "service_name":"hotel",
         "endpoint": "7040"
     },
     {
         "service_id":"#7",
-        "service_name":"hotel_management",
+        "service_name":"room",
         "endpoint": "7050"
     },
     {
@@ -46,7 +46,7 @@ service_object = [
     },
     {
         "service_id":"#10",
-        "service_name":"user_info",
+        "service_name":"user",
         "endpoint": "7080"
     },
     {

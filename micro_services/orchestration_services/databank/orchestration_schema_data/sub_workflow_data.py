@@ -151,40 +151,7 @@ sub_workflow_object = [
         "execution_order": 1
     },
 
-    {
-        "sub_workflow_id":'#',
-        "master_workflow_id":'$33',
-        "assistance_workflow_id":'$36',
-        "execution_order": 1
-    },
-
-    {
-        "sub_workflow_id":'#',
-        "master_workflow_id":'$33',
-        "assistance_workflow_id":'$4',
-        "execution_order": 2
-    },
-
-    {
-        "sub_workflow_id":'#',
-        "master_workflow_id":'$34',
-        "assistance_workflow_id":'$4',
-        "execution_order": 1
-    },
-
-    {
-        "sub_workflow_id":'#',
-        "master_workflow_id":'$35',
-        "assistance_workflow_id":'$4',
-        "execution_order": 1
-    },
-
-    {
-        "sub_workflow_id":'#',
-        "master_workflow_id":'$36',
-        "assistance_workflow_id":'$4',
-        "execution_order": 1
-    },
+    
 
 ######################### ANALYTICS SERVER ##########################
 
@@ -224,6 +191,13 @@ sub_workflow_object = [
 
     {
         "sub_workflow_id":'#',
+        "master_workflow_id":'$81',
+        "assistance_workflow_id":'$84',
+        "execution_order": 1
+    },
+
+    {
+        "sub_workflow_id":'#',
         "master_workflow_id":'$82',
         "assistance_workflow_id":'$4',
         "execution_order": 1
@@ -242,6 +216,42 @@ sub_workflow_object = [
         "assistance_workflow_id":'$4',
         "execution_order": 1
     },
+
+    {
+        "sub_workflow_id":'#',
+        "master_workflow_id":'$86',
+        "assistance_workflow_id":'$4',
+        "execution_order": 1
+    },
+
+    {
+        "sub_workflow_id":'#',
+        "master_workflow_id":'$87',
+        "assistance_workflow_id":'$4',
+        "execution_order": 1
+    },
+
+    {
+        "sub_workflow_id":'#',
+        "master_workflow_id":'$88',
+        "assistance_workflow_id":'$4',
+        "execution_order": 1
+    },
+
+    {
+        "sub_workflow_id":'#',
+        "master_workflow_id":'$89',
+        "assistance_workflow_id":'$4',
+        "execution_order": 1
+    },
+
+    {
+        "sub_workflow_id":'#',
+        "master_workflow_id":'$90',
+        "assistance_workflow_id":'$4',
+        "execution_order": 1
+    },
+
 
 
 ######################### BOOKING SERVER ##########################

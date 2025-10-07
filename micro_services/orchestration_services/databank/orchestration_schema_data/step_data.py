@@ -4,7 +4,7 @@ step_object = [
 
 ######## CREATE ROLE
 # get role 
-# auth [super_admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#4",
@@ -15,7 +15,7 @@ step_object = [
     },
 
 ######## UPDATE ROLE
-# auth [super_admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#4",
@@ -26,7 +26,7 @@ step_object = [
     },
 
 ######## DELETE ROLE
-# auth [super_admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#4",
@@ -37,6 +37,7 @@ step_object = [
     },
 
 ######## GET ROLE
+# auth 
     {
         "step_id":"",
         "service_id":"#4",
@@ -48,7 +49,7 @@ step_object = [
 
 ######## CREATE POLICY
 # get policy 
-# auth [super_admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#4",
@@ -59,7 +60,7 @@ step_object = [
     },
 
 ######## UPDATE POLICY
-# auth [super_admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#4",
@@ -70,7 +71,7 @@ step_object = [
     },
 
 ######## DELETE POLICY
-# auth [super_admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#4",
@@ -81,6 +82,7 @@ step_object = [
     },
 
 ######## GET POLICY
+# auth 
     {
         "step_id":"",
         "service_id":"#4",
@@ -91,11 +93,11 @@ step_object = [
     },
 
 
-#################### ADMIN SERVER #####################
+#################### HOTEL SERVER #####################
 
 ######## CREATE HOTEL
 # get_hotel
-# auth [admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#6",
@@ -106,7 +108,7 @@ step_object = [
     },
 
 ######## UPDATE HOTEL
-# auth [admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#6",
@@ -117,7 +119,7 @@ step_object = [
     },
 
 ######## DELETE HOTEL
-# auth [admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#6",
@@ -128,6 +130,7 @@ step_object = [
     },
 
 ######## GET HOTEL
+# auth 
     {
         "step_id":"",
         "service_id":"#6",
@@ -139,7 +142,7 @@ step_object = [
 
 ######## CREATE HOTEL SERVICE
 # get hotel service
-# auth [admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#6",
@@ -150,7 +153,7 @@ step_object = [
     },
 
 ######## UPDATE HOTEL SERVICE
-# auth [admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#6",
@@ -161,7 +164,7 @@ step_object = [
     },
 
 ######## DELETE HOTEL SERVICE
-# auth [admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#6",
@@ -172,6 +175,7 @@ step_object = [
     },
 
 ######## GET HOTEL SERVICE
+# auth 
     {
         "step_id":"",
         "service_id":"#6",
@@ -181,100 +185,57 @@ step_object = [
         "execution_order": 1
     },
 
-######## CREATE STAFF
-# get staff
-# auth [admin]
+######## CREATE CONFIG
+# get configs
+# auth
     {
         "step_id":"",
         "service_id":"#6",
         "workflow_id":"$29",
-        "relative_url":"/staff",
+        "relative_url":"/config",
         "request_type": 'post',
-        "execution_order": 3
+        "execution_order": 1
     },
 
-######## UPDATE STAFF
-# auth [admin]
+######## UPDATE CONFIG
+# auth
     {
         "step_id":"",
         "service_id":"#6",
         "workflow_id":"$30",
-        "relative_url":"/staff",
+        "relative_url":"/config",
         "request_type": 'put',
-        "execution_order": 2
+        "execution_order": 1
     },
 
-######## DELETE STAFF
-# auth [admin]
+######## DELETE CONFIG
+# auth
     {
         "step_id":"",
         "service_id":"#6",
         "workflow_id":"$31",
-        "relative_url":"/staff",
+        "relative_url":"/config",
         "request_type": 'delete',
-        "execution_order": 2
+        "execution_order": 1
     },
 
-######## GET STAFF
-# auth [admin]
+######## GET CONFIG
+# auth
     {
         "step_id":"",
         "service_id":"#6",
         "workflow_id":"$32",
-        "relative_url":"/staff",
+        "relative_url":"/config",
         "request_type": 'get',
-        "execution_order": 2
+        "execution_order": 1
     },
 
-######## CREATE ADMIN
-# get admin
-# auth [super_admin]
-    {
-        "step_id":"",
-        "service_id":"#6",
-        "workflow_id":"$33",
-        "relative_url":"/admin",
-        "request_type": 'post',
-        "execution_order": 3
-    },
-
-######## UPDATE ADMIN
-# auth [super_admin]
-    {
-        "step_id":"",
-        "service_id":"#6",
-        "workflow_id":"$34",
-        "relative_url":"/admin",
-        "request_type": 'put',
-        "execution_order": 2
-    },
-
-######## DELETE ADMIN
-# auth [super_admin]
-    {
-        "step_id":"",
-        "service_id":"#6",
-        "workflow_id":"$35",
-        "relative_url":"/admin",
-        "request_type": 'delete',
-        "execution_order": 2
-    },
-
-######## GET ADMIN
-# auth [super_admin & admin]
-    {
-        "step_id":"",
-        "service_id":"#6",
-        "workflow_id":"$36",
-        "relative_url":"/admin",
-        "request_type": 'get',
-        "execution_order": 2
-    },
 
 
 #################### ANALYTICS SERVER #####################
 
 ######## CREATE ANALYTIC
+# auth 
     {
         "step_id":"",
         "service_id":"#11",
@@ -285,7 +246,7 @@ step_object = [
     },
 
 ######## DELETE ANALYTIC
-# auth [super_admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#11",
@@ -296,7 +257,7 @@ step_object = [
     },
 
 ######## GET ANALYTIC
-# auth [super_admin & admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#11",
@@ -311,6 +272,7 @@ step_object = [
 #################### AUDIT LOGGING SERVER #####################
 
 ######## CREATE AUDIT
+# auth 
     {
         "step_id":"",
         "service_id":"#12",
@@ -321,7 +283,7 @@ step_object = [
     },
 
 ######## DELETE AUDIT
-# auth [super_admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#12",
@@ -332,7 +294,7 @@ step_object = [
     },
 
 ######## GET AUDIT
-# auth [super_admin & admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#12",
@@ -345,64 +307,143 @@ step_object = [
 
 #################### AUTH SERVER #####################
 
-######## CREATE AUTH
+######## CREATE CREDENTIAL
+# get credential
+# auth 
     {
         "step_id":"",
         "service_id":"#3",
         "workflow_id":"$81",
-        "relative_url":"/auth",
+        "relative_url":"/auth/credential",
         "request_type": 'post',
-        "execution_order": 1
+        "execution_order": 2
     },
 
-######## UPDATE AUTH
-# auth [user]
+######## UPDATE CREDENTIAL
+# auth 
     {
         "step_id":"",
         "service_id":"#3",
         "workflow_id":"$82",
-        "relative_url":"/auth",
+        "relative_url":"/auth/credential",
         "request_type": 'put',
         "execution_order": 2
     },
 
-######## DELETE AUTH
-# auth [user & super admin]
+
+######## DELETE CREDENTIAL
+# auth 
     {
         "step_id":"",
         "service_id":"#3",
         "workflow_id":"$83",
-        "relative_url":"/auth",
+        "relative_url":"/auth/credential",
         "request_type": 'delete',
         "execution_order": 2
     },
 
-######## GET AUTH
-# auth [user & super admin]
+
+######## GET CREDENTIAL
+# auth 
     {
         "step_id":"",
         "service_id":"#3",
         "workflow_id":"$84",
-        "relative_url":"/auth",
+        "relative_url":"/auth/credential",
         "request_type": 'get',
         "execution_order": 2
     },
 
 
+######## CREATE SESSION
+# get session
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#3",
+        "workflow_id":"$85",
+        "relative_url":"/auth/session",
+        "request_type": 'post',
+        "execution_order": 1
+    },
+
+
+######## GET SESSION
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#3",
+        "workflow_id":"$86",
+        "relative_url":"/auth/session",
+        "request_type": 'get',
+        "execution_order": 2
+    },
+
+
+######## DELETE SESSION
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#3",
+        "workflow_id":"$87",
+        "relative_url":"/auth/credential",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+
+######## CREATE RESET-TOKEN
+# get reset-token
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#3",
+        "workflow_id":"$88",
+        "relative_url":"/auth/reset-token",
+        "request_type": 'post',
+        "execution_order": 2
+    },
+
+######## DELETE RESET-TOKEN
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#3",
+        "workflow_id":"$89",
+        "relative_url":"/auth/reset-token",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## GET RESET-TOKEN
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#3",
+        "workflow_id":"$90",
+        "relative_url":"/auth/reset-token",
+        "request_type": 'get',
+        "execution_order": 2
+    },
+
+
+
 #################### BOOKING SERVER #####################
 
 ######## CREATE GUEST
-# get guest
+# guest
+# auth 
     {
         "step_id":"",
         "service_id":"#9",
         "workflow_id":"$101",
         "relative_url":"/guest",
         "request_type": 'post',
-        "execution_order": 2
+        "execution_order": 3
     },
 
 ######## GET GUEST
+# auth 
     {
         "step_id":"",
         "service_id":"#9",
@@ -413,7 +454,7 @@ step_object = [
     },
 
 ######## DELETE GUEST
-# auth [user & admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#9",
@@ -424,17 +465,20 @@ step_object = [
     },
 
 ######## CREATE BOOKING
+# create guest
 # get booking
+# auth 
     {
         "step_id":"",
         "service_id":"#9",
         "workflow_id":"$104",
         "relative_url":"/booking",
         "request_type": 'post',
-        "execution_order": 2
+        "execution_order": 3
     },
 
 ######## GET BOOKING
+# auth 
     {
         "step_id":"",
         "service_id":"#9",
@@ -445,7 +489,7 @@ step_object = [
     },
 
 ######## DELETE BOOKING
-# auth [guest]
+# auth 
     {
         "step_id":"",
         "service_id":"#9",
@@ -455,44 +499,35 @@ step_object = [
         "execution_order": 2
     },
 
-######## QUICK BOOKING
+######## CREATE INVOICE
+# get invoice
+# auth 
     {
         "step_id":"",
         "service_id":"#9",
         "workflow_id":"$107",
-        "relative_url":"/quick-booking",
-        "request_type": 'get',
-        "execution_order": 1
+        "relative_url":"/invoice",
+        "request_type": 'post',
+        "execution_order": 3
     },
 
-######## CREATE INVOICE
-# get invoice
+######## GET INVOICE
+# auth 
     {
         "step_id":"",
         "service_id":"#9",
         "workflow_id":"$108",
-        "relative_url":"/invoice",
-        "request_type": 'post',
-        "execution_order": 2
-    },
-
-######## GET INVOICE
-# auth [user & guest]
-    {
-        "step_id":"",
-        "service_id":"#9",
-        "workflow_id":"$109",
         "relative_url":"/invoice",
         "request_type": 'get',
         "execution_order": 2
     },
 
 ######## DELETE INVOICE
-# auth [super admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#9",
-        "workflow_id":"$110",
+        "workflow_id":"$109",
         "relative_url":"/invoice",
         "request_type": 'delete',
         "execution_order": 2
@@ -500,11 +535,11 @@ step_object = [
 
 
 
-#################### HOTEL MANAGEMENT SERVER #####################
+#################### ROOM SERVER #####################
 
 ######## CREATE ROOM
 # get room
-# auth [admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#7",
@@ -515,7 +550,7 @@ step_object = [
     },
 
 ######## UPDATE ROOM
-# auth [admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#7",
@@ -526,7 +561,7 @@ step_object = [
     },
 
 ######## DELETE ROOM
-# auth [admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#7",
@@ -537,13 +572,105 @@ step_object = [
     },
 
 ######## GET ROOM
+# get amenity
+# auth 
     {
         "step_id":"",
         "service_id":"#7",
         "workflow_id":"$124",
         "relative_url":"/room",
         "request_type": 'get',
-        "execution_order": 1
+        "execution_order": 2
+    },
+
+######## CREATE AMENITY
+# get amenity
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#7",
+        "workflow_id":"$125",
+        "relative_url":"/amenity",
+        "request_type": 'post',
+        "execution_order": 3
+    },
+
+######## UPDATE AMENITY
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#7",
+        "workflow_id":"$126",
+        "relative_url":"/amenity",
+        "request_type": 'put',
+        "execution_order": 2
+    },
+
+######## DELETE AMENITY
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#7",
+        "workflow_id":"$127",
+        "relative_url":"/amenity",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## GET AMENITY
+# get amenity picture
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#7",
+        "workflow_id":"$128",
+        "relative_url":"/amenity",
+        "request_type": 'get',
+        "execution_order": 2
+    },
+
+######## CREATE AMENITY PICTURE
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#7",
+        "workflow_id":"$129",
+        "relative_url":"/amenity/picture",
+        "request_type": 'post',
+        "execution_order": 2
+    },
+
+######## UPDATE AMENITY PICTURE
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#7",
+        "workflow_id":"$130",
+        "relative_url":"/amenity/picture",
+        "request_type": 'put',
+        "execution_order": 2
+    },
+
+######## DELETE AMENITY PICTURE
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#7",
+        "workflow_id":"$131",
+        "relative_url":"/amenity/picture",
+        "request_type": 'delete',
+        "execution_order": 2
+    },
+
+######## GET AMENITY PICTURE
+# auth 
+    {
+        "step_id":"",
+        "service_id":"#7",
+        "workflow_id":"$132",
+        "relative_url":"/amenity/picture",
+        "request_type": 'get',
+        "execution_order": 2
     },
 
 
@@ -551,7 +678,7 @@ step_object = [
 
 ######## CREATE TRANSACTION
 # get transaction
-# auth [guest & super-admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#8",
@@ -562,7 +689,7 @@ step_object = [
     },
 
 ######## DELETE TRANSACTION
-# auth [super-admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#8",
@@ -573,7 +700,7 @@ step_object = [
     },
 
 ######## GET TRANSACTION
-# auth [super-admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#8",
@@ -583,47 +710,46 @@ step_object = [
         "execution_order": 2
     },
 
-######## CREATE PAYMENT METHOD
-# get payment-method
-# auth [user & guest & super-admin]
+######## CREATE BANK
+# auth 
     {
         "step_id":"",
         "service_id":"#8",
         "workflow_id":"$144",
-        "relative_url":"/payment-method",
+        "relative_url":"/bank",
         "request_type": 'post',
         "execution_order": 3
     },
 
-######## UPDATE PAYMENT METHOD
-# auth [user & guest & super-admin]
+######## UPDATE BANK
+# auth 
     {
         "step_id":"",
         "service_id":"#8",
         "workflow_id":"$145",
-        "relative_url":"/payment-method",
+        "relative_url":"/bank",
         "request_type": 'put',
         "execution_order": 2
     },
 
-######## DELETE PAYMENT METHOD
-# auth [user & guest & super-admin]
+######## DELETE BANK
+# auth 
     {
         "step_id":"",
         "service_id":"#8",
         "workflow_id":"$146",
-        "relative_url":"/payment-method",
+        "relative_url":"/bank",
         "request_type": 'delete',
         "execution_order": 2
     },
 
-######## GET PAYMENT METHOD
-# auth[user & super_admin]
+######## GET BANK
+# auth 
     {
         "step_id":"",
         "service_id":"#8",
         "workflow_id":"$147",
-        "relative_url":"/payment-method",
+        "relative_url":"/bank",
         "request_type": 'get',
         "execution_order": 1
     },
@@ -631,77 +757,58 @@ step_object = [
 
 #################### REVIEW SERVER #####################
 
-######## CREATE USER REVIEW
-# get user review
-# auth [user]
+######## CREATE REVIEW
+# get review
+# auth 
     {
         "step_id":"",
         "service_id":"#2",
         "workflow_id":"$161",
-        "relative_url":"/review/user",
+        "relative_url":"/review",
         "request_type": 'post',
         "execution_order": 3
     },
 
-######## UPDATE USER REVIEW
-# auth [user]
+######## UPDATE REVIEW
+# auth 
     {
         "step_id":"",
         "service_id":"#2",
         "workflow_id":"$162",
-        "relative_url":"/review/user",
+        "relative_url":"/review",
         "request_type": 'put',
         "execution_order": 2
     },
 
-######## DELETE USER REVIEW
-# auth [user]
+######## DELETE REVIEW
+# auth 
     {
         "step_id":"",
         "service_id":"#2",
         "workflow_id":"$163",
-        "relative_url":"/review/user",
+        "relative_url":"/review",
         "request_type": 'delete',
         "execution_order": 2
     },
 
-######## GET USER REVIEW
-# auth [user]
+######## GET REVIEW
+# auth 
     {
         "step_id":"",
         "service_id":"#2",
         "workflow_id":"$164",
-        "relative_url":"/review/user",
+        "relative_url":"/review",
         "request_type": 'get',
         "execution_order": 1
     },
 
-######## GET PUBLIC REVIEW
-    {
-        "step_id":"",
-        "service_id":"#2",
-        "workflow_id":"$165",
-        "relative_url":"/review/public",
-        "request_type": 'get',
-        "execution_order": 1
-    },
-
-######## DELETE PUBLIC REVIEW
-# auth [super_admin & admin]
-    {
-        "step_id":"",
-        "service_id":"#2",
-        "workflow_id":"$166",
-        "relative_url":"/review/public",
-        "request_type": 'delete',
-        "execution_order": 2
-    },
 
 
-#################### SUPER ADMIN SERVER #####################
+#################### TENANT SERVER #####################
 
 ######## CREATE TENANT
 # get tenant
+# auth 
     {
         "step_id":"",
         "service_id":"#5",
@@ -712,7 +819,7 @@ step_object = [
     },
 
 ######## UPDATE TENANT
-# auth [super-admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#5",
@@ -723,7 +830,7 @@ step_object = [
     },
 
 ######## DELETE TENANT
-# auth [super-admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#5",
@@ -734,6 +841,7 @@ step_object = [
     },
 
 ######## GET TENANT
+# auth 
     {
         "step_id":"",
         "service_id":"#5",
@@ -745,7 +853,7 @@ step_object = [
 
 ######## CREATE BILLING
 # get billing
-# auth [guest & super-admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#5",
@@ -755,131 +863,79 @@ step_object = [
         "execution_order": 3
     },
 
-######## UPDATE BILLING
-# auth [super-admin]
+######## DELETE BILLING
+# auth 
     {
         "step_id":"",
         "service_id":"#5",
         "workflow_id":"$186",
-        "relative_url":"/billing",
-        "request_type": 'put',
-        "execution_order": 2
-    },
-
-######## DELETE BILLING
-# auth [super-admin]
-    {
-        "step_id":"",
-        "service_id":"#5",
-        "workflow_id":"$187",
         "relative_url":"/billing",
         "request_type": 'delete',
         "execution_order": 2
     },
 
 ######## GET BILLING
-# auth [user & admin & super-admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#5",
-        "workflow_id":"$188",
+        "workflow_id":"$187",
         "relative_url":"/billing",
         "request_type": 'get',
         "execution_order": 2
     },
 
-######## CREATE SUPER ADMIN
-# get super admin
-    {
-        "step_id":"",
-        "service_id":"#5",
-        "workflow_id":"$189",
-        "relative_url":"/super-admin",
-        "request_type": 'post',
-        "execution_order": 2
-    },
 
-######## UPDATE SUPER ADMIN
-# auth [super-admin]
-    {
-        "step_id":"",
-        "service_id":"#5",
-        "workflow_id":"$190",
-        "relative_url":"/super-admin",
-        "request_type": 'put',
-        "execution_order": 2
-    },
-
-######## DELETE SUPER ADMIN
-# auth [super-admin]
-    {
-        "step_id":"",
-        "service_id":"#5",
-        "workflow_id":"$191",
-        "relative_url":"/super-admin",
-        "request_type": 'delete',
-        "execution_order": 2
-    },
-
-######## GET SUPER ADMIN
-    {
-        "step_id":"",
-        "service_id":"#5",
-        "workflow_id":"$192",
-        "relative_url":"/super-admin",
-        "request_type": 'get',
-        "execution_order": 1
-    },
-
-
-#################### USER INFO SERVER #####################
+#################### USER SERVER #####################
 
 ######## CREATE USER
 # get user
+# auth 
     {
         "step_id":"",
         "service_id":"#10",
         "workflow_id":"$201",
-        "relative_url":"/user/info",
+        "relative_url":"/user",
         "request_type": 'post',
         "execution_order": 2
     },
 
 ######## UPDATE USER
-# auth [user]
+# auth 
     {
         "step_id":"",
         "service_id":"#10",
         "workflow_id":"$202",
-        "relative_url":"/user/info",
+        "relative_url":"/user",
         "request_type": 'put',
         "execution_order": 2
     },
 
 ######## DELETE USER
-# auth [user & admin & super-admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#10",
         "workflow_id":"$203",
-        "relative_url":"/user/info",
+        "relative_url":"/user",
         "request_type": 'delete',
         "execution_order": 2
     },
 
 ######## GET USER
-# auth [everyone & user & admin & super-admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#10",
         "workflow_id":"$204",
-        "relative_url":"/user/info",
+        "relative_url":"/user",
         "request_type": 'get',
         "execution_order": 2
     },
 
 ######## CREATE USER PROFILE
-# auth [user]
+# get user profile
+# auth 
     {
         "step_id":"",
         "service_id":"#10",
@@ -890,7 +946,7 @@ step_object = [
     },
 
 ######## UPDATE USER PROFILE
-# auth [user]
+# auth 
     {
         "step_id":"",
         "service_id":"#10",
@@ -901,7 +957,7 @@ step_object = [
     },
 
 ######## DELETE USER PROFILE
-# auth [user & super-admin]
+# auth 
     {
         "step_id":"",
         "service_id":"#10",
@@ -912,7 +968,7 @@ step_object = [
     },
 
 ######## GET USER PROFILE
-# auth [user]
+# auth 
     {
         "step_id":"",
         "service_id":"#10",
