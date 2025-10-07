@@ -328,21 +328,6 @@ policy_data = [
     },
 
 ####################### ORCHESTRATION SERVER ##########################
-    {
-        "policy_id":"$",
-        "service_id":"#1",
-        "roles":[]
-        "uri":"",
-        "actions":[]
-    },
-
-    {
-        "policy_id":"$",
-        "service_id":"#1",
-        "roles":[]
-        "uri":"",
-        "actions":[]
-    },
 
 ####################### PAYMENT GATEWAY SERVER ##########################
     {

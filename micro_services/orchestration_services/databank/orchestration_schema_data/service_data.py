@@ -1,4 +1,5 @@
 service_object = [
+
     {
         "service_id":"#1",
         "service_name":"orchestration",
@@ -59,6 +60,8 @@ service_object = [
         "service_name":"audit_logging",
         "endpoint": "7095"
     }
+
+
 ]
 
 

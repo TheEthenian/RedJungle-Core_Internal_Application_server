@@ -57,55 +57,6 @@ workflow_object = [
         "steps":[]
     },
 
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
 
 ######################## HOTEL SERVER ##########################
 # 21 - 40
@@ -194,27 +145,6 @@ workflow_object = [
         "steps":[]
     },
 
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
 ######################## ANALYTIC SERVER ##########################
 # 41 - 60
 
@@ -235,20 +165,6 @@ workflow_object = [
     {
         "workflow_name":"get_analytic",
         "workflow_id":"$43",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
         "sub_workflows": [],
         "steps":[]
     },
@@ -274,20 +190,6 @@ workflow_object = [
     {
         "workflow_name":"get_audit",
         "workflow_id":"$63",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
         "sub_workflows": [],
         "steps":[]
     },
@@ -366,20 +268,6 @@ workflow_object = [
         "steps":[]
     },
 
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
 
 ######################## BOOKING SERVER ##########################
 # 101 - 120
@@ -443,41 +331,6 @@ workflow_object = [
     {
         "workflow_name":"delete_invoice",
         "workflow_id":"$109",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
         "sub_workflows": [],
         "steps":[]
     },
@@ -623,20 +476,6 @@ workflow_object = [
         "steps":[]
     },
 
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
 
 ######################## REVIEW SERVER ##########################
 # 161 - 180
@@ -665,13 +504,6 @@ workflow_object = [
     {
         "workflow_name":"get_review",
         "workflow_id":"$164",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
         "sub_workflows": [],
         "steps":[]
     },
@@ -730,20 +562,6 @@ workflow_object = [
     },
 
 
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
 
 ######################## USER SERVER ##########################
 # 201 - 220
@@ -800,27 +618,6 @@ workflow_object = [
     {
         "workflow_name":"get_user_profile",
         "workflow_id":"$208",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"",
-        "workflow_id":"$",
         "sub_workflows": [],
         "steps":[]
     },
