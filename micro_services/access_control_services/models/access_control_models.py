@@ -36,11 +36,16 @@ class Send_Log_Data(BaseModel):
     details: dict
 
 
-class Incoming_Data(BaseModel):
+class Authorization_Incoming_Data(BaseModel):
     service_id: str
     service_uri: str
     object_details: dict
     action: str
+    payload: dict
+
+
+class Incoming_Data(BaseModel):
+    server_authorization_token: str
     payload: dict
 
 

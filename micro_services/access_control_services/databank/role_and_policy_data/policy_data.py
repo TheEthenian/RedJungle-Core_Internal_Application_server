@@ -13,8 +13,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#4",
         "roles":['#a'],
-        "uri":"/role",
-        "actions":['get']
+        "uri":"/get/role",
+        "actions":['post']
     },
 
     {
@@ -29,8 +29,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#4",
         "roles":['#a']
-        "uri":"/policy",
-        "actions":['get']
+        "uri":"/get/policy",
+        "actions":['post']
     },
 
 ####################### HOTEL SERVER ##########################
@@ -38,8 +38,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#6",
         "roles":['#a']
-        "uri":"/hotel",
-        "actions":['get']
+        "uri":"/get/hotel",
+        "actions":['post']
     },
 
     {
@@ -62,8 +62,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#6",
         "roles":['#a']
-        "uri":"/hotel-service",
-        "actions":['get']
+        "uri":"/get/hotel-service",
+        "actions":['post']
     },
 
     {
@@ -86,8 +86,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#6",
         "roles":['#c','#e']
-        "uri":"/config",
-        "actions":['get']
+        "uri":"/get/config",
+        "actions":['post']
     },
 
     {
@@ -104,7 +104,15 @@ policy_data = [
         "service_id":"#11",
         "roles":['#c','#e']
         "uri":"/analytic/event-log",
-        "actions":['get','delete']
+        "actions":['delete']
+    },
+
+    {
+        "policy_id":"$",
+        "service_id":"#11",
+        "roles":['#c','#e']
+        "uri":"/get/analytic/event-log",
+        "actions":['post']
     },
 
     {
@@ -120,7 +128,15 @@ policy_data = [
         "service_id":"#11",
         "roles":["#c",'#e']
         "uri":"/analytic/metric",
-        "actions":['get','put','delete']
+        "actions":['put','delete']
+    },
+
+    {
+        "policy_id":"$",
+        "service_id":"#11",
+        "roles":["#c",'#e']
+        "uri":"/get/analytic/metric",
+        "actions":['post']
     },
 
 ####################### AUDIT LOGGING SERVER ##########################
@@ -137,7 +153,15 @@ policy_data = [
         "service_id":"#12",
         "roles":['#c','#e']
         "uri":"/audit",
-        "actions":['get','delete']
+        "actions":['delete']
+    },
+
+    {
+        "policy_id":"$",
+        "service_id":"#12",
+        "roles":['#c','#e']
+        "uri":"/get/audit",
+        "actions":['post']
     },
 
 ####################### AUTH SERVER ##########################
@@ -162,15 +186,23 @@ policy_data = [
         "service_id":"#3",
         "roles":['#b','#e']
         "uri":"/auth/credential",
-        "actions":['get','delete']
+        "actions":['delete']
+    },
+
+    {
+        "policy_id":"$",
+        "service_id":"#3",
+        "roles":['#b','#e']
+        "uri":"/get/auth/credential",
+        "actions":['post']
     },
 
     {
         "policy_id":"$",
         "service_id":"#3",
         "roles":['#a']
-        "uri":"/auth/session",
-        "actions":['get']
+        "uri":"/get/auth/session",
+        "actions":['post']
     },
 
     {
@@ -185,8 +217,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#3",
         "roles":['#b','#e']
-        "uri":"/auth/reset-token",
-        "actions":['get']
+        "uri":"/get/auth/reset-token",
+        "actions":['post']
     },
 
     {
@@ -202,8 +234,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#9",
         "roles":['#b','#c','#e']
-        "uri":"/guest",
-        "actions":['get']
+        "uri":"/get/guest",
+        "actions":['post']
     },
 
     {
@@ -234,8 +266,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#9",
         "roles":['#d','#c','#e']
-        "uri":"/booking",
-        "actions":['get']
+        "uri":"/get/booking",
+        "actions":['post']
     },
 
     {
@@ -251,7 +283,15 @@ policy_data = [
         "service_id":"#9",
         "roles":['#d','#c','#e']
         "uri":"/invoice",
-        "actions":['get','delete']
+        "actions":['delete']
+    },
+
+    {
+        "policy_id":"$",
+        "service_id":"#9",
+        "roles":['#d','#c','#e']
+        "uri":"/get/invoice",
+        "actions":['post']
     },
 
 ####################### ROOM SERVER ##########################
@@ -259,8 +299,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#7",
         "roles":['#e','#a','#c']
-        "uri":"/room",
-        "actions":['get']
+        "uri":"/get/room",
+        "actions":['post']
     },
 
     {
@@ -283,8 +323,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#7",
         "roles":['#e','#a','#c']
-        "uri":"/amenity",
-        "actions":['get']
+        "uri":"/get/amenity",
+        "actions":['post']
     },
 
     {
@@ -307,8 +347,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#7",
         "roles":['#a']
-        "uri":"/amenity/picture",
-        "actions":['get']
+        "uri":"/get/amenity/picture",
+        "actions":['post']
     },
 
     {
@@ -334,8 +374,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#8",
         "roles":['#b','#e']
-        "uri":"/transaction",
-        "actions":['get']
+        "uri":"/get/transaction",
+        "actions":['post']
     },
 
     {
@@ -351,7 +391,15 @@ policy_data = [
         "service_id":"#8",
         "roles":['#b','#e']
         "uri":"/bank",
-        "actions":['get','delete']
+        "actions":['delete']
+    },
+
+    {
+        "policy_id":"$",
+        "service_id":"#8",
+        "roles":['#b','#e']
+        "uri":"/get/bank",
+        "actions":['post']
     },
 
     {
@@ -375,8 +423,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#2",
         "roles":['#a']
-        "uri":"/review",
-        "actions":['get']
+        "uri":"/get/review",
+        "actions":['post']
     },
 
     {
@@ -401,7 +449,15 @@ policy_data = [
         "service_id":"#5",
         "roles":['#e','#f']
         "uri":"/tenant",
-        "actions":['get','delete']
+        "actions":['delete']
+    },
+
+    {
+        "policy_id":"$",
+        "service_id":"#5",
+        "roles":['#e','#f']
+        "uri":"/get/tenant",
+        "actions":['post']
     },
 
     {
@@ -417,7 +473,15 @@ policy_data = [
         "service_id":"#5",
         "roles":['#e','#f']
         "uri":"/billing",
-        "actions":['get','delete']
+        "actions":['delete']
+    },
+
+    {
+        "policy_id":"$",
+        "service_id":"#5",
+        "roles":['#e','#f']
+        "uri":"/get/billing",
+        "actions":['post']
     },
 
     {
@@ -433,8 +497,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#10",
         "roles":['#b','#e','#f']
-        "uri":"/user",
-        "actions":['get']
+        "uri":"/get/user",
+        "actions":['post']
     },
 
     {
@@ -449,8 +513,8 @@ policy_data = [
         "policy_id":"$",
         "service_id":"#10",
         "roles":['#b','#e','#f']
-        "uri":"/user/profile",
-        "actions":['get']
+        "uri":"/get/user/profile",
+        "actions":['post']
     },
 
     {

@@ -10,8 +10,8 @@ app = FastAPI()
 #####################################################################
 
 
-@app.get("/review")
-def main_get(data: Incoming_Data):
+@app.post("/get/review")
+def main_get_post(data: Incoming_Data):
     respond = {
         "endpoint": 'get review',
         "echo_data": data

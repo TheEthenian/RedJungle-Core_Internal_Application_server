@@ -10,8 +10,8 @@ app = FastAPI()
 #####################################################################
 
 
-@app.get("/{param_a}")
-def main_get(param_a, data: Incoming_Data):
+@app.post("/get/{param_a}")
+def main_get_post(param_a, data: Incoming_Data):
 
     if param_a == 'transaction':
         respond = {

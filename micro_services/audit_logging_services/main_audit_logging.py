@@ -10,8 +10,8 @@ app = FastAPI()
 #####################################################################
 
 
-@app.get("/audit")
-def main_get(data: Incoming_Data):
+@app.post("/get/audit")
+def main_get_post(data: Incoming_Data):
     respond = {
         "endpoint": 'get audit logging',
         "echo_data": data

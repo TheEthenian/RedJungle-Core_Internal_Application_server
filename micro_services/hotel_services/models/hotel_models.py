@@ -44,6 +44,10 @@ class Incoming_Data(BaseModel):
     payload: dict
 
 
+class Delete_Data(BaseModel):
+    server_authorization_token: str
+    target_object_id: str
+    JWT: str
 
 
 

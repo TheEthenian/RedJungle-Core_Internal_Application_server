@@ -101,7 +101,6 @@ def workflow_name_to_ordered_steps_linkage(given_name):
     
     return final_ordered_steps_collection
     
-
 #########################################################################
 
 def transform_into_ordered_step_list(main_steps,main_sub_workflows):
@@ -130,9 +129,9 @@ def transform_into_ordered_step_list(main_steps,main_sub_workflows):
 config_general = load_yaml_config('../config_general.yaml')
 base_url = config_general['api_network_base_url']
 
+
 def full_transactional_api_communication(structured_step_list,initial_payload):
 
-    next_api_transaction_data = ''
     response_data_bank = []
     current_step_index = 0
 
@@ -144,71 +143,97 @@ def full_transactional_api_communication(structured_step_list,initial_payload):
         complete_url = f'{base_url}:{current_target_uri}'
 
         if current_step_index == 0:
-            response_data_from_api = singular_api_data_communication(http_request_type,complete_url,current_target_uri,initial_payload)
-            print(response_data)
-            next_api_transaction_data = response_data_from_api['data']
-            print('This in under iteration',current_step_index,next_api_transaction_data)
+            response_data_from_api = singular_api_data_communication(http_request_type,complete_url,initial_payload)
             response_data_bank.append(response_data_from_api)
+            print(response_data_from_api)
 
         if current_step_index > 0:
-            response_data_from_api = singular_api_data_communication(http_request_type,complete_url,current_target_uri, next_api_transaction_data)
-            print(response_data)
-            next_api_transaction_data = response_data_from_api['data']
-            print('This in under iteration',current_step_index,next_api_transaction_data)
+
+            next_api_for_communication = response_data_bank[current_step_index - 1]
+            previous_api_for_info = next_api_for_communication['payload']['endpoint_touched']
+
+            response_data_from_api = singular_api_data_communication(http_request_type,complete_url, next_api_for_communication)
+            response_data_from_api['payload']['previous_endpoint'] = previous_api_for_info
+
+            print(response_data_from_api)
             response_data_bank.append(response_data_from_api)
 
         current_step_index += 1
 
     return response_data_bank
 
-
 #########################################################################
 
-def singular_api_data_communication(http_request_type,complete_url,api_uri,payload):
-
-    if http_request_type == 'get':
-        data = httpx.get(complete_url, params=payload)
-
-        response_data = {
-            'sender': api_uri,
-            'data': data
-        }
-        return response_data
-
+def singular_api_data_communication(http_request_type,complete_url,payload):
 
     if http_request_type == 'post':
-        data = httpx.post(complete_url, data=payload)
+        data = httpx.post(complete_url, json=payload)
+        data_one = data.json()
+        endpoint_name = data_one['endpoint']
 
         response_data = {
-            'sender': api_uri,
-            'data': data
-        }
+            'server_authorization_token': f'{complete_url}',
+            'payload': {
+                "endpoint_touched" : endpoint_name ,
+                "previous_endpoint": ''
+                }
+            }
         return response_data
 
 
     if http_request_type == 'put':
-        data = httpx.put(complete_url, data=payload)
+        data = httpx.put(complete_url, json=payload)
+        data_one = data.json()
+        endpoint_name = data_one['endpoint']
 
         response_data = {
-            'sender': api_uri,
-            'data': data
-        }
+            'server_authorization_token': f'{complete_url}',
+            'payload': {
+                "endpoint_touched" : endpoint_name 
+                }
+            }
         return response_data
 
 
     if http_request_type == 'delete':
-        data = httpx.delete(complete_url, data=payload)
 
-        response_data = {
-            'sender': api_uri,
-            'data': data
-        }
-        return response_data
+        payload_data = {
+            "server_authorization_token":"authorized token",
+            "target_object_id":'target object id to delete',
+            "JWT":'user JWT'
+            }
+
+        with httpx.Client() as client:
+            data = client.delete(complete_url, content=payload_data, headers={"Content-Type": "application/json"})
+
+            data_one = data.json()
+            endpoint_name = data_one['endpoint']
+
+            response_data = {
+                'server_authorization_token': f'{complete_url}',
+                'payload': {
+                    "endpoint_touched" : endpoint_name 
+                    }
+                }
+            return response_data
 
 
 #########################################################################
+data_input_initial = {
+        "server_authorization_token": "transient_token_for_this_transaction",
+        "payload": {
+            "JWT":"YTJJFMDGMSDFGMSGFSKLGFFGSLJFGKSJF",
+            "data":{
+                "data_one":"something",
+                "data_two":"someone"
+            }
+        }
+    }
 
 
+structured_steps_data = workflow_name_to_ordered_steps_linkage('delete_hotel')
+#print(structured_steps_data)
+full_transactional_api_communication(structured_steps_data,data_input_initial)
 
 
 

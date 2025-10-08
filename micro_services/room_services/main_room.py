@@ -10,8 +10,8 @@ app = FastAPI()
 #####################################################################
 
 
-@app.get("/{param_a}")
-def main_get(param_a,data: Incoming_Data):
+@app.post("/get/{param_a}")
+def main_get_post(param_a,data: Incoming_Data):
 
     if param_a == 'room':
         respond = {
@@ -27,8 +27,8 @@ def main_get(param_a,data: Incoming_Data):
         }
         return  respond
 
-@app.get("/amenity/picture")
-def main_get(data: Incoming_Data):
+@app.post("/get/amenity/picture")
+def main_get_post(data: Incoming_Data):
     respond = {
         "endpoint": 'get picture',
         "echo_data": data

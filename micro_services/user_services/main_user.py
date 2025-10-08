@@ -10,16 +10,16 @@ app = FastAPI()
 #####################################################################
 
 
-@app.get("/user")
-def main_get(data: Incoming_Data):
+@app.post("/get/user")
+def main_get_post(data: Incoming_Data):
     respond = {
         "endpoint": 'get user',
         "echo_data": data
     }
     return  respond
 
-@app.get("/user/profile")
-def main_get(data: Incoming_Data):
+@app.post("/get/user/profile")
+def main_get_post(data: Incoming_Data):
     respond = {
         "endpoint": 'get user profile',
         "echo_data": data

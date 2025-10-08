@@ -1,4 +1,5 @@
 from  fastapi import FastAPI
+from models.access_control_models import Authorization_Incoming_Data
 from models.access_control_models import Incoming_Data
 import sqlalchemy
 import psycopg2
@@ -10,8 +11,8 @@ app = FastAPI()
 #####################################################################
 
 
-@app.get("/{param_a}")
-def main_get(param_a, data: Incoming_Data):
+@app.post("/get/{param_a}")
+def main_get_post(param_a, data: Authorization_Incoming_Data):
 
     if param_a == 'role':
         respond = {

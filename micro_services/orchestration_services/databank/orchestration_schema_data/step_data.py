@@ -38,8 +38,8 @@ step_object = [
         "step_id":"",
         "service_id":"#4",
         "workflow_id":"$4",
-        "relative_url":"/role",
-        "request_type": 'get',
+        "relative_url":"/get/role",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -79,8 +79,8 @@ step_object = [
         "step_id":"",
         "service_id":"#4",
         "workflow_id":"$8",
-        "relative_url":"/policy",
-        "request_type": 'get',
+        "relative_url":"/get/policy",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -123,8 +123,8 @@ step_object = [
         "step_id":"",
         "service_id":"#6",
         "workflow_id":"$24",
-        "relative_url":"/hotel",
-        "request_type": 'get',
+        "relative_url":"/get/hotel",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -164,8 +164,8 @@ step_object = [
         "step_id":"",
         "service_id":"#6",
         "workflow_id":"$28",
-        "relative_url":"/hotel-service",
-        "request_type": 'get',
+        "relative_url":"/get/hotel-service",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -205,8 +205,8 @@ step_object = [
         "step_id":"",
         "service_id":"#6",
         "workflow_id":"$32",
-        "relative_url":"/config",
-        "request_type": 'get',
+        "relative_url":"/get/config",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -239,8 +239,8 @@ step_object = [
         "step_id":"",
         "service_id":"#11",
         "workflow_id":"$43",
-        "relative_url":"/analytic",
-        "request_type": 'get',
+        "relative_url":"/get/analytic",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -273,8 +273,8 @@ step_object = [
         "step_id":"",
         "service_id":"#12",
         "workflow_id":"$63",
-        "relative_url":"/audit",
-        "request_type": 'get',
+        "relative_url":"/get/audit",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -319,8 +319,8 @@ step_object = [
         "step_id":"",
         "service_id":"#3",
         "workflow_id":"$84",
-        "relative_url":"/auth/credential",
-        "request_type": 'get',
+        "relative_url":"/get/auth/credential",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -342,8 +342,8 @@ step_object = [
         "step_id":"",
         "service_id":"#3",
         "workflow_id":"$86",
-        "relative_url":"/auth/session",
-        "request_type": 'get',
+        "relative_url":"/get/auth/session",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -385,8 +385,8 @@ step_object = [
         "step_id":"",
         "service_id":"#3",
         "workflow_id":"$90",
-        "relative_url":"/auth/reset-token",
-        "request_type": 'get',
+        "relative_url":"/get/auth/reset-token",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -410,8 +410,8 @@ step_object = [
         "step_id":"",
         "service_id":"#9",
         "workflow_id":"$102",
-        "relative_url":"/guest",
-        "request_type": 'get',
+        "relative_url":"/get/guest",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -442,8 +442,8 @@ step_object = [
         "step_id":"",
         "service_id":"#9",
         "workflow_id":"$105",
-        "relative_url":"/booking",
-        "request_type": 'get',
+        "relative_url":"/get/booking",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -473,8 +473,8 @@ step_object = [
         "step_id":"",
         "service_id":"#9",
         "workflow_id":"$108",
-        "relative_url":"/invoice",
-        "request_type": 'get',
+        "relative_url":"/get/invoice",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -529,8 +529,8 @@ step_object = [
         "step_id":"",
         "service_id":"#7",
         "workflow_id":"$124",
-        "relative_url":"/room",
-        "request_type": 'get',
+        "relative_url":"/get/room",
+        "request_type": 'post',
         "execution_order": 2
     },
 
@@ -571,8 +571,8 @@ step_object = [
         "step_id":"",
         "service_id":"#7",
         "workflow_id":"$128",
-        "relative_url":"/amenity",
-        "request_type": 'get',
+        "relative_url":"/get/amenity",
+        "request_type": 'post',
         "execution_order": 2
     },
 
@@ -611,8 +611,8 @@ step_object = [
         "step_id":"",
         "service_id":"#7",
         "workflow_id":"$132",
-        "relative_url":"/amenity/picture",
-        "request_type": 'get',
+        "relative_url":"/get/amenity/picture",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -645,8 +645,8 @@ step_object = [
         "step_id":"",
         "service_id":"#8",
         "workflow_id":"$143",
-        "relative_url":"/transaction",
-        "request_type": 'get',
+        "relative_url":"/get/transaction",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -686,8 +686,8 @@ step_object = [
         "step_id":"",
         "service_id":"#8",
         "workflow_id":"$147",
-        "relative_url":"/bank",
-        "request_type": 'get',
+        "relative_url":"/get/bank",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -730,8 +730,8 @@ step_object = [
         "step_id":"",
         "service_id":"#2",
         "workflow_id":"$164",
-        "relative_url":"/review",
-        "request_type": 'get',
+        "relative_url":"/get/review",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -775,8 +775,8 @@ step_object = [
         "step_id":"",
         "service_id":"#5",
         "workflow_id":"$184",
-        "relative_url":"/tenant",
-        "request_type": 'get',
+        "relative_url":"/get/tenant",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -806,8 +806,8 @@ step_object = [
         "step_id":"",
         "service_id":"#5",
         "workflow_id":"$187",
-        "relative_url":"/billing",
-        "request_type": 'get',
+        "relative_url":"/get/billing",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -850,8 +850,8 @@ step_object = [
         "step_id":"",
         "service_id":"#10",
         "workflow_id":"$204",
-        "relative_url":"/user",
-        "request_type": 'get',
+        "relative_url":"/get/user",
+        "request_type": 'post',
         "execution_order": 1
     },
 
@@ -891,8 +891,8 @@ step_object = [
         "step_id":"",
         "service_id":"#10",
         "workflow_id":"$208",
-        "relative_url":"/user/profile",
-        "request_type": 'get',
+        "relative_url":"/get/user/profile",
+        "request_type": 'post',
         "execution_order": 1
     },
 

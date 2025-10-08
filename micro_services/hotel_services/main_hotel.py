@@ -1,21 +1,18 @@
 from  fastapi import FastAPI
 from models.hotel_models import Incoming_Data
+from models.hotel_models import Delete_Data
 import sqlalchemy
 import psycopg2
 import json
 
 #####################################################################
-
 app = FastAPI()
 
 #####################################################################
 
 
-#####################################################################
-
-
-@app.get("/{param_a}")
-def main_get(param_a, data: Incoming_Data):
+@app.post("/get/{param_a}")
+def main_get_post(param_a, data: Incoming_Data):
     
     if param_a == 'hotel':
         respond = {
@@ -44,7 +41,7 @@ def main_post(param_a, data: Incoming_Data):
     
     if param_a == 'hotel':
         respond = {
-            "endpoint": 'post hotel',
+            "endpoint": "post hotel",
             "echo_data": data
         }
         return  respond
@@ -90,7 +87,7 @@ def main_put(param_a, data: Incoming_Data):
 
 
 @app.delete("/{param_a}")
-def main_delete(param_a, data: Incoming_Data):
+def main_delete(param_a, data: Delete_Data):
     
     if param_a == 'hotel':
         respond = {

@@ -1,3 +1,9 @@
+=> PRELIMINARY CORRECTION
+
+[substitute every get request to post request]
+[the uri will be "/get/old_uri" ,i.e "/get/role"]
+
+
 ###### orchestrator_services_uri ###### 
 
 - /client [post] => external client side ip
