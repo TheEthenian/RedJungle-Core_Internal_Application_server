@@ -168,30 +168,27 @@ def singular_api_data_communication(http_request_type,complete_url,payload):
 
     if http_request_type == 'post':
         data = httpx.post(complete_url, json=payload)
+
         data_one = data.json()
         endpoint_name = data_one['endpoint']
+        response_data = inter_api_communication_data_restructurization('server_to_server')
 
-        response_data = {
-            'server_authorization_token': f'{complete_url}',
-            'payload': {
-                "endpoint_touched" : endpoint_name ,
-                "previous_endpoint": ''
-                }
-            }
+        response_data['payload']['endpoint_touched'] = data_one['endpoint']
+        response_data['server_authorization_token'] = complete_url
+
         return response_data
 
 
     if http_request_type == 'put':
         data = httpx.put(complete_url, json=payload)
+
         data_one = data.json()
         endpoint_name = data_one['endpoint']
+        response_data = inter_api_communication_data_restructurization('server_to_server')
 
-        response_data = {
-            'server_authorization_token': f'{complete_url}',
-            'payload': {
-                "endpoint_touched" : endpoint_name 
-                }
-            }
+        response_data['payload']['endpoint_touched'] = data_one['endpoint']
+        response_data['server_authorization_token'] = complete_url
+
         return response_data
 
 
@@ -203,19 +200,36 @@ def singular_api_data_communication(http_request_type,complete_url,payload):
             "JWT":'user JWT'
             }
 
-        with httpx.Client() as client:
-            data = client.delete(complete_url, content=payload_data, headers={"Content-Type": "application/json"})
+        data = httpx.delete(complete_url, data=payload)
 
-            data_one = data.json()
-            endpoint_name = data_one['endpoint']
+        data_one = data.json()
+        endpoint_name = data_one['endpoint']
+        response_data = inter_api_communication_data_restructurization('server_to_server')
 
-            response_data = {
-                'server_authorization_token': f'{complete_url}',
-                'payload': {
-                    "endpoint_touched" : endpoint_name 
-                    }
+        response_data['payload']['endpoint_touched'] = data_one['endpoint']
+        response_data['server_authorization_token'] = complete_url
+        print(response_data)
+
+        return response_data
+
+
+def inter_api_communication_data_restructurization(type_of_parties):
+
+    if type_of_parties == 'client_to_general_server':
+        pass
+
+    if type_of_parties == 'orch_to_acs':
+        pass
+
+    if type_of_parties == 'server_to_server':
+        response_data = {
+            'server_authorization_token': '',
+            'payload': {
+                "endpoint_touched" : ''
                 }
-            return response_data
+            }
+        return response_data
+
 
 
 #########################################################################
@@ -231,7 +245,7 @@ data_input_initial = {
     }
 
 
-structured_steps_data = workflow_name_to_ordered_steps_linkage('delete_hotel')
+structured_steps_data = workflow_name_to_ordered_steps_linkage('create_user')
 #print(structured_steps_data)
 full_transactional_api_communication(structured_steps_data,data_input_initial)
 

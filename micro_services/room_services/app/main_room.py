@@ -18,14 +18,14 @@ def main_get_post(param_a,data: Incoming_Data):
             "endpoint": 'get room',
             "echo_data": data
         }
-        return  respond
+        return respond
     
     if param_a == 'amenity':
         respond = {
             "endpoint": 'get amenity',
             "echo_data": data
         }
-        return  respond
+        return respond
 
 @app.post("/get/amenity/picture")
 def main_get_post(data: Incoming_Data):
@@ -33,7 +33,7 @@ def main_get_post(data: Incoming_Data):
         "endpoint": 'get picture',
         "echo_data": data
     }
-    return  respond
+    return respond
 
 
 @app.post("/{param_a}")
@@ -44,14 +44,14 @@ def main_post(param_a,data: Incoming_Data):
             "endpoint": 'post room',
             "echo_data": data
         }
-        return  respond
+        return respond
     
     if param_a == 'amenity':
         respond = {
             "endpoint": 'post amenity',
             "echo_data": data
         }
-        return  respond
+        return respond
 
 @app.post("/amenity/picture")
 def main_post(data: Incoming_Data):
@@ -59,7 +59,7 @@ def main_post(data: Incoming_Data):
         "endpoint": 'post picture',
         "echo_data": data
     }
-    return  respond
+    return respond
 
 
 @app.put("/{param_a}")
@@ -70,14 +70,14 @@ def main_put(param_a,data: Incoming_Data):
             "endpoint": 'put room',
             "echo_data": data
         }
-        return  respond
+        return respond
     
     if param_a == 'amenity':
         respond = {
             "endpoint": 'put amenity',
             "echo_data": data
         }
-        return  respond
+        return respond
 
 @app.put("/amenity/picture")
 def main_put(data: Incoming_Data):
@@ -85,7 +85,7 @@ def main_put(data: Incoming_Data):
         "endpoint": 'put picture',
         "echo_data": data
     }
-    return  respond
+    return respond
 
 
 @app.delete("/{param_a}")
@@ -96,14 +96,14 @@ def main_delete(param_a,data: Incoming_Data):
             "endpoint": 'delete room',
             "echo_data": data
         }
-        return  respond
+        return respond
     
     if param_a == 'amenity':
         respond = {
             "endpoint": 'delete amenity',
             "echo_data": data
         }
-        return  respond
+        return respond
 
 @app.delete("/amenity/picture")
 def main_delete(data: Incoming_Data):
@@ -111,7 +111,7 @@ def main_delete(data: Incoming_Data):
         "endpoint": 'delete picture',
         "echo_data": data
     }
-    return  respond
+    return respond
 
 
 

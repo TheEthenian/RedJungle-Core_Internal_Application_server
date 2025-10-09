@@ -42,6 +42,13 @@ sub_workflow_object = [
 
 ############ ANALYTICS SERVER #############
 
+    {
+        "sub_workflow_id":'#',
+        "master_workflow_id":'$44',
+        "assistance_workflow_id":'$47',
+        "execution_order": 1
+    },
+
 
 ########### AUDIT LOGGING SERVER #############
 
@@ -58,7 +65,7 @@ sub_workflow_object = [
     {
         "sub_workflow_id":'#',
         "master_workflow_id":'$85',
-        "assistance_workflow_id":'$87',
+        "assistance_workflow_id":'$86',
         "execution_order": 1
     },
 

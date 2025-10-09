@@ -214,32 +214,73 @@ step_object = [
 
 #################### ANALYTICS SERVER #####################
 
-######## CREATE ANALYTIC
+######## CREATE ANALYTIC EVENT LOG
     {
         "step_id":"",
         "service_id":"#11",
         "workflow_id":"$41",
-        "relative_url":"/analytic",
+        "relative_url":"/analytic/event-log",
         "request_type": 'post',
         "execution_order": 1
     },
 
-######## DELETE ANALYTIC
+######## DELETE ANALYTIC EVENT LOG
     {
         "step_id":"",
         "service_id":"#11",
         "workflow_id":"$42",
-        "relative_url":"/analytic",
+        "relative_url":"/analytic/event-log",
         "request_type": 'delete',
         "execution_order": 1
     },
 
-######## GET ANALYTIC
+######## GET ANALYTIC EVENT LOG
     {
         "step_id":"",
         "service_id":"#11",
         "workflow_id":"$43",
-        "relative_url":"/get/analytic",
+        "relative_url":"/get/analytic/event-log",
+        "request_type": 'post',
+        "execution_order": 1
+    },
+
+######## CREATE ANALYTIC METRIC
+# get metric
+    {
+        "step_id":"",
+        "service_id":"#11",
+        "workflow_id":"$44",
+        "relative_url":"/analytic/metric",
+        "request_type": 'post',
+        "execution_order": 2
+    },
+
+######## UPDATE ANALYTIC METRIC
+    {
+        "step_id":"",
+        "service_id":"#11",
+        "workflow_id":"$45",
+        "relative_url":"/analytic/metric",
+        "request_type": 'put',
+        "execution_order": 1
+    },
+
+######## DELETE ANALYTIC METRIC
+    {
+        "step_id":"",
+        "service_id":"#11",
+        "workflow_id":"$46",
+        "relative_url":"/analytic/metric",
+        "request_type": 'delete',
+        "execution_order": 1
+    },
+
+######## GET ANALYTIC METRIC
+    {
+        "step_id":"",
+        "service_id":"#11",
+        "workflow_id":"$47",
+        "relative_url":"/get/analytic/metric",
         "request_type": 'post',
         "execution_order": 1
     },

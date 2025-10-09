@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  audit_logging_endpoint:
+    build: .
+    ports:
+      - "7095:7095"
+    volumes:
+      - ./app:/app
+      - ./requirements.txt
+
+    command:
+      [
+        "uvicorn",   
+        "main_audit_logging:app",   
+        "--reload",
+        "--port",   
+        "7095",   
+        "--host",   
+        "0.0.0.0"
+      ]
+
+
+
+
+

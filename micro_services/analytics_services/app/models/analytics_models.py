@@ -29,7 +29,7 @@ class Send_Log_Data(BaseModel):
 
 
 class Incoming_Data(BaseModel):
-    source_service: str
+    server_authorization_token: str
     payload: dict
 
 

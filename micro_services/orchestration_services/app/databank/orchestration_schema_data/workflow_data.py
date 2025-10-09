@@ -149,22 +149,50 @@ workflow_object = [
 # 41 - 60
 
     {
-        "workflow_name":"create_analytic",
+        "workflow_name":"create_analytic_event_log",
         "workflow_id":"$41",
         "sub_workflows": [],
         "steps":[]
     },
 
     {
-        "workflow_name":"delete_analytic",
+        "workflow_name":"delete_analytic_event_log",
         "workflow_id":"$42",
         "sub_workflows": [],
         "steps":[]
     },
 
     {
-        "workflow_name":"get_analytic",
+        "workflow_name":"get_analytic_event_log",
         "workflow_id":"$43",
+        "sub_workflows": [],
+        "steps":[]
+    },
+
+    {
+        "workflow_name":"create_analytic_metric",
+        "workflow_id":"$44",
+        "sub_workflows": [],
+        "steps":[]
+    },
+
+    {
+        "workflow_name":"update_analytic_metric",
+        "workflow_id":"$45",
+        "sub_workflows": [],
+        "steps":[]
+    },
+
+    {
+        "workflow_name":"delete_analytic_metric",
+        "workflow_id":"$46",
+        "sub_workflows": [],
+        "steps":[]
+    },
+
+    {
+        "workflow_name":"get_analytic_metric",
+        "workflow_id":"$47",
         "sub_workflows": [],
         "steps":[]
     },
