@@ -9,7 +9,7 @@ import json
 
 ##################### CONFIG INFO ################################
 
-config_general = load_yaml_config('../config_general.yaml')
+config_general = load_yaml_config('../../config_general.yaml')
 base_url = config_general['api_network_base_url']
 
 #####################################################################

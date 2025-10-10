@@ -1,20 +1,17 @@
 from sqlalchemy import create_engine, Integer, Boolean, ForeignKey, Table, String, Float, Column
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped
 from sqlalchemy.orm import mapped_column, sessionmaker
-from functions.main_function import load_yaml_config
+from configs.config_general import DATABASE_CONFIG
 from typing import List
 
 
 ###############################################################################
 
-config_data = load_yaml_config('../config_database.yaml')
-
-db_username = config_data['room_microservice']['database']['db_username']
-db_passcode = config_data['room_microservice']['database']['db_passcode']
-db_url = config_data['room_microservice']['database']['db_url']
-db_port = config_data['room_microservice']['database']['db_port']
-db_name = config_data['room_microservice']['database']['db_name']
-
+db_username = DATABASE_CONFIG['db_username']
+db_passcode = DATABASE_CONFIG['db_passcode']
+db_url = DATABASE_CONFIG['db_url']
+db_port = DATABASE_CONFIG['db_port']
+db_name = DATABASE_CONFIG['db_name']
 
 ###############################################################################
 
