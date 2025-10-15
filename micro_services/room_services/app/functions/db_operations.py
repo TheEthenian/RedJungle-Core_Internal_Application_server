@@ -44,12 +44,13 @@ def create_picture(picture_url_input,date_created_input):
 
 ###################################################################
 
-def create_room(room_no_input,hotel_id_input,status_input,price_input):
+def create_room(room_no_input,room_name_input,hotel_id_input,status_input,price_input):
     generated_room_id = '&42'
 
     room_item = Room_Object(
         room_id= generated_room_id,
         room_no= room_no_input,
+        room_name= room_name_input,
         hotel_id= hotel_id_input,
         status= status_input,
         price= price_input

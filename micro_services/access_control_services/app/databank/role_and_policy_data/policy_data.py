@@ -85,6 +85,22 @@ policy_data = [
     {
         "policy_id":"$",
         "service_id":"#6",
+        "roles":['#e','#d']
+        "uri":"/booking-service",
+        "actions":['post','delete']
+    },
+
+    {
+        "policy_id":"$",
+        "service_id":"#6",
+        "roles":['#e','#d','#c']
+        "uri":"/booking-service",
+        "actions":['get']
+    },
+
+    {
+        "policy_id":"$",
+        "service_id":"#6",
         "roles":['#c','#e']
         "uri":"/get/config",
         "actions":['post']

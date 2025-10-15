@@ -74,12 +74,26 @@ class Hotel_Service_Object(Base):
     service_name: Mapped[str] = mapped_column(String)
     service_description: Mapped[str] = mapped_column(String)
     price: Mapped[float] = mapped_column(Float)
-    operation_schedule: Mapped[str] = mapped_column(String)
+    operation_days: Mapped[str] = mapped_column(String)
+    operation_timelines: Mapped[str] = mapped_column(String)
+    max_people: Mapped[str] = mapped_column(String)
+    
+    booking_service_wormhole: Mapped['Booking_Service_Object'] = relationship(back_populates='booking_service_wormhole')
 
     hotels: Mapped[List['Hotel_Object']] = relationship(
         secondary=Hotel_Service_Association,
         back_populates='services'
         )
+
+class Booking_Service_Object(Base):
+    __tablename__ = 'booking_service_object'
+
+    booking_service_id: Mapped[str] = mapped_column(String, primary_key=True)
+    service_id: Mapped[str] = mapped_column(ForeignKey('hotel_service_object.service_id'))
+    guest_id: Mapped[str] = mapped_column(String)
+    status: Mapped[str] = mapped_column(String)
+
+    booking_service_wormhole: Mapped['Hotel_Service_Object'] = relationship(back_populates='booking_service_wormhole')
 
 
 class Hotel_Configuration_Object(Base):

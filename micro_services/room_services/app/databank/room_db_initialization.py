@@ -49,7 +49,8 @@ class Room_Object(Base):
     __tablename__ = 'room_object'
 
     room_id: Mapped[str] = mapped_column(String, primary_key=True)
-    room_no: Mapped[int] = mapped_column(String)
+    room_no: Mapped[int] = mapped_column(Integer)
+    room_name: Mapped[int] = mapped_column(String)
     hotel_id: Mapped[str] = mapped_column(String)
     status: Mapped[str] = mapped_column(String)
     price: Mapped[float] = mapped_column(Float)

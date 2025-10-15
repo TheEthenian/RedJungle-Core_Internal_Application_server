@@ -2,6 +2,7 @@ from pydantic import BaseModel
 
 class Room_Object(BaseModel):
     room_id: str
+    room_name: str
     room_no: str
     hotel_id: str
     status: str

@@ -17,9 +17,17 @@ class Hotel_Service_Object(BaseModel):
     service_name: str
     service_description: str
     price: float
-    operation_schedule: str
+    operation_days: str
+    operation_time: str
+    max_people: int
+    status: str
     hotels: list
 
+class Book_Service_Object(BaseModel):
+    book_service_id: str
+    service_id: str
+    guest_id: str
+    status: str
 
 class Hotel_Configuration_Object(BaseModel):
     config_id: str

@@ -76,6 +76,11 @@ orchestration server ip only accepted
 => [put] = admin 
 => [delete] = super_admin
 
+- /booking-service [crd] 
+=> [get] = guest / super admin / admin
+=> [post] = guest / super admin
+=> [delete] = guest / super admin
+
 - /config [get]  = anyone
 - /config [post,put,delete]  = super_admin
 

@@ -4,6 +4,7 @@ from databank.admin_db_initialization import get_session
 from databank.admin_db_initialization import Hotel_Object
 from databank.admin_db_initialization import Hotel_Service_Object
 from databank.admin_db_initialization import Hotel_Configuration_Object
+from databank.admin_db_initialization import Booking_Service_Object
 
 
 ###################################################################
@@ -29,7 +30,7 @@ def create_hotel(hotel_name_input,tenant_id_input,location_input,contact_number_
 
 ############################################################################
 
-def create_service(service_name_input,service_description_input,price_input,operation_schedule_input):
+def create_service(service_name_input,service_description_input,price_input,operation_day_input,operation_day_input):
     generated_service_id = '$F45'
 
     service_item = Hotel_Service_Object(
@@ -37,7 +38,24 @@ def create_service(service_name_input,service_description_input,price_input,oper
         service_name= service_name_input,
         service_description= service_description_input,
         price= price_input,
-        operation_schedule= operation_schedule_input,
+        operation_day= operation_day_input,
+        operation_time= operation_time_input,
+        )
+    session.add(service_item)
+    session.commit()
+    session.close()
+
+    return service_item
+
+############################################################################
+
+def create_booking_service(booking_service_id_input,guest_id_input,service_id_input):
+    generated_service_id = '$F45'
+
+    booking_service_item = Booking_Service_Object(
+        booking_service_id = booking_service_id_input
+        guest_id= guest_id_input
+        service_id= service_id_input, 
         )
     session.add(service_item)
     session.commit()
@@ -105,6 +123,11 @@ def read_data(db_session,target_model_class,column_name,row_identifier):
     if target_model_class == 'service':
         column = getattr(Hotel_Service_Object,column_name)
         target_item = db_session.query(Hotel_Service_Object).filter(column == f'{row_identifier}').first()
+        return target_item
+
+    if target_model_class == 'booking_service':
+        column = getattr(Booking_Service_Object,column_name)
+        target_item = db_session.query(Booking_Service_Object).filter(column == f'{row_identifier}').first()
         return target_item
 
 ############################################################################
@@ -191,6 +214,16 @@ def delete_data(db_session,main_id,target_model_class):
         db_session.close()
 
         return 
+        
+
+    if target_model_class == 'booking_service':
+        target_item = db_session.query(Booking_Service_Object).filter(Booking_Service_Object.config_id == f'{main_id}').first()
+        db_session.delete(target_item)
+        db_session.commit()
+        db_session.close()
+
+        return 
+
 
     if target_model_class == 'config':
         target_item = db_session.query(Hotel_Configuration_Object).filter(Hotel_Configuration_Object.config_id == f'{main_id}').first()
@@ -212,6 +245,10 @@ def read_all_data(db_session,table_name):
         res_data = session.query(Hotel_Service_Object).all()
         return res_data
 
+    if table_name == 'booking_service':
+        res_data = session.query(Booking_Service_Object).all()
+        return res_data
+
     if table_name == 'config':
         res_data = session.query(Hotel_Configuration_Object).all()
         return res_data
@@ -231,6 +268,14 @@ def delete_all_data(table_name):
 
     if table_name == 'service':
         all_rows = delete(Hotel_Service_Object)
+        session.execute(all_rows)
+
+        session.commit()
+        session.close()
+        return 
+
+    if table_name == 'booking_service':
+        all_rows = delete(Booking_Service_Object)
         session.execute(all_rows)
 
         session.commit()

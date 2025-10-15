@@ -28,6 +28,13 @@ def main_get_post(param_a, data: Incoming_Data):
         }
         return  respond
 
+    if param_a == 'booking-service':
+        respond = {
+            "endpoint": 'get booking service',
+            "echo_data": data
+        }
+        return  respond
+
     if param_a == 'config':
         respond = {
             "endpoint": 'get config',
@@ -49,6 +56,13 @@ def main_post(param_a, data: Incoming_Data):
     if param_a == 'hotel-service':
         respond = {
             "endpoint": 'post hotel-service',
+            "echo_data": data
+        }
+        return  respond
+
+    if param_a == 'booking-service':
+        respond = {
+            "endpoint": 'post booking-service',
             "echo_data": data
         }
         return  respond
@@ -99,6 +113,13 @@ def main_delete(param_a, data: Delete_Data):
     if param_a == 'hotel-service':
         respond = {
             "endpoint": 'delete hotel service',
+            "echo_data": data
+        }
+        return  respond
+
+    if param_a == 'booking-service':
+        respond = {
+            "endpoint": 'delete booking service',
             "echo_data": data
         }
         return  respond
