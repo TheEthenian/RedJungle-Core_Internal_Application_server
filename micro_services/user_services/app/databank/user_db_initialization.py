@@ -59,13 +59,12 @@ class Profile_Object(Base):
     profile_picture_url: Mapped[str] = mapped_column(String)
     first_name: Mapped[str] = mapped_column(String)
     last_name: Mapped[str] = mapped_column(String)
-    email: Mapped[str] = mapped_column(String)
+    email: Mapped[str] = mapped_column(String, unique=True)
 
     users: Mapped[List['User_Object']] = relationship(
         secondary= User_Profile_Association,
         back_populates= 'profiles'
     )
-
 
 
 

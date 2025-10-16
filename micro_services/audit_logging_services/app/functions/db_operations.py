@@ -1,6 +1,8 @@
 from sqlalchemy import update, delete
-from databank.audit_logging_db_initialization import get_session
+import uuid
+import datetime
 
+from databank.audit_logging_db_initialization import get_session
 from databank.audit_logging_db_initialization import Log_Object
 from databank.audit_logging_db_initialization import Detail_Object
 
@@ -9,19 +11,27 @@ from databank.audit_logging_db_initialization import Detail_Object
 session = get_session()
 
 ###################################################################
+def get_uuid4():
+    random_uuid = uuid.uuid4()
+    return random_uuid
 
-def create_log(source_service_input,service_uri_input,action_crud_input,user_id_input,tenant_id_input,created_at_input):
-    generated_log_id = '#67'
+def get_timestamp():
+    unsanitized_datetime = datetime.datetime.now()
+    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
+    return no_microseconds_datetime
+
+###################################################################
+
+def create_log(source_service_input,service_uri_input,action_crud_input,user_id_input,tenant_id_input):
 
     log_item = Log_Object(
-        log_id= generated_log_id,
+        log_id= get_uuid4(),
         source_service= source_service_input,
         service_uri= source_service_input,
         action_crud= action_crud_input,
         user_id= user_id_input,
         tenant_id= tenant_id_input,
-        created_at= created_at_input
-
+        created_at= get_timestamp()
         )
     session.add(log_item)
     session.commit()
@@ -32,10 +42,9 @@ def create_log(source_service_input,service_uri_input,action_crud_input,user_id_
 ############################################################################
 
 def create_detail(detail_name_input,detail_description_input):
-    generated_detail_id = '$F45'
 
     detail_item = Detail_Object(
-        detail_id= generated_detail_id,
+        detail_id= get_uuid4(),
         detail_name= detail_name_input,
         detail_description= detail_description_input
         )

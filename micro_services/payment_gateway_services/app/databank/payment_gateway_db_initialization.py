@@ -27,6 +27,16 @@ def get_session():
 class Base(DeclarativeBase):
     pass
 
+
+########################  INTERMEDIATE TABLES  #################################
+
+Bank_Customer_Association = Table (
+    'bank_customer_association',
+    Base.metadata,
+    Column('bank_id', ForeignKey('bank_object.bank_id'), primary_key=True),
+    Column('bank_customer_id', ForeignKey('bank_customer_object.bank_customer_id'), primary_key=True)
+)
+
 ########################## TABLE INITIALIZATION ###########################
 
 class Transaction_Object(Base):
@@ -37,7 +47,7 @@ class Transaction_Object(Base):
     tenant_id: Mapped[str]= mapped_column(String)
     amount: Mapped[float]= mapped_column(Float)
     status: Mapped[str]= mapped_column(String)
-    bank_id: Mapped[str]= mapped_column(ForeignKey('bank_object.bank_id'))
+    bank_customer_id: Mapped[str]= mapped_column(ForeignKey('bank_customer_object.bank_customer_id'))
     card_brand: Mapped[str]= mapped_column(String)
     card_last_four_digits: Mapped[str]= mapped_column(Integer)
     created_at: Mapped[str]= mapped_column(String)
@@ -49,6 +59,18 @@ class Bank_Object(Base):
     __tablename__ = 'bank_object'
 
     bank_id: Mapped[str] = mapped_column(String, primary_key=True)
+    bank_name: Mapped[str] = mapped_column(String)
+
+    customers: Mapped[List['Bank_Customer_Object']] = relationship(
+        secondary= Bank_Customer_Association,
+        back_populates= 'banks'
+    )
+
+
+class Bank_Customer_Object(Base):
+    __tablename__ = 'bank_customer_object'
+
+    bank_customer_id: Mapped[str] = mapped_column(String, primary_key=True)
     user_id: Mapped[str] = mapped_column(String)
     card_brand: Mapped[str] = mapped_column(String)
     card_number: Mapped[str] = mapped_column(BigInteger)
@@ -56,7 +78,10 @@ class Bank_Object(Base):
     account_balance: Mapped[str] = mapped_column(Float)
     updated_at: Mapped[str] = mapped_column(String)
 
-    bank_transaction_wormhole: Mapped['Transaction_Object'] = relationship(back_populates='transaction_bank_wormhole')
+    banks: Mapped[List['Bank_Object']] = relationship(
+        secondary= Bank_Customer_Association,
+        back_populates= 'customers'
+    )
 
 
 Base.metadata.create_all(engine)

@@ -1,6 +1,8 @@
 from sqlalchemy import update, delete
-from databank.admin_db_initialization import get_session
+import uuid
+import datetime
 
+from databank.admin_db_initialization import get_session
 from databank.admin_db_initialization import Hotel_Object
 from databank.admin_db_initialization import Hotel_Service_Object
 from databank.admin_db_initialization import Hotel_Configuration_Object
@@ -10,12 +12,21 @@ from databank.admin_db_initialization import Hotel_Configuration_Object
 session = get_session()
 
 ###################################################################
+def get_uuid4():
+    random_uuid = uuid.uuid4()
+    return random_uuid
+
+def get_timestamp():
+    unsanitized_datetime = datetime.datetime.now()
+    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
+    return no_microseconds_datetime
+
+###################################################################
 
 def create_hotel(hotel_name_input,tenant_id_input,location_input,contact_number_input):
-    generated_hotel_id = '#67'
 
     hotel_item = Hotel_Object(
-        hotel_id=generated_hotel_id, 
+        hotel_id= get_uuid4(), 
         hotel_name=hotel_name_input,
         tenant_id=tenant_id_input,
         location=location_input,
@@ -30,10 +41,9 @@ def create_hotel(hotel_name_input,tenant_id_input,location_input,contact_number_
 ############################################################################
 
 def create_service(service_name_input,service_description_input,price_input,operation_schedule_input):
-    generated_service_id = '$F45'
 
     service_item = Hotel_Service_Object(
-        service_id= generated_service_id, 
+        service_id= get_uuid4(), 
         service_name= service_name_input,
         service_description= service_description_input,
         price= price_input,
@@ -48,10 +58,9 @@ def create_service(service_name_input,service_description_input,price_input,oper
 ###################################################################
 
 def create_hotel_config(config_name_input,config_value,last_updated_admin_user_id,last_updated_timestamp):
-    generated_config_id = ''
 
     config_item = Hotel_Configuration_Object(
-        config_id= generated_config_id, 
+        config_id= get_uuid4(), 
         config_name= config_name_input,
         config_value= config_value_input,
         last_updated_admin_user_id= last_updated_admin_user_id_input,

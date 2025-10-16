@@ -1,6 +1,8 @@
 from sqlalchemy import update, delete
-from databank.access_control_db_initialization import get_session
+import uuid
+import datetime
 
+from databank.access_control_db_initialization import get_session
 from databank.access_control_db_initialization import Policy_Object
 from databank.access_control_db_initialization import Role_Object
 from databank.access_control_db_initialization import Decision_Log_Object
@@ -10,12 +12,21 @@ from databank.access_control_db_initialization import Decision_Log_Object
 session = get_session()
 
 ###################################################################
+def get_uuid4():
+    random_uuid = uuid.uuid4()
+    return random_uuid
+
+def get_timestamp():
+    unsanitized_datetime = datetime.datetime.now()
+    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
+    return no_microseconds_datetime
+
+###################################################################
 
 def create_policy(service_id_input,uri_input,action_input):
-    generated_policy_id = '#67'
 
     policy_item = Policy_Object(
-        policy_id=generated_policy_id, 
+        policy_id= get_uuid4(), 
         service_id=service_id_input,
         uri=uri_input,
         action=action_input
@@ -29,10 +40,9 @@ def create_policy(service_id_input,uri_input,action_input):
 ############################################################################
 
 def create_role(role_name_input):
-    generated_role_id = '$F45'
 
     role_item = Role_Object(
-        role_id= generated_role_id,
+        role_id= get_uuid4(),
         role_name= role_name_input
         )
     session.add(role_item)
@@ -44,11 +54,9 @@ def create_role(role_name_input):
 ###################################################################
 
 def create_decision_log(config_name_input,config_value,last_updated_admin_user_id,last_updated_timestamp):
-    generated_decision_id = '$343'
-    generated_timestamp = '12thMidnight'
 
     decision_log_item = Decision_Log_Object(
-        decision_id= generated_decision_id, 
+        decision_id= get_uuid4(), 
         service_id= service_id_input,
         user_id= user_id_input,
         tenant_id= tenant_id_input,
@@ -56,7 +64,7 @@ def create_decision_log(config_name_input,config_value,last_updated_admin_user_i
         action_crud= action_crud_input,
         allowed=allowed_input,
         policy_based_reason= policy_based_reason_input,
-        timestamp= generated_timestamp
+        timestamp= get_timestamp()
 
         )
     session.add(decision_log_item)

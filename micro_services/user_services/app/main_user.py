@@ -5,36 +5,39 @@ import psycopg2
 import json
 
 #####################################################################
-app = FastAPI()
+from functions.main_function import create_new_user
+from functions.main_function import get_user
+from functions.main_function import get_profile
 
 #####################################################################
+app = FastAPI()
 
 
+#####################################################################
 @app.post("/get/user")
 def main_get_post(data: Incoming_Data):
-    respond = {
-        "endpoint": 'get user',
-        "echo_data": data
-    }
-    return  respond
 
+    response_data = get_user(data)
+    return  response_data
+
+
+#####################################################################
 @app.post("/get/user/profile")
 def main_get_post(data: Incoming_Data):
-    respond = {
-        "endpoint": 'get user profile',
-        "echo_data": data
-    }
-    return  respond
+
+    response_data = get_profile(data)
+    return  response_data
 
 
+#####################################################################
 @app.post("/user")
 def main_post(data: Incoming_Data):
-    respond = {
-        "endpoint": 'post user',
-        "echo_data": data
-    }
-    return  respond
 
+    response_data = create_new_user(data)
+    return  response_data
+
+
+#####################################################################
 @app.post("/user/profile")
 def main_post(data: Incoming_Data):
     respond = {
@@ -44,6 +47,7 @@ def main_post(data: Incoming_Data):
     return  respond
 
 
+#####################################################################
 @app.put("/user")
 def main_put(data: Incoming_Data):
     respond = {
@@ -52,6 +56,8 @@ def main_put(data: Incoming_Data):
     }
     return  respond
 
+
+#####################################################################
 @app.put("/user/profile")
 def main_put(data: Incoming_Data):
     respond = {
@@ -61,6 +67,7 @@ def main_put(data: Incoming_Data):
     return  respond
 
 
+#####################################################################
 @app.delete("/user")
 def main_delete(data: Incoming_Data):
     respond = {
@@ -69,6 +76,8 @@ def main_delete(data: Incoming_Data):
     }
     return  respond
 
+
+#####################################################################
 @app.delete("/user/profile")
 def main_delete(data: Incoming_Data):
     respond = {
@@ -77,6 +86,8 @@ def main_delete(data: Incoming_Data):
     }
     return  respond
 
+
+#####################################################################
 
 
 

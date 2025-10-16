@@ -1,4 +1,5 @@
 from sqlalchemy import update, delete
+import uuid
 from databank.orchestration_db_initialization import get_session
 
 from databank.orchestration_db_initialization import Workflow_Object
@@ -12,11 +13,16 @@ from databank.orchestration_db_initialization import Progress_Object
 session = get_session()
 
 ###################################################################
+def get_uuid4():
+    random_uuid = uuid.uuid4()
+    return random_uuid
 
-def create_workflow(workflow_id_input,workflow_name_input):
+###################################################################
+
+def create_workflow(workflow_name_input):
 
     workflow_item = Workflow_Object(
-        workflow_id= workflow_id_input,
+        workflow_id= get_uuid4(),
         workflow_name= workflow_name_input
         )
     session.add(workflow_item)
@@ -27,10 +33,12 @@ def create_workflow(workflow_id_input,workflow_name_input):
 
 ############################################################################
 
-def create_step(step_id_input,service_id_input,relative_uri_input,request_type_input,execution_order_input):
+def create_step(service_id_input,relative_uri_input,request_type_input,execution_order_input):
+    persistent_step_id = []
+    persistent_step_id.append(get_uuid4())
 
     step_item = Step_Object(
-        step_id= step_id_input,
+        step_id= persistent_step_id[0],
         service_id= service_id_input,
         relative_uri= relative_uri_input,
         request_type= request_type_input,
@@ -40,14 +48,16 @@ def create_step(step_id_input,service_id_input,relative_uri_input,request_type_i
     session.commit()
     session.close()
 
-    return step_item
+    return persistent_step_id[0]
 
 ###################################################################
 
-def create_sub_workflow(sub_workflow_id_input,assistance_workflow_id_input,execution_order_input):
+def create_sub_workflow(assistance_workflow_id_input,execution_order_input):
+    persistent_sub_workflow_id = []
+    persistent_sub_workflow_id.append(get_uuid4())
 
     sub_workflow_item = Sub_Workflow_Object(
-        sub_workflow_id= sub_workflow_id_input,
+        sub_workflow_id= persistent_sub_workflow_id[0],
         assistance_workflow_id= assistance_workflow_id_input,
         execution_order= execution_order_input
         )
@@ -55,14 +65,14 @@ def create_sub_workflow(sub_workflow_id_input,assistance_workflow_id_input,execu
     session.commit()
     session.close()
 
-    return sub_workflow_item
+    return persistent_sub_workflow_id[0]
 
 ###################################################################
 
-def create_service(service_id_input,service_name_input,endpoint_input):
+def create_service(service_name_input,endpoint_input):
 
     service_item = Service_Object(
-        service_id= service_id_input,
+        service_id= get_uuid4(),
         service_name= service_name_input,
         endpoint= endpoint_input
         )
@@ -75,10 +85,9 @@ def create_service(service_id_input,service_name_input,endpoint_input):
 ###################################################################
 
 def create_progress(workflow_id_input,current_step_no_input,progress_status_input,complete_status_input):
-    generated_progress_id = '#ert'
 
     progress_item = Progress_Object(
-        progress_id= generated_progress_id,
+        progress_id= get_uuid4(),
         workflow_id= workflow_id_input,
         current_step_no= current_step_no_input,
         progress_status= progress_status_input,
@@ -109,7 +118,7 @@ def create_link_btwn_workflow_steps(db_session,step_column_name,step_row_identif
     target_workflow = read_data(db_session,'workflow',workflow_column_name,workflow_row_identifier)
     target_step = read_data(db_session,'step',step_column_name,step_row_identifier)
 
-    target_workflow.steps.append(target_step)
+    target_step.workflows.append(target_workflow)
 
     db_session.commit()
     db_session.close()

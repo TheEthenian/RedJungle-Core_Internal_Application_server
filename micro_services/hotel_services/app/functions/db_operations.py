@@ -1,6 +1,8 @@
 from sqlalchemy import update, delete
-from databank.admin_db_initialization import get_session
+import uuid
+import datetime
 
+from databank.admin_db_initialization import get_session
 from databank.admin_db_initialization import Hotel_Object
 from databank.admin_db_initialization import Hotel_Service_Object
 from databank.admin_db_initialization import Hotel_Configuration_Object
@@ -11,12 +13,21 @@ from databank.admin_db_initialization import Booking_Service_Object
 session = get_session()
 
 ###################################################################
+def get_uuid4():
+    random_uuid = uuid.uuid4()
+    return random_uuid
+
+def get_timestamp():
+    unsanitized_datetime = datetime.datetime.now()
+    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
+    return no_microseconds_datetime
+
+###################################################################
 
 def create_hotel(hotel_name_input,tenant_id_input,location_input,contact_number_input):
-    generated_hotel_id = '#67'
 
     hotel_item = Hotel_Object(
-        hotel_id=generated_hotel_id, 
+        hotel_id=get_uuid4(), 
         hotel_name=hotel_name_input,
         tenant_id=tenant_id_input,
         location=location_input,
@@ -31,10 +42,9 @@ def create_hotel(hotel_name_input,tenant_id_input,location_input,contact_number_
 ############################################################################
 
 def create_service(service_name_input,service_description_input,price_input,operation_day_input,operation_day_input):
-    generated_service_id = '$F45'
 
     service_item = Hotel_Service_Object(
-        service_id= generated_service_id, 
+        service_id= get_uuid4(), 
         service_name= service_name_input,
         service_description= service_description_input,
         price= price_input,
@@ -49,31 +59,30 @@ def create_service(service_name_input,service_description_input,price_input,oper
 
 ############################################################################
 
-def create_booking_service(booking_service_id_input,guest_id_input,service_id_input):
-    generated_service_id = '$F45'
+def create_booking_service(guest_id_input,service_id_input, status_input):
 
     booking_service_item = Booking_Service_Object(
-        booking_service_id = booking_service_id_input
-        guest_id= guest_id_input
-        service_id= service_id_input, 
+        booking_service_id = get_uuid4(),
+        guest_id= guest_id_input,
+        service_id= service_id_input,
+        status= status_input,
         )
-    session.add(service_item)
+    session.add(booking_service_item)
     session.commit()
     session.close()
 
-    return service_item
+    return booking_service_item
 
 ###################################################################
 
-def create_hotel_config(config_name_input,config_value,last_updated_admin_user_id,last_updated_timestamp):
-    generated_config_id = '#h'
+def create_hotel_config(config_name_input,config_value,last_updated_admin_user_id):
 
     config_item = Hotel_Configuration_Object(
-        config_id= generated_config_id, 
+        config_id= get_uuid4(), 
         config_name= config_name_input,
         config_value= config_value_input,
         last_updated_admin_user_id= last_updated_admin_user_id_input,
-        last_updated_timestamp= last_updated_timestamp_input,
+        last_updated_timestamp= get_timestamp()
         )
     session.add(config_item)
     session.commit()
@@ -217,7 +226,7 @@ def delete_data(db_session,main_id,target_model_class):
         
 
     if target_model_class == 'booking_service':
-        target_item = db_session.query(Booking_Service_Object).filter(Booking_Service_Object.config_id == f'{main_id}').first()
+        target_item = db_session.query(Booking_Service_Object).filter(Booking_Service_Object.booking_service_id == f'{main_id}').first()
         db_session.delete(target_item)
         db_session.commit()
         db_session.close()

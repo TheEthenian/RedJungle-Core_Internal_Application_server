@@ -1,6 +1,8 @@
 from sqlalchemy import update, delete
-from databank.user_db_initialization import get_session
+import uuid
+import datetime
 
+from databank.user_db_initialization import get_session
 from databank.user_db_initialization import User_Object
 from databank.user_db_initialization import Profile_Object
 
@@ -9,30 +11,42 @@ from databank.user_db_initialization import Profile_Object
 session = get_session()
 
 ###################################################################
+def get_uuid4():
+    random_uuid = uuid.uuid4()
+    return random_uuid
 
-def create_user(tenant_id_input,role_id_input,updated_at_input,created_at_input):
-    generated_user_id = '#67'
+def get_timestamp():
+    unsanitized_datetime = datetime.datetime.now()
+    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
+    return no_microseconds_datetime
 
+###################################################################
+
+def create_user(tenant_id_input,role_id_input):
+    persistent_id = []
+
+    persistent_id.append(get_uuid4())
     user_item = User_Object(
-        user_id= generated_user_id,
+        user_id= persistent_id[0],
         tenant_id= tenant_id_input,
         role_id= role_id_input,
-        updated_at= updated_at_input,
-        created_at= created_at_input
+        updated_at= get_timestamp(),
+        created_at= get_timestamp()
         )
     session.add(user_item)
     session.commit()
     session.close()
 
-    return user_item
+    return persistent_id[0]
 
 ############################################################################
 
 def create_profile(profile_picture_url_input,first_name_input,last_name_input,email_input):
-    generated_profile_id = '$F45'
+    persistent_id = []
 
+    persistent_id.append(get_uuid4())
     profile_item = Profile_Object(
-        profile_id= generated_profile_id,
+        profile_id= persistent_id[0],
         profile_picture_url= profile_picture_url_input,
         first_name= first_name_input,
         last_name= last_name_input,
@@ -42,7 +56,7 @@ def create_profile(profile_picture_url_input,first_name_input,last_name_input,em
     session.commit()
     session.close()
 
-    return profile_item
+    return persistent_id[0]
 
 ###################################################################
 

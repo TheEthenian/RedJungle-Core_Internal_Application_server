@@ -1,6 +1,8 @@
 from sqlalchemy import update, delete
-from databank.tenant_db_initialization import get_session
+import uuid
+import datetime
 
+from databank.tenant_db_initialization import get_session
 from databank.tenant_db_initialization import Tenant_Object
 from databank.tenant_db_initialization import Billing_Object
 
@@ -9,17 +11,26 @@ from databank.tenant_db_initialization import Billing_Object
 session = get_session()
 
 ###################################################################
+def get_uuid4():
+    random_uuid = uuid.uuid4()
+    return random_uuid
 
-def create_tenant(tenant_name_input,super_admin_user_id_input,subscription_plan_input,status_input,created_at_input):
-    generated_tenant_id = '#67'
+def get_timestamp():
+    unsanitized_datetime = datetime.datetime.now()
+    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
+    return no_microseconds_datetime
+
+###################################################################
+
+def create_tenant(tenant_name_input,super_admin_user_id_input,subscription_plan_input,status_input):
 
     tenant_item = Tenant_Object(
-        tenant_id= generated_tenant_id,
+        tenant_id= get_uuid4(),
         tenant_name= tenant_name_input,
         super_admin_user_id= super_admin_user_id_input,
         subscription_plan= subscription_plan_input,
         status= status_input,
-        created_at= created_at_input
+        created_at= get_timestamp()
         )
     session.add(tenant_item)
     session.commit()
@@ -29,15 +40,14 @@ def create_tenant(tenant_name_input,super_admin_user_id_input,subscription_plan_
 
 ############################################################################
 
-def create_billing(next_payment_after_days_input,total_amount_input,payment_transaction_id_input,created_at_input):
-    generated_billing_id = '$F45'
+def create_billing(next_payment_after_days_input,total_amount_input,payment_transaction_id_input):
 
     billing_item = Billing_Object(
-        billing_id= generated_billing_id,
+        billing_id= get_uuid4(),
         next_payment_after_days= next_payment_after_days_input,
         total_amount= total_amount_input,
         payment_transaction_id= payment_transaction_id_input,
-        created_at= created_at_input
+        created_at= get_timestamp()
         )
     session.add(billing_item)
     session.commit()

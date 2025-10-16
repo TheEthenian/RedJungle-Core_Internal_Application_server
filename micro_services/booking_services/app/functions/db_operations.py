@@ -1,6 +1,8 @@
 from sqlalchemy import update, delete
-from databank.booking_db_initialization import get_session
+import uuid
+import datetime
 
+from databank.booking_db_initialization import get_session
 from databank.booking_db_initialization import Invoice_Object
 from databank.booking_db_initialization import Guest_Object
 from databank.booking_db_initialization import Booking_Object
@@ -10,16 +12,25 @@ from databank.booking_db_initialization import Booking_Object
 session = get_session()
 
 ###################################################################
+def get_uuid4():
+    random_uuid = uuid.uuid4()
+    return random_uuid
 
-def create_invoice(booking_id_input,invoice_number_input,status_input,created_at_input):
-    generated_invoice_id = '#67'
+def get_timestamp():
+    unsanitized_datetime = datetime.datetime.now()
+    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
+    return no_microseconds_datetime
+
+###################################################################
+
+def create_invoice(booking_id_input,invoice_number_input,status_input):
 
     invoice_item = Invoice_Object(
-        invoice_id=generated_invoice_id, 
+        invoice_id= get_uuid4(), 
         booking_id=booking_id_input,
         invoice_number=invoice_number_input,
         status=status_input,
-        created_at=created_at_input
+        created_at=get_timestamp()
         )
     session.add(invoice_item)
     session.commit()
@@ -29,14 +40,13 @@ def create_invoice(booking_id_input,invoice_number_input,status_input,created_at
 
 ############################################################################
 
-def create_guest(user_id_input,email_input,created_at_input):
-    generated_guest_id = '$F45'
+def create_guest(user_id_input,email_input):
 
     guest_item = Guest_Object(
-        guest_id= generated_guest_id,
+        guest_id= get_uuid4(),
         user_id= user_id_input,
         email= email_input,
-        created_at= created_at_input
+        created_at= get_timestamp()
         )
     session.add(guest_item)
     session.commit()
@@ -47,12 +57,10 @@ def create_guest(user_id_input,email_input,created_at_input):
 ###################################################################
 
 def create_booking(tenant_id_input,hotel_id_input,room_id_input,check_in_date_input,
-    check_out_date_input,status_input,total_price_input,payment_transaction_id_input,created_at_input):
-
-    generated_booking_id = '&SD'
+    check_out_date_input,status_input,total_price_input,payment_transaction_id_input):
 
     booking_item = Booking_Object(
-        booking_id= generated_booking_id,
+        booking_id= get_uuid4(),
         tenant_id= tenant_id_input,
         hotel_id= hotel_id_input,
         room_id= room_id_input,
@@ -61,7 +69,7 @@ def create_booking(tenant_id_input,hotel_id_input,room_id_input,check_in_date_in
         status= status_input,
         total_price= total_price_input,
         payment_transaction_id= payment_transaction_id_input,
-        created_at= created_at_input
+        created_at= get_timestamp()
         )
     session.add(booking_item)
     session.commit()

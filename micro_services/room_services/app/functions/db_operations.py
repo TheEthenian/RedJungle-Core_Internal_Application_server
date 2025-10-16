@@ -1,6 +1,8 @@
 from sqlalchemy import update, delete
-from databank.hotel_management_db_initialization import get_session
+import uuid
+import datetime
 
+from databank.hotel_management_db_initialization import get_session
 from databank.hotel_management_db_initialization import Amenity_Object
 from databank.hotel_management_db_initialization import Picture_Object
 from databank.hotel_management_db_initialization import Room_Object
@@ -10,12 +12,21 @@ from databank.hotel_management_db_initialization import Room_Object
 session = get_session()
 
 ###################################################################
+def get_uuid4():
+    random_uuid = uuid.uuid4()
+    return random_uuid
+
+def get_timestamp():
+    unsanitized_datetime = datetime.datetime.now()
+    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
+    return no_microseconds_datetime
+
+###################################################################
 
 def create_amenity(amenity_name_input,amenity_description_input,max_occupancy_input):
-    generated_amenity_id = '#67'
 
     amenity_item = Amenity_Object(
-        amenity_id= generated_amenity_id,
+        amenity_id= get_uuid4(),
         amenity_name= amenity_name_input,
         amenity_description= amenity_description_input,
         max_occupancy= max_occupancy_input
@@ -29,12 +40,11 @@ def create_amenity(amenity_name_input,amenity_description_input,max_occupancy_in
 ############################################################################
 
 def create_picture(picture_url_input,date_created_input):
-    generated_picture_id = '$F45'
 
     picture_item = Picture_Object(
-        picture_id= generated_picture_id,
+        picture_id= get_uuid4(),
         picture_url= picture_url_input,
-        date_created= date_created_input
+        date_created= get_timestamp()
         )
     session.add(picture_item)
     session.commit()
@@ -45,10 +55,9 @@ def create_picture(picture_url_input,date_created_input):
 ###################################################################
 
 def create_room(room_no_input,room_name_input,hotel_id_input,status_input,price_input):
-    generated_room_id = '&42'
 
     room_item = Room_Object(
-        room_id= generated_room_id,
+        room_id= get_uuid4(),
         room_no= room_no_input,
         room_name= room_name_input,
         hotel_id= hotel_id_input,

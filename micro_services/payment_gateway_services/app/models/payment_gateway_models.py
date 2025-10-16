@@ -14,12 +14,19 @@ class Transaction_Object(BaseModel):
 
 class Bank_Object(BaseModel):
     bank_id: str
+    bank_name: str
+    customers: list
+
+
+class Bank_Customer_Object(BaseModel):
+    bank_customer_id: str
     user_id: str
     card_brand: str
     card_number: str
     card_expiration_date: str
     account_balance: float
     updated_at: str
+    banks: list
 
 
 class Send_Log_Data(BaseModel):

@@ -1,6 +1,8 @@
 from sqlalchemy import update, delete
-from databank.review_db_initialization import get_session
+import uuid
+import datetime
 
+from databank.review_db_initialization import get_session
 from databank.review_db_initialization import Message_Object
 from databank.review_db_initialization import Picture_Object
 from databank.review_db_initialization import Review_Object
@@ -10,15 +12,24 @@ from databank.review_db_initialization import Review_Object
 session = get_session()
 
 ###################################################################
+def get_uuid4():
+    random_uuid = uuid.uuid4()
+    return random_uuid
 
-def create_message(message_text_input,date_created_input, date_updated_input):
-    generated_message_id = '#67'
+def get_timestamp():
+    unsanitized_datetime = datetime.datetime.now()
+    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
+    return no_microseconds_datetime
+
+###################################################################
+
+def create_message(message_text_input):
 
     message_item = Message_Object(
-        message_id= generated_message_id, 
+        message_id= get_uuid4(), 
         message_text= message_text_input,
-        date_created= date_created_input,
-        date_updated= date_updated_input 
+        date_created= get_timestamp(),
+        date_updated= get_timestamp() 
         )
     session.add(message_item)
     session.commit()
@@ -28,13 +39,12 @@ def create_message(message_text_input,date_created_input, date_updated_input):
 
 ############################################################################
 
-def create_picture(picture_url_input,date_created_input):
-    generated_picture_id = '$F45'
+def create_picture(picture_url_input):
 
     picture_item = Picture_Object(
-        picture_id= generated_picture_id, 
+        picture_id= get_uuid4(), 
         picture_url= picture_url_input,
-        date_created= date_created_input
+        date_created= get_timestamp()
         )
     session.add(picture_item)
     session.commit()
@@ -44,15 +54,14 @@ def create_picture(picture_url_input,date_created_input):
 
 ###################################################################
 
-def create_review(user_id_input,tenant_id_input,date_created_input,date_updated_input):
-    generated_review_id = '$G7'
+def create_review(user_id_input,tenant_id_input):
 
     review_item = Review_Object(
-        review_id= generated_review_id,
+        review_id= get_uuid4(),
         user_id= user_id_input,
         tenant_id= tenant_id_input,
-        date_created= date_created_input,
-        date_updated= date_updated_input
+        date_created= get_timestamp(),
+        date_updated= get_timestamp()
         )
     session.add(review_item)
     session.commit()
