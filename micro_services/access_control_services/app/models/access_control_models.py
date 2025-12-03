@@ -5,7 +5,7 @@ class Policy_Object(BaseModel):
     policy_id: str
     service_id: str
     uri: str
-    action: str
+    allowed_methods: str
     roles: list
 
 
@@ -27,6 +27,11 @@ class Decision_Log_Object(BaseModel):
     timestamp: str
 
 
+class Incoming_Data(BaseModel):
+    server_authorization_token: str
+    payload: dict
+
+
 class Send_Log_Data(BaseModel):
     source_service: str
     service_uri: str
@@ -34,19 +39,6 @@ class Send_Log_Data(BaseModel):
     user_id: str
     tenant_id: str
     details: dict
-
-
-class Authorization_Incoming_Data(BaseModel):
-    service_id: str
-    service_uri: str
-    object_details: dict
-    action: str
-    payload: dict
-
-
-class Incoming_Data(BaseModel):
-    server_authorization_token: str
-    payload: dict
 
 
 

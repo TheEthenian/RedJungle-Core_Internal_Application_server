@@ -34,8 +34,8 @@ class Base(DeclarativeBase):
 Role_Policy_Association = Table(
     "role_policy_association",
     Base.metadata,
-    Column("role_id", ForeignKey("role_object.role_id"), primary_key=True),
-    Column("policy_id", ForeignKey("policy_object.policy_id"), primary_key=True)
+    Column("policy_id", ForeignKey("policy_object.policy_id"), primary_key=True),
+    Column("role_id", ForeignKey("role_object.role_id"), primary_key=True)
 )
 
 
@@ -47,8 +47,8 @@ class Policy_Object(Base):
 
     policy_id: Mapped[str] = mapped_column(String, primary_key=True)
     service_id: Mapped[str] = mapped_column(String)
-    uri: Mapped[str] = mapped_column(String, unique=True)
-    action: Mapped[str] = mapped_column(String)
+    uri: Mapped[str] = mapped_column(String)
+    allowed_methods: Mapped[str] = mapped_column(String)
 
     roles: Mapped[List['Role_Object']] = relationship(
         secondary=Role_Policy_Association,

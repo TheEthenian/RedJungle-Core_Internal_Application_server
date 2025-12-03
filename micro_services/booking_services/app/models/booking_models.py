@@ -7,7 +7,6 @@ class Booking_Object(BaseModel):
     room_id: str
     check_in_date: str
     check_out_date: str
-    status: str
     total_price: float
     payment_transaction_id: str
     created_at: str

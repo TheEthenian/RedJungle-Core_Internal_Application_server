@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, Integer, String, Boolean, ForeignKey, Table, Column, Float
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped
 from sqlalchemy.orm import mapped_column, sessionmaker
-from configs.config_general import DATABASE_CONFIG
+from app.configs.config_general import DATABASE_CONFIG
 from typing import List
 
 

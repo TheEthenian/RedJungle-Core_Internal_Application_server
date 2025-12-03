@@ -1,6 +1,6 @@
 from sqlalchemy import update, delete
 import uuid
-import datetime
+from datetime import datetime 
 
 from databank.hotel_management_db_initialization import get_session
 from databank.hotel_management_db_initialization import Amenity_Object
@@ -12,63 +12,82 @@ from databank.hotel_management_db_initialization import Room_Object
 session = get_session()
 
 ###################################################################
+
 def get_uuid4():
     random_uuid = uuid.uuid4()
     return random_uuid
 
 def get_timestamp():
-    unsanitized_datetime = datetime.datetime.now()
-    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
-    return no_microseconds_datetime
+   now = datetime.now()
+   refined_structure = now.strftime("%Y-%m-%d %H:%M:%S")
+   return refined_structure
 
 ###################################################################
 
 def create_amenity(amenity_name_input,amenity_description_input,max_occupancy_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     amenity_item = Amenity_Object(
-        amenity_id= get_uuid4(),
+        amenity_id= constant_uuid[0],
         amenity_name= amenity_name_input,
         amenity_description= amenity_description_input,
         max_occupancy= max_occupancy_input
         )
+
+    response_data.append({'amenity_id': f'{constant_uuid[0]}'})
+
     session.add(amenity_item)
     session.commit()
     session.close()
 
-    return amenity_item
+    return response_data
 
 ############################################################################
 
 def create_picture(picture_url_input,date_created_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     picture_item = Picture_Object(
-        picture_id= get_uuid4(),
+        picture_id= constant_uuid[0],
         picture_url= picture_url_input,
         date_created= get_timestamp()
         )
+
+    response_data.append({'picture_id': f'{constant_uuid[0]}'})
+
     session.add(picture_item)
     session.commit()
     session.close()
 
-    return picture_item
+    return response_data
 
 ###################################################################
 
 def create_room(room_no_input,room_name_input,hotel_id_input,status_input,price_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     room_item = Room_Object(
-        room_id= get_uuid4(),
+        room_id= constant_uuid[0],
         room_no= room_no_input,
         room_name= room_name_input,
         hotel_id= hotel_id_input,
         status= status_input,
         price= price_input
         )
+
+    response_data.append({'room_id': f'{constant_uuid[0]}'})
+
     session.add(room_item)
     session.commit()
     session.close()
 
-    return room_item
+    return response_data
 
 ###################################################################
 

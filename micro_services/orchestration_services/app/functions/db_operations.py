@@ -1,7 +1,7 @@
 from sqlalchemy import update, delete
 import uuid
-from databank.orchestration_db_initialization import get_session
 
+from databank.orchestration_db_initialization import get_session
 from databank.orchestration_db_initialization import Workflow_Object
 from databank.orchestration_db_initialization import Step_Object
 from databank.orchestration_db_initialization import Sub_Workflow_Object
@@ -13,6 +13,7 @@ from databank.orchestration_db_initialization import Progress_Object
 session = get_session()
 
 ###################################################################
+
 def get_uuid4():
     random_uuid = uuid.uuid4()
     return random_uuid
@@ -20,84 +21,110 @@ def get_uuid4():
 ###################################################################
 
 def create_workflow(workflow_name_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     workflow_item = Workflow_Object(
-        workflow_id= get_uuid4(),
+        workflow_id= constant_uuid[0],
         workflow_name= workflow_name_input
         )
+
+    response_data.append({'workflow_id': f'{constant_uuid[0]}'})
+
     session.add(workflow_item)
     session.commit()
     session.close()
 
-    return workflow_item
+    return response_data
 
 ############################################################################
 
 def create_step(service_id_input,relative_uri_input,request_type_input,execution_order_input):
-    persistent_step_id = []
-    persistent_step_id.append(get_uuid4())
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     step_item = Step_Object(
-        step_id= persistent_step_id[0],
+        step_id= constant_uuid[0],
         service_id= service_id_input,
         relative_uri= relative_uri_input,
         request_type= request_type_input,
         execution_order= execution_order_input
         )
+
+    response_data.append({'step_id': f'{constant_uuid[0]}'})
+
     session.add(step_item)
     session.commit()
     session.close()
 
-    return persistent_step_id[0]
+    return response_data
 
 ###################################################################
 
 def create_sub_workflow(assistance_workflow_id_input,execution_order_input):
-    persistent_sub_workflow_id = []
-    persistent_sub_workflow_id.append(get_uuid4())
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     sub_workflow_item = Sub_Workflow_Object(
-        sub_workflow_id= persistent_sub_workflow_id[0],
+        sub_workflow_id= constant_uuid[0],
         assistance_workflow_id= assistance_workflow_id_input,
         execution_order= execution_order_input
         )
+
+    response_data.append({'sub_workflow_id': f'{constant_uuid[0]}'})
+
     session.add(sub_workflow_item)
     session.commit()
     session.close()
 
-    return persistent_sub_workflow_id[0]
+    return response_data
 
 ###################################################################
 
 def create_service(service_name_input,endpoint_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     service_item = Service_Object(
-        service_id= get_uuid4(),
+        service_id= constant_uuid[0],
         service_name= service_name_input,
         endpoint= endpoint_input
         )
+
+    response_data.append({'service_id': f'{constant_uuid[0]}'})
+
     session.add(service_item)
     session.commit()
     session.close()
 
-    return service_item
+    return response_data
 
 ###################################################################
 
 def create_progress(workflow_id_input,current_step_no_input,progress_status_input,complete_status_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     progress_item = Progress_Object(
-        progress_id= get_uuid4(),
+        progress_id= constant_uuid[0],
         workflow_id= workflow_id_input,
         current_step_no= current_step_no_input,
         progress_status= progress_status_input,
         complete_status= complete_status_input
         )
+
+    response_data.append({'progress_id': f'{constant_uuid[0]}'})
+
     session.add(progress_item)
     session.commit()
     session.close()
 
-    return progress_item
+    return response_data
 
 ###################################################################
 

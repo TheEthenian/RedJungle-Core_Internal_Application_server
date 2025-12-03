@@ -1,8 +1,8 @@
 from  fastapi import FastAPI
 from models.booking_models import Incoming_Data
-import sqlalchemy
-import psycopg2
-import json
+from functions.main_function import invoice_function
+from functions.main_function import guest_function
+from functions.main_function import booking_function
 
 #####################################################################
 app = FastAPI()
@@ -14,75 +14,53 @@ app = FastAPI()
 def main_get_post(param_a, data: Incoming_Data):
 
     if param_a == 'guest':
-        respond = {
-            "endpoint": 'get guest',
-            "echo_data": data
-        }
-        return  respond
+        response_data = guest_function(data) 
+        return response_data
+
 
     if param_a == 'booking':
-        respond = {
-            "endpoint": 'get booking',
-            "echo_data": data
-        }
-        return  respond
+        response_data = booking_function(data) 
+        return response_data
+
 
     if param_a == 'invoice':
-        respond = {
-            "endpoint": 'get invoice',
-            "echo_data": data
-        }
-        return  respond
+        response_data = invoice_function(data)
+        return response_data
 
 
 @app.post("/{param_a}")
 def main_post(param_a, data: Incoming_Data):
 
     if param_a == 'guest':
-        respond = {
-            "endpoint": 'post guest',
-            "echo_data": data
-        }
-        return  respond
+        response_data =  guest_function(data)
+        return  response_data
 
     if param_a == 'booking':
-        respond = {
-            "endpoint": 'post booking',
-            "echo_data": data
-        }
-        return  respond
+        response_data = booking_function(data)
+        return response_data
+
 
     if param_a == 'invoice':
-        respond = {
-            "endpoint": 'post invoice',
-            "echo_data": data
-        }
-        return  respond
+        response_data = invoice_function(data) 
+        return response_data
 
 
 @app.delete("/{param_a}")
 def main_delete(param_a, data: Incoming_Data):
 
     if param_a == 'guest':
-        respond = {
-            "endpoint": 'delete_guest',
-            "echo_data": data
-        }
-        return  respond
+
+        return 
+
 
     if param_a == 'booking':
-        respond = {
-            "endpoint": 'delete_booking',
-            "echo_data": data
-        }
-        return  respond
+        
+        return 
+
 
     if param_a == 'invoice':
-        respond = {
-            "endpoint": 'delete_invoice',
-            "echo_data": data
-        }
-        return  respond
+
+        return 
 
 
 

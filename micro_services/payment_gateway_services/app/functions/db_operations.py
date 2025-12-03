@@ -1,6 +1,6 @@
 from sqlalchemy import update, delete
 import uuid
-import datetime
+from datetime import datetime 
 
 from databank.payment_gateway_db_initialization import get_session
 from databank.payment_gateway_db_initialization import Transaction_Object
@@ -17,16 +17,19 @@ def get_uuid4():
     return random_uuid
 
 def get_timestamp():
-    unsanitized_datetime = datetime.datetime.now()
-    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
-    return no_microseconds_datetime
+   now = datetime.now()
+   refined_structure = now.strftime("%Y-%m-%d %H:%M:%S")
+   return refined_structure
 
 ###################################################################
 
 def create_transaction(user_id_input,tenant_id_input,amount_input,status_input,bank_id_input,card_brand_input,card_last_four_digits_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     transaction_item = Transaction_Object(
-        transaction_id= get_uuid4(),
+        transaction_id= constant_uuid[0],
         user_id= user_id_input,
         tenant_id= tenant_id_input,
         amount= amount_input,
@@ -36,18 +39,24 @@ def create_transaction(user_id_input,tenant_id_input,amount_input,status_input,b
         card_last_four_digits= card_last_four_digits_input,
         created_at= get_timestamp()
         )
+
+    response_data.append({'transaction_id': f'{constant_uuid[0]}'})
+
     session.add(transaction_item)
     session.commit()
     session.close()
 
-    return transaction_item
+    return response_data
 
 ############################################################################
 
 def create_bank_customer(user_id_input,card_brand_input,card_number_input,card_expiration_date_input,account_balance_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     bank_customer_item = Bank_Customer_Object(
-        bank_customer_id= get_uuid4(),
+        bank_customer_id= constant_uuid[0],
         user_id= user_id_input,
         card_brand= card_brand_input,
         card_number= card_number_input,
@@ -55,25 +64,34 @@ def create_bank_customer(user_id_input,card_brand_input,card_number_input,card_e
         account_balance= account_balance_input,
         updated_at= get_timestamp()
         )
+
+    response_data.append({'bank_customer_id': f'{constant_uuid[0]}'})
+
     session.add(bank_customer_item)
     session.commit()
     session.close()
 
-    return bank_customer_item
+    return response_data
 
 ############################################################################
 
 def create_bank(bank_name):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     bank_item = Bank_Object(
-        bank_id = get_uuid4(),
+        bank_id = constant_uuid[0],
         bank_name = bank_name_input
     )
+
+    response_data.append({'bank_id': f'{constant_uuid[0]}'})
+
     session.add(bank_item)
     session.commit()
     session.close()
 
-    return bank_item
+    return response_data
 
 ###################################################################
 

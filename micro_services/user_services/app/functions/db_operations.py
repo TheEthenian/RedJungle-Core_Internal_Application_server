@@ -1,6 +1,6 @@
 from sqlalchemy import update, delete
 import uuid
-import datetime
+from datetime import datetime 
 
 from databank.user_db_initialization import get_session
 from databank.user_db_initialization import User_Object
@@ -11,52 +11,61 @@ from databank.user_db_initialization import Profile_Object
 session = get_session()
 
 ###################################################################
+
 def get_uuid4():
     random_uuid = uuid.uuid4()
     return random_uuid
 
 def get_timestamp():
-    unsanitized_datetime = datetime.datetime.now()
-    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
-    return no_microseconds_datetime
+   now = datetime.now()
+   refined_structure = now.strftime("%Y-%m-%d %H:%M:%S")
+   return refined_structure
 
 ###################################################################
 
 def create_user(tenant_id_input,role_id_input):
-    persistent_id = []
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
-    persistent_id.append(get_uuid4())
     user_item = User_Object(
-        user_id= persistent_id[0],
+        user_id= constant_uuid[0],
         tenant_id= tenant_id_input,
         role_id= role_id_input,
         updated_at= get_timestamp(),
         created_at= get_timestamp()
         )
+
+    response_data.append({'user_id': f'{constant_uuid[0]}'})
+
     session.add(user_item)
     session.commit()
     session.close()
 
-    return persistent_id[0]
+    return response_data
 
 ############################################################################
 
 def create_profile(profile_picture_url_input,first_name_input,last_name_input,email_input):
-    persistent_id = []
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
-    persistent_id.append(get_uuid4())
     profile_item = Profile_Object(
-        profile_id= persistent_id[0],
+        profile_id= constant_uuid[0],
         profile_picture_url= profile_picture_url_input,
         first_name= first_name_input,
         last_name= last_name_input,
         email= email_input
         )
+
+    response_data.append({'profile_id': f'{constant_uuid[0]}'})
+
     session.add(profile_item)
     session.commit()
     session.close()
 
-    return persistent_id[0]
+    return response_data
 
 ###################################################################
 

@@ -1,6 +1,6 @@
 from sqlalchemy import update, delete
 import uuid
-import datetime
+from datetime import datetime 
 
 from databank.admin_db_initialization import get_session
 from databank.admin_db_initialization import Hotel_Object
@@ -13,82 +13,107 @@ from databank.admin_db_initialization import Booking_Service_Object
 session = get_session()
 
 ###################################################################
+
 def get_uuid4():
     random_uuid = uuid.uuid4()
     return random_uuid
 
 def get_timestamp():
-    unsanitized_datetime = datetime.datetime.now()
-    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
-    return no_microseconds_datetime
+   now = datetime.now()
+   refined_structure = now.strftime("%Y-%m-%d %H:%M:%S")
+   return refined_structure
 
 ###################################################################
 
 def create_hotel(hotel_name_input,tenant_id_input,location_input,contact_number_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     hotel_item = Hotel_Object(
-        hotel_id=get_uuid4(), 
-        hotel_name=hotel_name_input,
-        tenant_id=tenant_id_input,
-        location=location_input,
-        contact_number=contact_number_input
+        hotel_id= constant_uuid[0], 
+        hotel_name= hotel_name_input,
+        tenant_id= tenant_id_input,
+        location= location_input,
+        contact_number= contact_number_input
         )
+
+    response_data.append({'invoice_id': f'{constant_uuid[0]}'})
+
     session.add(hotel_item)
     session.commit()
     session.close()
 
-    return hotel_item
+    return response_data
 
 ############################################################################
 
 def create_service(service_name_input,service_description_input,price_input,operation_day_input,operation_day_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     service_item = Hotel_Service_Object(
-        service_id= get_uuid4(), 
+        service_id= constant_uuid[0], 
         service_name= service_name_input,
         service_description= service_description_input,
         price= price_input,
         operation_day= operation_day_input,
         operation_time= operation_time_input,
         )
+
+    response_data.append({'invoice_id': f'{constant_uuid[0]}'})
+
     session.add(service_item)
     session.commit()
     session.close()
 
-    return service_item
+    return response_data
 
 ############################################################################
 
 def create_booking_service(guest_id_input,service_id_input, status_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     booking_service_item = Booking_Service_Object(
-        booking_service_id = get_uuid4(),
+        booking_service_id = constant_uuid[0],
         guest_id= guest_id_input,
         service_id= service_id_input,
         status= status_input,
         )
+
+    response_data.append({'invoice_id': f'{constant_uuid[0]}'})
+
     session.add(booking_service_item)
     session.commit()
     session.close()
 
-    return booking_service_item
+    return response_data
 
 ###################################################################
 
 def create_hotel_config(config_name_input,config_value,last_updated_admin_user_id):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     config_item = Hotel_Configuration_Object(
-        config_id= get_uuid4(), 
+        config_id= constant_uuid[0], 
         config_name= config_name_input,
         config_value= config_value_input,
         last_updated_admin_user_id= last_updated_admin_user_id_input,
         last_updated_timestamp= get_timestamp()
         )
+
+    response_data.append({'invoice_id': f'{constant_uuid[0]}'})
+
     session.add(config_item)
     session.commit()
     session.close()
 
-    return config_item
+    return response_data
 
 ###################################################################
 

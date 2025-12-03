@@ -1,6 +1,6 @@
 from sqlalchemy import update, delete
 import uuid
-import datetime
+from datetime import datetime 
 
 from databank.booking_db_initialization import get_session
 from databank.booking_db_initialization import Invoice_Object
@@ -17,69 +17,88 @@ def get_uuid4():
     return random_uuid
 
 def get_timestamp():
-    unsanitized_datetime = datetime.datetime.now()
-    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
-    return no_microseconds_datetime
+   now = datetime.now()
+   refined_structure = now.strftime("%Y-%m-%d %H:%M:%S")
+   return refined_structure
 
 ###################################################################
 
-def create_invoice(booking_id_input,invoice_number_input,status_input):
+def create_invoice(booking_id_input,invoice_number_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     invoice_item = Invoice_Object(
-        invoice_id= get_uuid4(), 
+        invoice_id= constant_uuid[0], 
         booking_id=booking_id_input,
         invoice_number=invoice_number_input,
-        status=status_input,
+        status="active",
         created_at=get_timestamp()
         )
+
+    response_data.append({'invoice_id': f'{constant_uuid[0]}'})
+
     session.add(invoice_item)
     session.commit()
     session.close()
 
-    return invoice_item
+    return response_data
 
 ############################################################################
 
 def create_guest(user_id_input,email_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     guest_item = Guest_Object(
-        guest_id= get_uuid4(),
+        guest_id= constant_uuid[0],
         user_id= user_id_input,
         email= email_input,
         created_at= get_timestamp()
         )
+
+    response_data.append({'guest_id': f'{constant_uuid[0]}'})
+
     session.add(guest_item)
     session.commit()
     session.close()
 
-    return guest_item
+    return response_data
 
 ###################################################################
 
 def create_booking(tenant_id_input,hotel_id_input,room_id_input,check_in_date_input,
-    check_out_date_input,status_input,total_price_input,payment_transaction_id_input):
+    check_out_date_input,total_price_input,payment_transaction_id_input):
+
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     booking_item = Booking_Object(
-        booking_id= get_uuid4(),
+        booking_id= constant_uuid[0],
         tenant_id= tenant_id_input,
         hotel_id= hotel_id_input,
         room_id= room_id_input,
         check_in_date= check_in_date_input,
         check_out_date= check_out_date_input,
-        status= status_input,
+        status= 'active',
         total_price= total_price_input,
         payment_transaction_id= payment_transaction_id_input,
         created_at= get_timestamp()
         )
+
+    response_data.append({'booking_id': f'{constant_uuid[0]}'})
+
     session.add(booking_item)
     session.commit()
     session.close()
 
-    return booking_item
+    return response_data
 
 ###################################################################
 
-def create_link_btwn_booking_guest(db_session,guest_column_name,guest_row_identifier,booking_column_name,booking_row_identifier):
+def create_link_btwn_guest_booking(db_session,guest_column_name,guest_row_identifier,booking_column_name,booking_row_identifier):
 
     target_booking = read_data(db_session,'booking',booking_column_name,booking_row_identifier)
     target_guest = read_data(db_session,'guest',guest_column_name,guest_row_identifier)

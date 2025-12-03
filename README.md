@@ -23,6 +23,9 @@ in user or a random client by IP
 -
 
 
+= The check in & check out date are in days of the the year [366]
+First the function checks the datetime for the current year , appends the year to the input date , checks the db if that is taken then looks for the check out date if taken it gives you the max you can get  then prefix the year to the number thus the accuracy stays and others cannot get in between dates that are occupied ofcourse by room id. 
+
 
 
 

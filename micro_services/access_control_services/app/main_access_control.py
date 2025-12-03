@@ -1,9 +1,9 @@
 from  fastapi import FastAPI
-from models.access_control_models import Authorization_Incoming_Data
 from models.access_control_models import Incoming_Data
-import sqlalchemy
-import psycopg2
-import json
+from functions.main_function import role_function
+from functions.main_function import policy_function
+from functions.main_function import decision_log_function
+from functions.main_function import authorization_function
 
 #####################################################################
 app = FastAPI()
@@ -15,25 +15,12 @@ app = FastAPI()
 def main_get_post(param_a, data: Incoming_Data):
 
     if param_a == 'role':
-        respond = {
-            "endpoint": 'get role',
-            "echo_data": data
-        }
-        return  respond
+        response_data = role_function(data) 
+        return response_data
 
     if param_a == 'policy':
-        respond = {
-            "endpoint": 'get policy',
-            "echo_data": data
-        }
-        return  respond
-
-    if param_a == 'decision-log':
-        respond = {
-            "endpoint": 'get decision log',
-            "echo_data": data
-        }
-        return  respond
+        response_data = policy_function(data) 
+        return response_data
 
 
 
@@ -41,61 +28,48 @@ def main_get_post(param_a, data: Incoming_Data):
 def main_post(param_a, data: Incoming_Data):
 
     if param_a == 'role':
-        respond = {
-            "endpoint": 'post role',
-            "echo_data": data
-        }
-        return  respond
+        response_data = role_function(data) 
+        return response_data
 
     if param_a == 'policy':
-        respond = {
-            "endpoint": 'post policy',
-            "echo_data": data
-        }
-        return  respond
+        response_data = policy_function(data) 
+        return response_data
+
+    if param_a == 'authorization':
+        response_data = authorization_function(data) 
+        return response_data
+
+    if param_a == 'decision-log':
+        response_data = decision_log_function(data) 
+        return response_data
 
 
 @app.put("/{param_a}")
 def main_put(param_a, data: Incoming_Data):
 
     if param_a == 'role':
-        respond = {
-            "endpoint": 'put role',
-            "echo_data": data
-        }
-        return  respond
+        response_data = role_function(data) 
+        return response_data
 
     if param_a == 'policy':
-        respond = {
-            "endpoint": 'put policy',
-            "echo_data": data
-        }
-        return  respond
+        response_data = policy_function(data) 
+        return response_data
 
 
 @app.delete("/{param_a}")
 def main_delete(param_a, data: Incoming_Data):
 
     if param_a == 'role':
-        respond = {
-            "endpoint": 'delete role',
-            "echo_data": data
-        }
-        return  respond
+        response_data = role_function(data) 
+        return response_data
 
     if param_a == 'policy':
-        respond = {
-            "endpoint": 'delete policy',
-            "echo_data": data
-        }
-        return  respond
+        response_data = policy_function(data) 
+        return response_data
 
     if param_a == 'decision-log':
-        respond = {
-            "endpoint": 'delete decision log',
-            "echo_data": data
-        }
-        return  respond
+        response_data = decision_log_function(data) 
+        return response_data
 
 
 

@@ -1,6 +1,6 @@
 from sqlalchemy import update, delete
 import uuid
-import datetime
+from datetime import datetime 
 
 from databank.auth_db_initialization import get_session
 from databank.auth_db_initialization import Password_Reset_Token_Object
@@ -12,54 +12,70 @@ from databank.auth_db_initialization import Credential_Object
 session = get_session()
 
 ###################################################################
+
 def get_uuid4():
     random_uuid = uuid.uuid4()
     return random_uuid
 
 def get_timestamp():
-    unsanitized_datetime = datetime.datetime.now()
-    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
-    return no_microseconds_datetime
+   now = datetime.now()
+   refined_structure = now.strftime("%Y-%m-%d %H:%M:%S")
+   return refined_structure
 
 ###################################################################
 
 def create_password_reset_token(token_input,expires_at_input,is_used_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     password_reset_token_item = Password_Reset_Token_Object(
-        token_id= get_uuid4(),
+        token_id= constant_uuid[0],
         token= token_input,
         expires_at= expires_at_input,
         is_used= is_used_input,
         )
+
+    response_data.append({'token_id': f'{constant_uuid[0]}'})
+
     session.add(password_reset_token_item)
     session.commit()
     session.close()
 
-    return password_reset_token_item
+    return response_data
 
 ############################################################################
 
 def create_session(credential_id_input,token_hash_input,expires_at_input,ip_address_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     session_item = Session_Object(
-        session_id= get_uuid4(),
+        session_id= constant_uuid[0],
         credential_id= credential_id_input,
         token_hash= token_hash_input,
         expires_at= expires_at_input,
         ip_address= ip_address_input
         )
+
+    response_data.append({'session_id': f'{constant_uuid[0]}'})
+
     session.add(session_item)
     session.commit()
     session.close()
 
-    return session_item
+    return response_data
 
 ###################################################################
 
 def create_credential(user_id_input,email_input,hashed_password_input,salt_input,mfa_secret_input,failed_login_attempts_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     credential_item = Credential_Object(
-        credential_id= get_uuid4(),
+        credential_id= constant_uuid[0],
         user_id= user_id_input,
         email= email_input,
         hashed_password= hashed_password_input,
@@ -68,11 +84,14 @@ def create_credential(user_id_input,email_input,hashed_password_input,salt_input
         last_login_at= get_timestamp(),
         failed_login_attempts= failed_login_attempts_input
         )
+
+    response_data.append({'credential_id': f'{constant_uuid[0]}'})
+
     session.add(credential_item)
     session.commit()
     session.close()
 
-    return credential_item
+    return response_data
 
 ###################################################################
 

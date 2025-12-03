@@ -1,6 +1,6 @@
 from sqlalchemy import update, delete
 import uuid
-import datetime
+from datetime import datetime 
 
 from databank.access_control_db_initialization import get_session
 from databank.access_control_db_initialization import Policy_Object
@@ -12,51 +12,67 @@ from databank.access_control_db_initialization import Decision_Log_Object
 session = get_session()
 
 ###################################################################
+
 def get_uuid4():
     random_uuid = uuid.uuid4()
     return random_uuid
 
 def get_timestamp():
-    unsanitized_datetime = datetime.datetime.now()
-    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
-    return no_microseconds_datetime
+   now = datetime.now()
+   refined_structure = now.strftime("%Y-%m-%d %H:%M:%S")
+   return refined_structure
 
 ###################################################################
 
-def create_policy(service_id_input,uri_input,action_input):
+def create_policy(service_id_input,uri_input,allowed_methods_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     policy_item = Policy_Object(
-        policy_id= get_uuid4(), 
+        policy_id= constant_uuid[0], 
         service_id=service_id_input,
         uri=uri_input,
-        action=action_input
+        allowed_methods=allowed_methods_input
         )
+        
+    response_data.append({'policy_id': f'{constant_uuid[0]}'})
+
     session.add(policy_item)
     session.commit()
     session.close()
 
-    return policy_item
+    return response_data
 
 ############################################################################
 
 def create_role(role_name_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     role_item = Role_Object(
-        role_id= get_uuid4(),
+        role_id= constant_uuid[0],
         role_name= role_name_input
         )
+        
+    response_data.append({'role_id': f'{constant_uuid[0]}'})
+
     session.add(role_item)
     session.commit()
     session.close()
 
-    return role_item
+    return response_data
 
 ###################################################################
 
 def create_decision_log(config_name_input,config_value,last_updated_admin_user_id,last_updated_timestamp):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     decision_log_item = Decision_Log_Object(
-        decision_id= get_uuid4(), 
+        decision_id= constant_uuid[0],
         service_id= service_id_input,
         user_id= user_id_input,
         tenant_id= tenant_id_input,
@@ -65,13 +81,15 @@ def create_decision_log(config_name_input,config_value,last_updated_admin_user_i
         allowed=allowed_input,
         policy_based_reason= policy_based_reason_input,
         timestamp= get_timestamp()
-
         )
+        
+    response_data.append({'decision_id': f'{constant_uuid[0]}'})
+
     session.add(decision_log_item)
     session.commit()
     session.close()
 
-    return decision_log_item
+    return response_data
 
 ###################################################################
 

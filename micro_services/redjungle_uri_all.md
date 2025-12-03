@@ -19,13 +19,6 @@ orchestration server ip only accepted
 - /policy [crud] = super_admin
 - /decision-log [get,delete] = super_admin / admin
 
-###### audit_logging_services_uri ###### 
-orchestration server ip only accepted
-
-- /audit [get,post,delete] 
-=>[get,delete] = super_admin / admin
-=>[post] = anyone
-
 ###### auth_services_uri ###### 
 orchestration server ip only accepted
 

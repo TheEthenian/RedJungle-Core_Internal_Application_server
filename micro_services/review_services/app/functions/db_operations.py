@@ -1,6 +1,6 @@
 from sqlalchemy import update, delete
 import uuid
-import datetime
+from datetime import datetime 
 
 from databank.review_db_initialization import get_session
 from databank.review_db_initialization import Message_Object
@@ -17,57 +17,75 @@ def get_uuid4():
     return random_uuid
 
 def get_timestamp():
-    unsanitized_datetime = datetime.datetime.now()
-    no_microseconds_datetime = unsanitized_datetime.replace(microsecond=0)
-    return no_microseconds_datetime
+   now = datetime.now()
+   refined_structure = now.strftime("%Y-%m-%d %H:%M:%S")
+   return refined_structure
 
 ###################################################################
 
 def create_message(message_text_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     message_item = Message_Object(
-        message_id= get_uuid4(), 
+        message_id= constant_uuid[0], 
         message_text= message_text_input,
         date_created= get_timestamp(),
         date_updated= get_timestamp() 
         )
+
+    response_data.append({'message_id': f'{constant_uuid[0]}'})
+
     session.add(message_item)
     session.commit()
     session.close()
 
-    return message_item
+    return response_data
 
 ############################################################################
 
 def create_picture(picture_url_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     picture_item = Picture_Object(
-        picture_id= get_uuid4(), 
+        picture_id= constant_uuid[0], 
         picture_url= picture_url_input,
         date_created= get_timestamp()
         )
+
+    response_data.append({'picture_id': f'{constant_uuid[0]}'})
+
     session.add(picture_item)
     session.commit()
     session.close()
 
-    return picture_item
+    return response_data
 
 ###################################################################
 
 def create_review(user_id_input,tenant_id_input):
+    constant_uuid = []
+    constant_uuid.append(get_uuid4())
+    response_data = []
 
     review_item = Review_Object(
-        review_id= get_uuid4(),
+        review_id= constant_uuid[0],
         user_id= user_id_input,
         tenant_id= tenant_id_input,
         date_created= get_timestamp(),
         date_updated= get_timestamp()
         )
+
+    response_data.append({'review_id': f'{constant_uuid[0]}'})
+
     session.add(review_item)
     session.commit()
     session.close()
 
-    return review_item
+    return response_data
 
 ###################################################################
 

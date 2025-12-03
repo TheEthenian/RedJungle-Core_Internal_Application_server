@@ -287,39 +287,6 @@ step_object = [
 
 
 
-#################### AUDIT LOGGING SERVER #####################
-
-######## CREATE AUDIT
-    {
-        "step_id":"",
-        "service_id":"#12",
-        "workflow_id":"$61",
-        "relative_url":"/audit",
-        "request_type": 'post',
-        "execution_order": 1
-    },
-
-######## DELETE AUDIT
-    {
-        "step_id":"",
-        "service_id":"#12",
-        "workflow_id":"$62",
-        "relative_url":"/audit",
-        "request_type": 'delete',
-        "execution_order": 1
-    },
-
-######## GET AUDIT
-    {
-        "step_id":"",
-        "service_id":"#12",
-        "workflow_id":"$63",
-        "relative_url":"/get/audit",
-        "request_type": 'post',
-        "execution_order": 1
-    },
-
-
 #################### AUTH SERVER #####################
 
 ######## CREATE CREDENTIAL

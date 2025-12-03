@@ -198,31 +198,6 @@ workflow_object = [
     },
 
 
-######################## AUDIT LOGGING SERVER ##########################
-# 61 - 80
-
-    {
-        "workflow_name":"create_audit",
-        "workflow_id":"$61",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"delete_audit",
-        "workflow_id":"$62",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-    {
-        "workflow_name":"get_audit",
-        "workflow_id":"$63",
-        "sub_workflows": [],
-        "steps":[]
-    },
-
-
 ######################## AUTH SERVER ##########################
 # 81 - 100
 
