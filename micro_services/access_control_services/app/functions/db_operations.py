@@ -66,18 +66,17 @@ def create_role(role_name_input):
 
 ###################################################################
 
-def create_decision_log(config_name_input,config_value,last_updated_admin_user_id,last_updated_timestamp):
+def create_decision_log(user_id_input,tenant_id_input,service_id_input,crud_action_input,allowed_input,policy_based_reason_input):
     constant_uuid = []
     constant_uuid.append(get_uuid4())
     response_data = []
 
     decision_log_item = Decision_Log_Object(
         decision_id= constant_uuid[0],
-        service_id= service_id_input,
         user_id= user_id_input,
         tenant_id= tenant_id_input,
-        resource_targeted= resource_targeted_input,
-        action_crud= action_crud_input,
+        service_id= service_id_input,
+        crud_action= crud_action_input,
         allowed=allowed_input,
         policy_based_reason= policy_based_reason_input,
         timestamp= get_timestamp()

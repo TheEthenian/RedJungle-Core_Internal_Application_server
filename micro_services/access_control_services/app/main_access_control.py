@@ -10,20 +10,6 @@ app = FastAPI()
 
 #####################################################################
 
-
-@app.post("/get/{param_a}")
-def main_get_post(param_a, data: Incoming_Data):
-
-    if param_a == 'role':
-        response_data = role_function(data) 
-        return response_data
-
-    if param_a == 'policy':
-        response_data = policy_function(data) 
-        return response_data
-
-
-
 @app.post("/{param_a}")
 def main_post(param_a, data: Incoming_Data):
 

@@ -17,11 +17,10 @@ class Role_Object(BaseModel):
 
 class Decision_Log_Object(BaseModel):
     decision_id: str
-    service_id: str
     user_id: str
     tenant_id: str
-    resource_targeted: str
-    action_crud: str
+    service_id: str
+    crud_action: str
     allowed: bool 
     policy_based_reason: str
     timestamp: str

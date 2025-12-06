@@ -29,15 +29,6 @@ class Bank_Customer_Object(BaseModel):
     banks: list
 
 
-class Send_Log_Data(BaseModel):
-    source_service: str
-    service_uri: str
-    action_crud: str
-    user_id: str
-    tenant_id: str
-    details: dict
-
-
 class Incoming_Data(BaseModel):
     server_authorization_token: str
     payload: dict

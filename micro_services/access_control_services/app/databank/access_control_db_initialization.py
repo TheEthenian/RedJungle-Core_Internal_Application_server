@@ -72,11 +72,10 @@ class Decision_Log_Object(Base):
     __tablename__ = 'decision_log_object'
 
     decision_id: Mapped[str] = mapped_column(String, primary_key=True)
-    service_id: Mapped[str] = mapped_column(String)
     user_id: Mapped[str] = mapped_column(String)
     tenant_id: Mapped[str] = mapped_column(String)
-    resource_targeted: Mapped[str] = mapped_column(String)
-    action_crud: Mapped[str] = mapped_column(String)
+    service_id: Mapped[str] = mapped_column(String)
+    crud_action: Mapped[str] = mapped_column(String)
     allowed: Mapped[bool] = mapped_column(Boolean, default=False)
     policy_based_reason: Mapped[str] = mapped_column(String)
     timestamp: Mapped[str] = mapped_column(String)

@@ -21,17 +21,7 @@ base_url = "http://redjungle-00.lab:7020"
 
 role_url = f"{base_url}/role"
 policy_url = f"{base_url}/policy"
-decision_log_url = f"{base_url}/decision_log"
-
-get_role_url = f"{base_url}/get/role"
-get_policy_url = f"{base_url}/get/policy"
-get_decision_log_url = f"{base_url}/get/decision_log"
-
-
-def get_current_year():
-    current_date = datetime.now()
-    year = current_date.year
-    return year
+decision_log_url = f"{base_url}/decision-log"
 
 ##########################################################################3
 
@@ -92,6 +82,8 @@ def authorization_function(payload):
     target_service_id  = payload.payload['details']['service_id']
     target_crud_action  = payload.payload['details']['crud_action']
     target_uri  = payload.payload['details']['uri']
+    target_user_id  = payload.payload['details']['user_id']
+    target_tenant_id  = payload.payload['details']['tenant_id']
 
     policy_id_request_payload = input_data_structure_conversion(action='get',parameter_nested_list=[['description','retrieve_policy_id'],['service_id',target_service_id],['crud_action',target_crud_action],['uri',target_uri]])
     policy_id_object = httpx.post(policy_url,json=policy_id_request_payload)
@@ -106,18 +98,35 @@ def authorization_function(payload):
         policy_roles_derived = policy_object_roles.json()['payload']['details']['roles']
 
         if target_role_name in policy_roles_derived:
+            target_allowed = True
+            policy_based_reason = 'authorized'
+
+            make_decision_log_payload = input_data_structure_conversion(action='create',parameter_nested_list=[['service_id',target_service_id],['user_id',target_user_id],['tenant_id',target_tenant_id],['crud_action',target_crud_action[0]],['allowed',target_allowed],['policy_based_reason',policy_based_reason]])
+            make_decision_log = httpx.post(decision_log_url,json=make_decision_log_payload)
+
             return 'authorized'
 
         if target_role_name not in policy_roles_derived:
+            target_allowed = False
+            policy_based_reason = 'unauthorized'
+
+            make_decision_log_payload = input_data_structure_conversion(action='create',parameter_nested_list=[['service_id',target_service_id],['user_id',target_user_id],['tenant_id',target_tenant_id],['crud_action',target_crud_action[0]],['allowed',target_allowed],['policy_based_reason',policy_based_reason]])
+            make_decision_log = httpx.post(decision_log_url,json=make_decision_log_payload)
+
             return 'unauthorized'
 
         if len(policy_roles_derived) == 0:
+
+            target_allowed = False
+            policy_based_reason = 'suspicious'
+
+            make_decision_log_payload = input_data_structure_conversion(action='create',parameter_nested_list=[['service_id',target_service_id],['user_id',target_user_id],['tenant_id',target_tenant_id],['crud_action',target_crud_action[0]],['allowed',target_allowed],['policy_based_reason',policy_based_reason]])
+            make_decision_log = httpx.post(decision_log_url,json=make_decision_log_payload)
+
             return f'policy of id {policy_id_derived} has no roles'
 
     if policy_id_object.json()['payload']['action'] == 'not_found':
         return f'Service of id = {target_service_id} with crud action of = {target_crud_action} and uri of = {target_uri} is not assosiated with any policies'
-
-
 
 
 
@@ -337,10 +346,27 @@ def policy_function(payload):
 def decision_log_function(payload):
 
     if payload.payload['action'] == 'create':
-        pass
+
+        target_service_id = payload.payload['details']['service_id']
+        target_user_id = payload.payload['details']['user_id']
+        target_tenant_id = payload.payload['details']['tenant_id']
+        target_crud_action = payload.payload['details']['crud_action']
+        target_allowed = payload.payload['details']['allowed']
+        policy_based_reason = payload.payload['details']['policy_based_reason']
+
+        print(f'new_decision_payload = {payload}')
+        new_decision_log = create_decision_log(user_id_input=target_user_id,tenant_id_input=target_tenant_id,service_id_input=target_service_id,crud_action_input=target_crud_action,allowed_input=target_allowed,policy_based_reason_input=policy_based_reason)
+        new_decision_log_id = new_decision_log['decision_id']
+        print(f'Decision logged of id = {new_decision_log_id}')
+        
 
     if payload.payload['action'] == 'get':
-        pass
+
+        decision_log_bulk = read_all_data(session,'decision_log')
+        decision_log_output_transformation = input_data_structure_conversion(action='delivery',parameter_nested_list=['decision_logs',decision_log_bulk])
+        
+        return decision_log_output_transformation
+        
 
 
 
@@ -359,8 +385,8 @@ def input_data_structure_conversion(action,parameter_nested_list):
             "details":actual_dynamic_data
         }
     }
-
     return canonical_structure
+
 
 def transform_list_string_bidirectional(change_direction,input_data_list,mediator_char):
     
